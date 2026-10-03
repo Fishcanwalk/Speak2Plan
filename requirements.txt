@@ -1,0 +1,31 @@
+# Core / data
+pandas
+numpy
+datasets
+scikit-learn
+pythainlp
+matplotlib
+seaborn
+jupyter
+
+# Deep learning (Intent: TextCNN / LSTM)
+torch
+
+# ASR: fine-tune Whisper (Hugging Face) + evaluation
+transformers
+accelerate
+evaluate
+jiwer
+librosa
+soundfile
+
+# Date/time parsing for add_event
+dateparser
+
+# Google Tasks / Calendar
+google-api-python-client
+google-auth-oauthlib
+google-auth-httplib2
+
+# Text-to-speech
+gTTS

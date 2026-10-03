@@ -1,0 +1,17 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Google OAuth secrets — never commit
+credentials.json
+token.json
+
+# Trained checkpoints / large artifacts
+models/
+data/raw/
+data/audio/
+*.pt
+*.bin
+*.safetensors
