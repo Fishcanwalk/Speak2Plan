@@ -3,19 +3,41 @@ Thai/English voice commands for Google Tasks &amp; Calendar, with a fine-tuned W
 
 ## Setup
 ```bash
-python -m venv .venv
+uv venv --python 3.12 .venv        # or: python3.12 -m venv .venv
 source .venv/bin/activate
-pip install -r requirements.txt
+uv pip install -r requirements.txt # or: pip install -r requirements.txt
 ```
 
 Put your Google OAuth client file at `credentials.json` (never commit it).
 
+## Part 1 — ASR: fine-tune Whisper (speech → text)
+```bash
+# download FLEURS Thai (~3 GB)
+mkdir -p data/raw/fleurs_th
+for s in train validation test; do
+  curl -L -o data/raw/fleurs_th/$s.parquet \
+    https://huggingface.co/api/datasets/google/fleurs/parquet/th_th/$s/0.parquet
+done
+
+python -m src.train_asr                                    # -> models/whisper-th
+python -m src.asr eval --model openai/whisper-tiny --data fleurs   # before
+python -m src.asr eval --model models/whisper-th   --data fleurs   # after
+python -m src.asr eval --model models/whisper-th   --data data/audio/transcripts.csv  # own recordings (file,text)
+```
+
+## Part 2 — Intent classifier (text → intent), trained from scratch
+```bash
+python -m src.train_intent              # NB, LogReg, TextCNN, BiLSTM -> models/, reports/intent/
+python -m src.intent --model lstm "เช็ค task ใน google ให้หน่อย"
+```
+MASSIVE is downloaded automatically. Add your own sentences to `data/custom_intents.csv`.
+
 ## Layout
-- `data/` — datasets (MASSIVE, Common Voice/FLEURS, self-written sentences, self-recorded audio)
-- `notebooks/` — `01_data_baseline`, `02_cnn_lstm`, `03_whisper_finetune` (run on Colab GPU)
-- `src/` — `data`, `models`, `train`, `asr`, `google_api`, `pipeline`
+- `data/` — `custom_intents.csv` (self-written), `raw/` (downloaded datasets, not committed), `audio/` (own recordings)
+- `src/` — `data`, `models`, `train_intent`, `intent`, `asr`, `train_asr`, `google_api`, `pipeline`
 - `models/` — trained checkpoints (not committed)
+- `reports/` — metrics, confusion matrices, CER results
 
 ## Data credits
-- MASSIVE (AmazonScience/massive), CC-BY-4.0
-- Common Voice (Mozilla), CC0 / FLEURS (Google), CC-BY-4.0
+- MASSIVE (Amazon, https://github.com/alexa/massive), CC-BY-4.0
+- FLEURS (Google, `google/fleurs`), CC-BY-4.0

@@ -1,0 +1,31 @@
+text,intent
+เช็ค task ใน google ให้หน่อย,check_tasks
+วันนี้มีงานอะไรต้องทำบ้าง,check_tasks
+ดู to do list ให้หน่อย,check_tasks
+what's on my task list,check_tasks
+มี task ค้างอยู่กี่อัน,check_tasks
+เพิ่ม task ซื้อนม,add_task
+จดไว้หน่อยว่าต้องส่งการบ้าน,add_task
+add a task to call mom,add_task
+ใส่ส่งรายงานลงใน to do,add_task
+สร้าง task ใหม่ชื่ออ่านหนังสือ,add_task
+ติ๊ก task ซื้อนมว่าเสร็จแล้ว,complete_task
+ทำงานส่งอาจารย์เสร็จแล้ว,complete_task
+mark ส่งการบ้านว่า done,complete_task
+complete the task buy milk,complete_task
+ลบ task อ่านหนังสือออกเพราะทำแล้ว,complete_task
+พรุ่งนี้มีนัดอะไรบ้าง,check_calendar
+เช็คปฏิทินวันศุกร์ให้หน่อย,check_calendar
+what's on my calendar today,check_calendar
+อาทิตย์นี้มี event อะไรบ้าง,check_calendar
+บ่ายนี้ว่างไหม,check_calendar
+นัดประชุมพรุ่งนี้บ่ายสองโมง,add_event
+เพิ่ม event ไปหาหมอวันจันทร์สิบโมง,add_event
+ลงปฏิทินว่าวันเสาร์ไปงานแต่งเพื่อน,add_event
+schedule a meeting with the team on friday at 3pm,add_event
+จองเวลาวันพุธสี่โมงเย็นไว้ติวสอบ,add_event
+วันนี้อากาศเป็นยังไง,other
+เปิดเพลงให้หน่อย,other
+ตอนนี้กี่โมงแล้ว,other
+tell me a joke,other
+ตั้งปลุกตีห้า,other

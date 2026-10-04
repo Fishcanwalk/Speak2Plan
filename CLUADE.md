@@ -39,21 +39,24 @@
 - ระวังโมเดลสับสน add_task vs add_event (ใช้วิเคราะห์ใน confusion matrix ได้)
 
 ## Data — ASR (fine-tune Whisper)
-- **หลัก:** Common Voice ภาษาไทย (`mozilla-foundation/common_voice_*`, CC0) และ/หรือ FLEURS `th_th` (`google/fleurs`, CC-BY-4.0)
-  — ใช้ไม่กี่สิบชั่วโมงก็พอสำหรับ fine-tune
+- **หลัก:** FLEURS `th_th` (`google/fleurs`, CC-BY-4.0) — train 2,602 ประโยค (8.5 ชม.) / dev 439 / test 1,021
+  โหลดเป็น parquet ลง `data/raw/fleurs_th/` (ดู `load_fleurs()` ใน `src/asr.py`)
+  เป็นเสียงอ่านประโยคแนว Wikipedia ไม่ใช่คำสั่ง → domain ต่างจากงานจริง (เอาไปวิเคราะห์ในรายงาน)
+- Common Voice ย้ายออกจาก Hugging Face แล้ว (repo เหลือแต่ README) — ไม่ได้ใช้
 - **ชุดทดสอบ:** เสียงที่อัดเองเป็นคำสั่งจริง (ห้ามปนกับชุดเทรน)
 - **วัดผล:** CER (หลัก เพราะภาษาไทยไม่มีช่องว่างระหว่างคำ) + WER หลังตัดคำ — เทียบ Whisper ก่อน/หลัง fine-tune
-- รุ่น: เริ่มจาก `openai/whisper-tiny` หรือ `base` (เทรนบน Colab T4 ได้), `small` ถ้า GPU พอ
-- ต้องใช้ GPU (Colab) — CPU เทรนไม่ไหว
+- รุ่น: `openai/whisper-tiny` (default, batch 8 × accum 2 พอดี RTX 2050 4GB) — `base` ได้ถ้าใช้ batch 4 × accum 4 + gradient checkpointing
+- ต้องใช้ GPU — เครื่องนี้มี RTX 2050 4GB เทรน tiny ได้ (~0.77 step/s), batch 16 OOM เพราะ label ภาษาไทยยาว
 
 ## Data — Intent
 - **หลัก:** MASSIVE (AmazonScience/massive, CC-BY-4.0) ภาษา `th-TH` และ `en-US`
   (~11.5k train / 2k dev / 3k test ต่อภาษา, 60 intent / 18 domain)
-  `load_dataset("AmazonScience/massive", "th-TH")`
-- แมป intent ที่ใกล้เคียงเป็น 6 กลุ่มของเรา เช่น `calendar_query`, `calendar_set`,
-  `lists_query`, `lists_createoradd`, `lists_remove` ที่เหลือรวมเป็น `other`
-  (ต้องเปิดดูรายชื่อ intent จริงก่อนแมป)
-- **เขียนเองเพิ่ม** ~20–30 ประโยคต่อ intent ให้ตรงสำนวนจริง/ไทยปนอังกฤษ
+  HF repo ใช้ loading script ที่ `datasets` รุ่นใหม่ไม่รองรับ → `src/data.py` โหลด tar ต้นฉบับจาก S3 แทน
+- แมป (ใน `src/data.py`): `lists_query`→check_tasks, `lists_createoradd`→add_task, `lists_remove`→complete_task,
+  `calendar_query`→check_calendar, `calendar_set`→add_event, ที่เหลือ (รวม `calendar_remove`) → `other`
+- `other` มี ~90% ของ data → สุ่มเก็บไว้ 12% (`--other-ratio`) กัน class imbalance
+- MASSIVE ภาษาไทยเว้นวรรคระหว่างคำ แต่ข้อความจริง/Whisper ไม่เว้น → `normalize()` ลบช่องว่างระหว่างอักษรไทยก่อนตัดคำใหม่ด้วย PyThaiNLP
+- **เขียนเองเพิ่ม** ~20–30 ประโยคต่อ intent ใน `data/custom_intents.csv` (text,intent) — ตอนนี้มีตัวอย่างตั้งต้น 5 ประโยค/intent ที่ Claude เขียน ผู้ใช้ต้องเขียนเพิ่ม
 - **อัดเสียงตัวเอง** ~20–30 ประโยคเป็นชุดทดสอบ ส่งผ่าน Whisper เพื่อวัดความทนต่อ ASR error
 - ในรายงานต้องแยกว่า data ส่วนไหน public / เขียนเอง และให้เครดิต MASSIVE
 
@@ -104,8 +107,16 @@
 Speak2Plan/
 ├── data/
 ├── models/            # checkpoint ที่เทรนแล้ว (ไม่ commit)
-├── notebooks/ (01_data_baseline.ipynb, 02_cnn_lstm.ipynb, 03_whisper_finetune.ipynb)
-├── src/ (data.py, models.py, train.py, asr.py, google_api.py, pipeline.py)
+├── notebooks/         # (ทางเลือก ไว้ทำกราฟ/วิเคราะห์ลงรายงาน — โค้ดเทรนหลักอยู่ใน src/)
+├── reports/           # ผลการเทรน/ประเมิน (metrics, confusion matrix, CER) — commit ได้
+├── src/
+│   ├── data.py          # โหลด MASSIVE + custom, แมป intent, normalize/tokenize
+│   ├── models.py        # TextCNN, BiLSTM, Vocab
+│   ├── train_intent.py  # ส่วนที่ 2: เทรน NB / LogReg / CNN / LSTM + ประเมิน
+│   ├── intent.py        # โหลดโมเดล intent แล้วทำนาย
+│   ├── asr.py           # โหลด FLEURS, Transcriber, CER/WER, CLI eval/transcribe
+│   ├── train_asr.py     # ส่วนที่ 1: fine-tune Whisper
+│   ├── google_api.py, pipeline.py  # (ยังว่าง)
 ├── credentials.json   # ห้าม commit
 ├── .gitignore  (.venv/, credentials.json, token.json, __pycache__/, models/)
 ├── requirements.txt
@@ -117,7 +128,14 @@ google-api-python-client, google-auth-oauthlib, gTTS, jupyter
 (CNN/LSTM ขนาดเล็กเทรนบน CPU ได้; fine-tune Whisper ต้องใช้ GPU/Colab)
 
 ## สถานะปัจจุบัน
-ยังไม่ได้เริ่มเขียนโค้ด — ผ่านขั้นวางแผน/เลือกชื่อ/เลือก data เท่านั้น
+- โค้ดเทรนทั้ง 2 ส่วนเสร็จและรันได้แล้ว (venv: `uv venv --python 3.12`, torch 2.14 + CUDA, transformers 5.x)
+- Intent (test, MASSIVE th+en): NB acc 0.838 / F1 0.815, **LogReg acc 0.860 / F1 0.844**, CNN 0.811 / 0.808, LSTM 0.828 / 0.815
+  → baseline ชนะ deep learning (data น้อย) ; check_calendar อ่อนสุด (F1 ~0.70–0.76)
+- ASR (FLEURS test 1,021 ประโยค): whisper-tiny ก่อน fine-tune **CER 0.638 / WER 1.417** → หลัง fine-tune (`models/whisper-th`) **CER 0.231 / WER 0.659**
+  (1,500 steps, ~9 epoch, best dev CER 0.211) — WER > 1 ก่อน fine-tune เพราะ tiny หลอน/พูดวนซ้ำ (ข้อความยาวเกิน 2 เท่า 52 ประโยค → เหลือ 10)
+  ผลอยู่ใน `reports/asr/` ; ยังผิดคำศัพท์เฉพาะ/คำทับศัพท์บ่อย
+- ระวัง: เครื่อง suspend ระหว่างเทรน → GPU ค้าง ; รันด้วย `systemd-inhibit --what=sleep:idle ...` และใช้ `--resume` ต่อจาก checkpoint ได้
+- ยังไม่ได้: Google OAuth, pipeline, TTS, อัดเสียงตัวเอง, เขียน custom data เพิ่ม
 
 ## สิ่งที่อยากให้ Claude ช่วยต่อ (ลำดับแนะนำ)
 1. สร้างโครงโปรเจกต์ + environment + requirements
