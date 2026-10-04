@@ -6,7 +6,8 @@ __pycache__/
 
 # Google OAuth secrets — never commit
 credentials.json
-token.json
+token*.json
+token*.json.bak
 
 # Trained checkpoints / large artifacts
 models/
