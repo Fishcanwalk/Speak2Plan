@@ -1,0 +1,151 @@
+text,intent
+มี task อะไรบ้าง,check_tasks
+เช็คงานใน google tasks หน่อย,check_tasks
+ขอดูรายการงานหน่อย,check_tasks
+งานที่ยังไม่เสร็จมีอะไรบ้าง,check_tasks
+บอก task ทั้งหมดให้ฟังหน่อย,check_tasks
+list my tasks,check_tasks
+what do i need to do today,check_tasks
+check my to do list,check_tasks
+อ่าน task ให้ฟังหน่อยครับ,check_tasks
+วันนี้ต้องทำอะไรบ้างคะ,check_tasks
+มีงานต้องส่งอะไรบ้าง,check_tasks
+ในลิสต์มีอะไรเหลืออยู่,check_tasks
+เปิด to do list หน่อย,check_tasks
+ขอเช็คทาสก์หน่อย,check_tasks
+งานค้างเหลือกี่อัน,check_tasks
+ดูงานที่ต้องทำสัปดาห์นี้,check_tasks
+any tasks left,check_tasks
+ช่วยไล่ task ให้ฟังทีละอัน,check_tasks
+เช็คลิสต์งานให้หน่อย,check_tasks
+มีอะไรใน google task บ้าง,check_tasks
+งานอะไรยังไม่ได้ทำ,check_tasks
+ขอดู to do หน่อยนะ,check_tasks
+pending tasks มีอะไรบ้าง,check_tasks
+task ของพรุ่งนี้มีอะไร,check_tasks
+สรุปงานที่ต้องทำให้หน่อย,check_tasks
+เพิ่ม task ล้างรถ,add_task
+เพิ่มงานใหม่ ส่งเอกสารฝ่ายบุคคล,add_task
+add ซักผ้าลงใน to do,add_task
+ใส่ task ว่าต้องไปไปรษณีย์,add_task
+ช่วยจดงานให้หน่อย คืนหนังสือห้องสมุด,add_task
+สร้างทาสก์ เตรียมพรีเซนต์,add_task
+add buy groceries to my tasks,add_task
+new task fix the bug,add_task
+remind me to water the plants,add_task
+เตือนให้ทำการบ้านคณิต,add_task
+เพิ่มลงลิสต์ว่าต้องซื้อแบตเตอรี่,add_task
+จดไว้ใน task ว่าต่อประกันรถ,add_task
+เพิ่ม to do ทำความสะอาดห้อง,add_task
+ใส่งานเขียนรายงานบทที่สองลงไป,add_task
+อย่าลืมจดว่าต้องโอนเงินค่าหอ,add_task
+add task อัปเดตเรซูเม่,add_task
+ขอเพิ่มงานใหม่หนึ่งอัน ตัดผม,add_task
+ช่วยสร้าง task ทบทวนบทเรียน,add_task
+ลงใน to do ให้ว่าซ่อมพัดลม,add_task
+เพิ่มงานรีดผ้าเข้าไปในลิสต์,add_task
+task ใหม่ ติดต่ออาจารย์ที่ปรึกษา,add_task
+จดงานไว้หน่อย ส่งโค้ดขึ้น github,add_task
+put pay the internet bill on my to do list,add_task
+เพิ่มงานจองตั๋วรถทัวร์,add_task
+สร้างงานใหม่ชื่อทำสไลด์นำเสนอ,add_task
+ทำ task ล้างรถเสร็จแล้ว,complete_task
+ติ๊กงานซักผ้าว่าเสร็จ,complete_task
+งานส่งเอกสารเรียบร้อยแล้ว,complete_task
+mark ทำการบ้านคณิตว่าเสร็จ,complete_task
+ไปไปรษณีย์มาแล้ว ปิดงานนั้นเลย,complete_task
+complete task fix the bug,complete_task
+mark water the plants as done,complete_task
+i finished cleaning my room,complete_task
+ตั้ง task คืนหนังสือเป็นเสร็จแล้ว,complete_task
+เคลียร์งานเตรียมพรีเซนต์ออก ทำเสร็จแล้ว,complete_task
+ซ่อมพัดลมเสร็จแล้ว ติ๊กให้ที,complete_task
+งานรีดผ้าเสร็จแล้วนะ,complete_task
+done ทำความสะอาดห้องแล้ว,complete_task
+เอา task ตัดผมออก ไปมาแล้ว,complete_task
+ทำงานเขียนรายงานบทสองเสร็จแล้ว,complete_task
+โอนค่าหอแล้ว ติ๊กออกได้เลย,complete_task
+ติ๊กถูกงานจองตั๋วให้หน่อย,complete_task
+check off buy groceries,complete_task
+งานอัปเดตเรซูเม่ done แล้ว,complete_task
+เสร็จแล้ว งานทบทวนบทเรียน,complete_task
+ปิด task ติดต่ออาจารย์ เพราะคุยแล้ว,complete_task
+mark as complete ส่งโค้ด,complete_task
+ต่อประกันรถเรียบร้อย เอาออกจากลิสต์ได้,complete_task
+งานทำสไลด์เสร็จแล้ว mark ให้ด้วย,complete_task
+ซื้อแบตเตอรี่แล้ว ขีดฆ่าออกได้เลย,complete_task
+พรุ่งนี้มีอะไรในปฏิทินบ้าง,check_calendar
+เช็คตารางวันจันทร์หน่อย,check_calendar
+ดู event สัปดาห์นี้หน่อย,check_calendar
+มีประชุมกี่โมงบ้างวันนี้,check_calendar
+what's my schedule for tomorrow,check_calendar
+when is my next meeting,check_calendar
+show my calendar for this week,check_calendar
+เย็นนี้ว่างไหม,check_calendar
+วันเสาร์มีนัดหรือเปล่า,check_calendar
+นัดหมอวันไหนนะ,check_calendar
+เปิด google calendar ดูหน่อย,check_calendar
+ตารางเรียนพรุ่งนี้มีอะไร,check_calendar
+มีนัดถัดไปตอนไหน,check_calendar
+เดือนนี้มี event อะไรบ้าง,check_calendar
+บ่ายพรุ่งนี้ติดอะไรไหม,check_calendar
+ขอดูนัดหมายทั้งหมดของวันศุกร์,check_calendar
+ช่วงเช้าวันพุธว่างหรือเปล่า,check_calendar
+check calendar วันนี้ให้หน่อย,check_calendar
+ประชุมทีมวันไหนนะ,check_calendar
+am i free on thursday afternoon,check_calendar
+อ่านตารางนัดวันนี้ให้ฟังหน่อย,check_calendar
+มีกิจกรรมอะไรในปฏิทินอาทิตย์หน้า,check_calendar
+เช็คหน่อยว่าคืนนี้มีนัดไหม,check_calendar
+สอบวันไหนบ้างเดือนนี้,check_calendar
+event ต่อไปคืออะไร,check_calendar
+นัดเพื่อนดูหนังวันศุกร์ทุ่มนึง,add_event
+เพิ่ม event ไปเที่ยวทะเลวันที่ห้า,add_event
+ลงปฏิทินนัดทันตแพทย์วันพุธบ่ายสาม,add_event
+schedule dentist appointment on wednesday at 3pm,add_event
+add an event team lunch tomorrow at noon,add_event
+create a meeting on thursday at 2,add_event
+สร้างนัดคุยงานกับอาจารย์วันพฤหัสสิบโมง,add_event
+ใส่ calendar ว่ามีสอบมิดเทอมวันจันทร์แปดโมงครึ่ง,add_event
+จองเวลาพรุ่งนี้เช้าเก้าโมงไว้ออกกำลังกาย,add_event
+นัดประชุม project วันศุกร์บ่ายสอง,add_event
+เพิ่มนัดตัดผมวันอาทิตย์สิบเอ็ดโมง,add_event
+ลง event งานวันเกิดน้องคืนวันเสาร์,add_event
+ตั้งนัด video call กับลูกค้าพรุ่งนี้สี่โมง,add_event
+add to calendar yoga class monday 6pm,add_event
+มีนัดเรียนพิเศษทุกวันอังคาร ลงปฏิทินให้หน่อย,add_event
+บันทึกนัดสัมภาษณ์งานวันที่สิบสองตอนบ่าย,add_event
+ใส่ปฏิทินว่าบินไปเชียงใหม่วันที่ยี่สิบ,add_event
+นัดซ้อมดนตรีวันพุธหกโมงเย็น,add_event
+สร้าง event ติวหนังสือกับเพื่อนคืนนี้สองทุ่ม,add_event
+จองห้องประชุมพรุ่งนี้บ่ายโมงครึ่ง,add_event
+book lunch with sarah on friday,add_event
+ลงตารางว่าวันจันทร์หน้ามีพรีเซนต์งานสิบโมง,add_event
+เพิ่มนัดหมอฟันเดือนหน้าวันที่สาม,add_event
+event ใหม่ งานแต่งพี่วันอาทิตย์,add_event
+calendar เพิ่มประชุมผู้ปกครองวันศุกร์เช้า,add_event
+ตั้งนาฬิกาปลุกหกโมงเช้า,other
+ตั้งเวลานับถอยหลังห้านาที,other
+set a timer for twenty minutes,other
+จับเวลาสามสิบวินาที,other
+ปลุกฉันตอนเจ็ดโมง,other
+อากาศวันนี้ร้อนไหม,other
+will it rain tomorrow,other
+เปิดเพลงของ bodyslam,other
+play some jazz,other
+หยุดเพลงก่อน,other
+เพิ่มเสียงหน่อย,other
+เล่าเรื่องตลกให้ฟังหน่อย,other
+ตอนนี้กี่โมง,other
+วันนี้วันที่เท่าไหร่,other
+ข่าววันนี้มีอะไรบ้าง,other
+เปิดไฟห้องนอน,other
+แปลคำว่า hello เป็นภาษาไทย,other
+หนึ่งร้อยหารสี่ได้เท่าไหร่,other
+ขอบคุณมาก,other
+hello how are you,other
+สั่งพิซซ่าให้หน่อย,other
+ร้านกาแฟใกล้ๆ อยู่ตรงไหน,other
+ส่งข้อความหาเพื่อนว่าถึงแล้ว,other
+คุณชื่ออะไร,other
+ราคาทองวันนี้เท่าไหร่,other

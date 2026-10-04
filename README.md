@@ -19,7 +19,11 @@ for s in train validation test; do
     https://huggingface.co/api/datasets/google/fleurs/parquet/th_th/$s/0.parquet
 done
 
-python -m src.train_asr                                    # -> models/whisper-th
+python -m src.train_asr                                    # whisper-tiny -> models/whisper-th
+python -m src.augment_asr                                  # gTTS + Whisper: noisy intent text, TTS clips
+python -m src.train_asr --model openai/whisper-small --lora --tts-repeat 4 \
+  --batch-size 4 --grad-accum 4 --gradient-checkpointing --max-steps 800 \
+  --out models/whisper-small-th                            # best model, fits a 4 GB GPU
 python -m src.asr eval --model openai/whisper-tiny --data fleurs   # before
 python -m src.asr eval --model models/whisper-th   --data fleurs   # after
 python -m src.asr eval --model models/whisper-th   --data data/audio/transcripts.csv  # own recordings (file,text)
@@ -30,10 +34,19 @@ python -m src.asr eval --model models/whisper-th   --data data/audio/transcripts
 python -m src.train_intent              # NB, LogReg, TextCNN, BiLSTM -> models/, reports/intent/
 python -m src.intent --model lstm "เช็ค task ใน google ให้หน่อย"
 ```
-MASSIVE is downloaded automatically. Add your own sentences to `data/custom_intents.csv`.
+MASSIVE is downloaded automatically. Add your own sentences to `data/custom_intents.csv`;
+`data/generated_intents.csv` (Claude-written) and `data/augmented_intents.csv` (ASR-noisy, from
+`src.augment_asr`) are added to training too.
+
+## Test on your own voice
+```bash
+python -m src.record                 # test set:  data/audio/prompts.csv -> data/audio/*.wav + transcripts.csv
+python -m src.record --set train     # train set: data/audio_train/ (different sentences) -> --own-repeat
+python -m src.eval_e2e --asr-models models/whisper-th models/whisper-small-th
+```
 
 ## Layout
-- `data/` — `custom_intents.csv` (self-written), `raw/` (downloaded datasets, not committed), `audio/` (own recordings)
+- `data/` — `custom_intents.csv` (self-written), `generated_intents.csv` (Claude-written), `augmented_intents.csv`, `raw/` (downloaded datasets, not committed), `audio/` (own recordings)
 - `src/` — `data`, `models`, `train_intent`, `intent`, `asr`, `train_asr`, `google_api`, `pipeline`
 - `models/` — trained checkpoints (not committed)
 - `reports/` — metrics, confusion matrices, CER results

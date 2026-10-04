@@ -1,0 +1,52 @@
+{
+  "n": 24,
+  "asr": {
+    "openai/whisper-small": {
+      "cer": 0.370253164556962,
+      "wer": 0.6,
+      "exact_match": 0.041666666666666664
+    },
+    "models/whisper-small-th": {
+      "cer": 0.11075949367088607,
+      "wer": 0.25,
+      "exact_match": 0.4583333333333333
+    },
+    "models/whisper-small-th-v2": {
+      "cer": 0.04746835443037975,
+      "wer": 0.12857142857142856,
+      "exact_match": 0.5833333333333334
+    }
+  },
+  "intent_accuracy": {
+    "nb": {
+      "reference": 0.9583333333333334,
+      "openai/whisper-small": 0.75,
+      "models/whisper-small-th": 0.75,
+      "models/whisper-small-th-v2": 0.9166666666666666
+    },
+    "logreg": {
+      "reference": 0.9166666666666666,
+      "openai/whisper-small": 0.7083333333333334,
+      "models/whisper-small-th": 0.7916666666666666,
+      "models/whisper-small-th-v2": 0.875
+    },
+    "logreg_char": {
+      "reference": 0.9166666666666666,
+      "openai/whisper-small": 0.75,
+      "models/whisper-small-th": 0.7916666666666666,
+      "models/whisper-small-th-v2": 0.875
+    },
+    "cnn": {
+      "reference": 0.9583333333333334,
+      "openai/whisper-small": 0.7083333333333334,
+      "models/whisper-small-th": 0.7916666666666666,
+      "models/whisper-small-th-v2": 0.9583333333333334
+    },
+    "lstm": {
+      "reference": 0.9583333333333334,
+      "openai/whisper-small": 0.625,
+      "models/whisper-small-th": 0.8333333333333334,
+      "models/whisper-small-th-v2": 0.9583333333333334
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "n": 24,
+  "asr": {
+    "openai/whisper-tiny": {
+      "cer": 0.7626582278481012,
+      "wer": 1.5,
+      "exact_match": 0.0
+    },
+    "models/whisper-th": {
+      "cer": 0.47943037974683544,
+      "wer": 0.9071428571428571,
+      "exact_match": 0.0
+    },
+    "openai/whisper-small": {
+      "cer": 0.370253164556962,
+      "wer": 0.6,
+      "exact_match": 0.041666666666666664
+    }
+  },
+  "intent_accuracy": {
+    "nb": {
+      "reference": 0.5833333333333334,
+      "openai/whisper-tiny": 0.20833333333333334,
+      "models/whisper-th": 0.25,
+      "openai/whisper-small": 0.4166666666666667
+    },
+    "logreg": {
+      "reference": 0.5,
+      "openai/whisper-tiny": 0.20833333333333334,
+      "models/whisper-th": 0.20833333333333334,
+      "openai/whisper-small": 0.375
+    },
+    "cnn": {
+      "reference": 0.5416666666666666,
+      "openai/whisper-tiny": 0.3333333333333333,
+      "models/whisper-th": 0.3333333333333333,
+      "openai/whisper-small": 0.3333333333333333
+    },
+    "lstm": {
+      "reference": 0.625,
+      "openai/whisper-tiny": 0.25,
+      "models/whisper-th": 0.375,
+      "openai/whisper-small": 0.5
+    }
+  }
+}

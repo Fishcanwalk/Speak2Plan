@@ -1,0 +1,721 @@
+text,intent,source,original
+เช็กพลาสในกูก็ให้น่อย,check_tasks,models/whisper-th,เช็ค task ใน google ให้หน่อย
+เฉพาเคยผู้โทรที่หมอย,check_tasks,models/whisper-th,เช็ค task ใน google ให้หน่อย
+วันนี้มีงานอะไรต้องทำบ้าง,check_tasks,models/whisper-th,วันนี้มีงานอะไรต้องทำบ้าง
+วันนี้ยี่งาน ๆ เพราะทำกล้า,check_tasks,models/whisper-th,วันนี้มีงานอะไรต้องทำบ้าง
+ดู ทู ดู เลสสส์ให้น่อย,check_tasks,models/whisper-th,ดู to do list ให้หน่อย
+ดู ทู ดู เรียกเภี่ยงอลอย่าง,check_tasks,models/whisper-th,ดู to do list ให้หน่อย
+วอดส์ออนไม ทัศน์ เลสส์,check_tasks,models/whisper-th,what's on my task list
+ทั่วท่องไหลช์วิสต์,check_tasks,models/whisper-th,what's on my task list
+มีท้าสค้างอยู่กี่อ้าน,check_tasks,models/whisper-th,มี task ค้างอยู่กี่อัน
+นี่คาด ๆ อยู่หรือ,check_tasks,models/whisper-th,มี task ค้างอยู่กี่อัน
+เพิ่มทันซื้อนอม,add_task,models/whisper-th,เพิ่ม task ซื้อนม
+เพิ่มผ่าซื้อล่ม,add_task,models/whisper-th,เพิ่ม task ซื้อนม
+จอดไว้น่อยว่าต้องสงครานบ้าน,add_task,models/whisper-th,จดไว้หน่อยว่าต้องส่งการบ้าน
+สดวงไว้หล่ายว่าเพาะสองการณ์บ้าน,add_task,models/whisper-th,จดไว้หน่อยว่าต้องส่งการบ้าน
+ด้านเอธาสตุคอร์มำ,add_task,models/whisper-th,add a task to call mom
+ชาติเวคาซิมพร้อมม,add_task,models/whisper-th,add a task to call mom
+ใส่ส่งไรงานล่องในทุธดู,add_task,models/whisper-th,ใส่ส่งรายงานลงใน to do
+ใส่ส่งใบรายงานว่างในทุกลูก,add_task,models/whisper-th,ใส่ส่งรายงานลงใน to do
+สร้างพลาสมัยชื่ออาจหนังสือ,add_task,models/whisper-th,สร้าง task ใหม่ชื่ออ่านหนังสือ
+สร้างทางไทร์ชื่อรานแหล่งสี,add_task,models/whisper-th,สร้าง task ใหม่ชื่ออ่านหนังสือ
+ติดทัส ซื้อนอมว่าเศรษแล้ว,complete_task,models/whisper-th,ติ๊ก task ซื้อนมว่าเสร็จแล้ว
+ติดทาร์ซื้อเมวร์ เจนแล้ว,complete_task,models/whisper-th,ติ๊ก task ซื้อนมว่าเสร็จแล้ว
+ทำงานส่งอาจารณ์เศรษแล้ว,complete_task,models/whisper-th,ทำงานส่งอาจารย์เสร็จแล้ว
+ทำงานสองอาจาร์แสดงแล้ว,complete_task,models/whisper-th,ทำงานส่งอาจารย์เสร็จแล้ว
+มากส่งการบ้านว่าดดัน,complete_task,models/whisper-th,mark ส่งการบ้านว่า done
+มากส่งการบ้านว่า สาร,complete_task,models/whisper-th,mark ส่งการบ้านว่า done
+คอมพลิต เดินทาร์ส บายมิว,complete_task,models/whisper-th,complete the task buy milk
+คอมพลิส เด็ดทั้งควาย,complete_task,models/whisper-th,complete the task buy milk
+รอบ ทัศน์ ต่างหนังสือออก พระธุ์ทำแล้ว,complete_task,models/whisper-th,ลบ task อ่านหนังสือออกเพราะทำแล้ว
+รบภาคสานหนึ่งสือขอรอรส์ ร้อรม แล้ว,complete_task,models/whisper-th,ลบ task อ่านหนังสือออกเพราะทำแล้ว
+พร้งนี้มีนัดตาไหลบ้าง,check_calendar,models/whisper-th,พรุ่งนี้มีนัดอะไรบ้าง
+พร้งนี้มีน้ำกลายวาม,check_calendar,models/whisper-th,พรุ่งนี้มีนัดอะไรบ้าง
+เช่กประติธินวันสุขให้น่อย,check_calendar,models/whisper-th,เช็คปฏิทินวันศุกร์ให้หน่อย
+เช่ตอริดิทีเวลนส์สุด ชัยยอล!,check_calendar,models/whisper-th,เช็คปฏิทินวันศุกร์ให้หน่อย
+วอสส์อ้อนไม้คารเลนดาห์ ทุนเน,check_calendar,models/whisper-th,what's on my calendar today
+ตัวส์ความรายใครวงล่าว ยุเวย์,check_calendar,models/whisper-th,what's on my calendar today
+อาทิตย์นี้มีอีเว้นอะไรบ้าง,check_calendar,models/whisper-th,อาทิตย์นี้มี event อะไรบ้าง
+สาทิพี เว้นสายว่าม,check_calendar,models/whisper-th,อาทิตย์นี้มี event อะไรบ้าง
+บ่ายนี้ว่างมาย,check_calendar,models/whisper-th,บ่ายนี้ว่างไหม
+หลายญี่ว่าว่าย,check_calendar,models/whisper-th,บ่ายนี้ว่างไหม
+นักประชมพร้องนี้บ่ายสองมอง,add_event,models/whisper-th,นัดประชุมพรุ่งนี้บ่ายสองโมง
+กระน้ำกระชุมพร้อมมีหว่ายกล่าวโมง,add_event,models/whisper-th,นัดประชุมพรุ่งนี้บ่ายสองโมง
+เพิ่มอีเว้นไปหาเหมาะวันจันทร์สิทธิ์โมม,add_event,models/whisper-th,เพิ่ม event ไปหาหมอวันจันทร์สิบโมง
+เพิ่งยีเว้นไปหาเหมารถจากจินโม,add_event,models/whisper-th,เพิ่ม event ไปหาหมอวันจันทร์สิบโมง
+ลองปฏิทธินร่วมว่าวันเสาร์ไปงานแต่งเพื่อน,add_event,models/whisper-th,ลงปฏิทินว่าวันเสาร์ไปงานแต่งเพื่อน
+โรงคาทอีทีนว่าวิลดาสาวไพรงานแดงขึ้น,add_event,models/whisper-th,ลงปฏิทินว่าวันเสาร์ไปงานแต่งเพื่อน
+สเกษฎู REM มีสติง วิษฎิมอลฟรายเด อัตริซ์ สามพีเอม,add_event,models/whisper-th,schedule a meeting with the team on friday at 3pm
+สเกตรูเอียิ่น ๆ วิธี รอดทรายเด อัตราทิเศรษ,add_event,models/whisper-th,schedule a meeting with the team on friday at 3pm
+จอห์เวลาวันพุษศีร์มองเย็นไว้ติวซอร์ก,add_event,models/whisper-th,จองเวลาวันพุธสี่โมงเย็นไว้ติวสอบ
+จอเวลาและผู้เสียงเลี้ยนไวท์ลิวซอร์,add_event,models/whisper-th,จองเวลาวันพุธสี่โมงเย็นไว้ติวสอบ
+วันนี้อากาศเป็นยังง่าย,other,models/whisper-th,วันนี้อากาศเป็นยังไง
+วันมีฮาตราวเตรียนได้,other,models/whisper-th,วันนี้อากาศเป็นยังไง
+เปิดเพลงให้น่อย,other,models/whisper-th,เปิดเพลงให้หน่อย
+เฟิลด์เฮอร์ด ที่เกี่ยงเท่านั้น,other,models/whisper-th,เปิดเพลงให้หน่อย
+ตอนนี้กี่โมงแล้ว,other,models/whisper-th,ตอนนี้กี่โมงแล้ว
+ตอนนี้ถืออยู่แล้ว,other,models/whisper-th,ตอนนี้กี่โมงแล้ว
+เทลวมีเอจก,other,models/whisper-th,tell me a joke
+เทลวมีเฮนโจ,other,models/whisper-th,tell me a joke
+ต้องกลกตีห้า,other,models/whisper-th,ตั้งปลุกตีห้า
+ก็เราเกิดว์พลีห้า,other,models/whisper-th,ตั้งปลุกตีห้า
+มีทาสต์อาร์ย์บ้าง,check_tasks,models/whisper-th,มี task อะไรบ้าง
+นีทาร์ในว่า,check_tasks,models/whisper-th,มี task อะไรบ้าง
+เช่น ๆ ในกูก็ทาก สนอย,check_tasks,models/whisper-th,เช็คงานใน google tasks หน่อย
+เช่น ๆ ใบกูพูด ฮาร์,check_tasks,models/whisper-th,เช็คงานใน google tasks หน่อย
+ขอร์ดูร้ายการงานน้อย,check_tasks,models/whisper-th,ขอดูรายการงานหน่อย
+ของทุกรายการยานาย,check_tasks,models/whisper-th,ขอดูรายการงานหน่อย
+งานที่ยังไม่เสดมีอะไรบ้าง,check_tasks,models/whisper-th,งานที่ยังไม่เสร็จมีอะไรบ้าง
+แง่ที่ยังไม่แสดงอยู่ในบ้าน,check_tasks,models/whisper-th,งานที่ยังไม่เสร็จมีอะไรบ้าง
+บอบทาสทั้งหมดให้ฟังนาย,check_tasks,models/whisper-th,บอก task ทั้งหมดให้ฟังหน่อย
+บอกอาสาห์ว่าชี้วางเดิม,check_tasks,models/whisper-th,บอก task ทั้งหมดให้ฟังหน่อย
+ลิสส์ ๆ ทาร์กส์,check_tasks,models/whisper-th,list my tasks
+เรียนส่ว่าย คาส!,check_tasks,models/whisper-th,list my tasks
+วอดดูไอน์นี้สถูดูน์ทุเด,check_tasks,models/whisper-th,what do i need to do today
+พวกอยู่ในทร์ซู ๆ ทุเล,check_tasks,models/whisper-th,what do i need to do today
+เช่น ไมล์ทุก ดูเลส!,check_tasks,models/whisper-th,check my to do list
+เชื่อไม่ ๆ,check_tasks,models/whisper-th,check my to do list
+อ่านทาชให้ฟังหน่อยครับ,check_tasks,models/whisper-th,อ่าน task ให้ฟังหน่อยครับ
+อ่าน ทาใช้วางไงครับ,check_tasks,models/whisper-th,อ่าน task ให้ฟังหน่อยครับ
+วันนี้ต้องทำอะไรบ้างคา,check_tasks,models/whisper-th,วันนี้ต้องทำอะไรบ้างคะ
+วันยี้ต้องหากไอล้ว่า คา,check_tasks,models/whisper-th,วันนี้ต้องทำอะไรบ้างคะ
+มีงานต้องสองอะไรบ้าง,check_tasks,models/whisper-th,มีงานต้องส่งอะไรบ้าง
+ลีงลาวข้องกล่าวไหวว่า,check_tasks,models/whisper-th,มีงานต้องส่งอะไรบ้าง
+นายเลสมีอะไรเหลืออยู่,check_tasks,models/whisper-th,ในลิสต์มีอะไรเหลืออยู่
+ในสิทธิน์อลาย,check_tasks,models/whisper-th,ในลิสต์มีอะไรเหลืออยู่
+ปอิดทูโดลิสต์นาย,check_tasks,models/whisper-th,เปิด to do list หน่อย
+ปอร์ ทูโรซิ ซ์ล่อย,check_tasks,models/whisper-th,เปิด to do list หน่อย
+ขอเช็กท้าสน้อย,check_tasks,models/whisper-th,ขอเช็คทาสก์หน่อย
+ขอดเช็กฮาร์ซ์น์,check_tasks,models/whisper-th,ขอเช็คทาสก์หน่อย
+งานข้างเหลือกี่อ้าน,check_tasks,models/whisper-th,งานค้างเหลือกี่อัน
+ยานิ ๆ เหตุริยาน,check_tasks,models/whisper-th,งานค้างเหลือกี่อัน
+ดูงงานที่ต้องทำสัปดาห์นี้,check_tasks,models/whisper-th,ดูงานที่ต้องทำสัปดาห์นี้
+อย่างที่ป้องคำสาธรรย์,check_tasks,models/whisper-th,ดูงานที่ต้องทำสัปดาห์นี้
+เยนิช ภาคซ์ และฝ,check_tasks,models/whisper-th,any tasks left
+เซลลิส ทางเซลล์,check_tasks,models/whisper-th,any tasks left
+ช่วยรายภาคให้ฟังทีราคอาณ,check_tasks,models/whisper-th,ช่วยไล่ task ให้ฟังทีละอัน
+ช่วยไล่ทาท์ให้ฟาอังเทียน,check_tasks,models/whisper-th,ช่วยไล่ task ให้ฟังทีละอัน
+เช็กลิสสงานให้น่อย,check_tasks,models/whisper-th,เช็คลิสต์งานให้หน่อย
+เชื่อที่สง่านที่อย่อย,check_tasks,models/whisper-th,เช็คลิสต์งานให้หน่อย
+มีอะไรในกูก็ทาดสป้าง,check_tasks,models/whisper-th,มีอะไรใน google task บ้าง
+มีอะไรในกลู้กักทางซ่ว่า,check_tasks,models/whisper-th,มีอะไรใน google task บ้าง
+งานทารายยังไม่ได้ทำ,check_tasks,models/whisper-th,งานอะไรยังไม่ได้ทำ
+ยานอาไรยังไม่ได้คำ,check_tasks,models/whisper-th,งานอะไรยังไม่ได้ทำ
+ขอร์ดู ทุธ ดู หน่อยนะ,check_tasks,models/whisper-th,ขอดู to do หน่อยนะ
+ขอดูทุกลายนะ,check_tasks,models/whisper-th,ขอดู to do หน่อยนะ
+เพน่นริงทัร์กส์มีอะไรบ้าง,check_tasks,models/whisper-th,pending tasks มีอะไรบ้าง
+เป็นพิมพ์ภาพจีนในว่าง,check_tasks,models/whisper-th,pending tasks มีอะไรบ้าง
+ทัศน์ของพร้มนี้มีอะไร,check_tasks,models/whisper-th,task ของพรุ่งนี้มีอะไร
+ทางของผู้มีอายราย,check_tasks,models/whisper-th,task ของพรุ่งนี้มีอะไร
+สรุปงานที่ต้องทำให้น่อย,check_tasks,models/whisper-th,สรุปงานที่ต้องทำให้หน่อย
+สโหลวมแงนที่ว่าวแความให้ง่อย,check_tasks,models/whisper-th,สรุปงานที่ต้องทำให้หน่อย
+เพิ่มทัสร้างรถ,add_task,models/whisper-th,เพิ่ม task ล้างรถ
+เพิ่มภาวทว่างโยชน์,add_task,models/whisper-th,เพิ่ม task ล้างรถ
+เพิ่มงานใหม่ซ่องเอกสารฟ่ายบุคคล,add_task,models/whisper-th,เพิ่มงานใหม่ ส่งเอกสารฝ่ายบุคคล
+เพิ่มงานใหม่ 2 เอกสารฝ่ายบุคน,add_task,models/whisper-th,เพิ่มงานใหม่ ส่งเอกสารฝ่ายบุคคล
+แท้ซักษ์ภาล่องในทุธดู,add_task,models/whisper-th,add ซักผ้าลงใน to do
+แรกซ่อภาพโรหยายุดี,add_task,models/whisper-th,add ซักผ้าลงใน to do
+สายทาสว่าต้องไปปลายสนี,add_task,models/whisper-th,ใส่ task ว่าต้องไปไปรษณีย์
+สายทาวว่าเพาะใครใบรายสนี,add_task,models/whisper-th,ใส่ task ว่าต้องไปไปรษณีย์
+ช่วยจอดงานให้หน่อยคืนหนังสือห้องสมด,add_task,models/whisper-th,ช่วยจดงานให้หน่อย คืนหนังสือห้องสมุด
+ช่วยเจอทยานที่เหล่านี้ความคือหน่วยส่วนของเที่ยว,add_task,models/whisper-th,ช่วยจดงานให้หน่อย คืนหนังสือห้องสมุด
+สั่งทาสตรีเมืองพรีเซน,add_task,models/whisper-th,สร้างทาสก์ เตรียมพรีเซนต์
+ส่วงทางคือเยอมพลีเซน,add_task,models/whisper-th,สร้างทาสก์ เตรียมพรีเซนต์
+แท้ติบ่ายกรอสซิรีทูไมทักษ์,add_task,models/whisper-th,add buy groceries to my tasks
+แท้ติบายกโกรสิ้วรีย์ทุ่มใหม่ทา,add_task,models/whisper-th,add buy groceries to my tasks
+นิวทาสฟิกเด็กบัก,add_task,models/whisper-th,new task fix the bug
+นิวทาร์ซ์ซ์ซ์ซ์เดิมและ,add_task,models/whisper-th,new task fix the bug
+รีมายมีทูวราเจอร์เด็บแพล,add_task,models/whisper-th,remind me to water the plants
+ซูยายิตัวอาเทิร์อาแพล,add_task,models/whisper-th,remind me to water the plants
+ตื่นให้ทำการบ้านแคนเนิด,add_task,models/whisper-th,เตือนให้ทำการบ้านคณิต
+เปิดเรือให้ทำการว่าอังเฮียส,add_task,models/whisper-th,เตือนให้ทำการบ้านคณิต
+เพิ่มลงลิสต์ว่าต้องซื้อแบตเตรี,add_task,models/whisper-th,เพิ่มลงลิสต์ว่าต้องซื้อแบตเตอรี่
+เพิ่มโมวิลซ์ว่าต้องซื้อแบบเตอร์รี,add_task,models/whisper-th,เพิ่มลงลิสต์ว่าต้องซื้อแบตเตอรี่
+จอดไว้ในทอสส์ว่าต่อประกันรถ,add_task,models/whisper-th,จดไว้ใน task ว่าต่อประกันรถ
+จอดไว้ในภาค ว่าออกอาจารน้อย,add_task,models/whisper-th,จดไว้ใน task ว่าต่อประกันรถ
+เพิ่มทุธดูทำความสะอาจพ่อม,add_task,models/whisper-th,เพิ่ม to do ทำความสะอาดห้อง
+เพิ่มอยู่ ทัมความจากท่อง,add_task,models/whisper-th,เพิ่ม to do ทำความสะอาดห้อง
+ไสงานเขียนรายงานบอดที่สองลงไป,add_task,models/whisper-th,ใส่งานเขียนรายงานบทที่สองลงไป
+ใกลายกลี่ยนได้ยานโบสิ้นเผยเฮอร์วลล์น ฟัลย์,add_task,models/whisper-th,ใส่งานเขียนรายงานบทที่สองลงไป
+อย่าลืมจรตว่าต้องออนเนินค่าหอ,add_task,models/whisper-th,อย่าลืมจดว่าต้องโอนเงินค่าหอ
+อย่างยึงเกิดว่าท่องกอลเงินข้าวขอ,add_task,models/whisper-th,อย่าลืมจดว่าต้องโอนเงินค่าหอ
+แอตตาส์ อัพเดต เรซูเม,add_task,models/whisper-th,add task อัปเดตเรซูเม่
+แชชชาติครั้งเลสเวอร์ซิเว,add_task,models/whisper-th,add task อัปเดตเรซูเม่
+ขอเพิ่มงานใหม่หนึ่งอันตัดผม,add_task,models/whisper-th,ขอเพิ่มงานใหม่หนึ่งอัน ตัดผม
+ขอเทิ้มยาลไหลน์ น้ำปัจพล,add_task,models/whisper-th,ขอเพิ่มงานใหม่หนึ่งอัน ตัดผม
+ช่วยสร้างภาสทบท่วงวดเรียน,add_task,models/whisper-th,ช่วยสร้าง task ทบทวนบทเรียน
+ช่วยสร้างภาษพพื้นบรส์เรียน,add_task,models/whisper-th,ช่วยสร้าง task ทบทวนบทเรียน
+ลองในทุธดูให้ว่าซ้อมพัดลม,add_task,models/whisper-th,ลงใน to do ให้ว่าซ่อมพัดลม
+ลองไรกลูก ให้ว่าซ่อผลดลม,add_task,models/whisper-th,ลงใน to do ให้ว่าซ่อมพัดลม
+เพิ่งงานรีทธ์ภาพเข้าไปในลิสต์,add_task,models/whisper-th,เพิ่มงานรีดผ้าเข้าไปในลิสต์
+เพิ่งสายนี้ค่า โฟตไอเนีย,add_task,models/whisper-th,เพิ่มงานรีดผ้าเข้าไปในลิสต์
+ท่าสใหม่ติดต่ออาจาร์ที่ปรึกษา,add_task,models/whisper-th,task ใหม่ ติดต่ออาจารย์ที่ปรึกษา
+ท้าสไหมท์เกตออหาจานที่เกิดสา,add_task,models/whisper-th,task ใหม่ ติดต่ออาจารย์ที่ปรึกษา
+จอดงานว่ายหน่อยส่งครอด ขึ้นกีภาพ,add_task,models/whisper-th,จดงานไว้หน่อย ส่งโค้ดขึ้น github
+จดยานว่าหล่อยสองคอร์ขึ้นยิภาพ,add_task,models/whisper-th,จดงานไว้หน่อย ส่งโค้ดขึ้น github
+พูดแพร่เดอะ อินเทอร์เน็ต มิวออนไม ทุโดริสส์,add_task,models/whisper-th,put pay the internet bill on my to do list
+ผู้เท่าเดียวบินเซอร์เหล็ดบิวพร้อนไมล์คือ ๆ,add_task,models/whisper-th,put pay the internet bill on my to do list
+เพิ่งยานจองตัวรถทัว,add_task,models/whisper-th,เพิ่มงานจองตั๋วรถทัวร์
+เพิ่มการต้องโดยรถซูร์,add_task,models/whisper-th,เพิ่มงานจองตั๋วรถทัวร์
+สร้างงานใหม่ชื่อทำสล้ายนำเสนอ,add_task,models/whisper-th,สร้างงานใหม่ชื่อทำสไลด์นำเสนอ
+ซ่ออยานใหม่ซึ่งทำกระวัย มาเจ้าเหนือ,add_task,models/whisper-th,สร้างงานใหม่ชื่อทำสไลด์นำเสนอ
+ทำทาสลางรถเศรษแล้ว,complete_task,models/whisper-th,ทำ task ล้างรถเสร็จแล้ว
+ทำทางเฮลาเมื่อสเน้า,complete_task,models/whisper-th,ทำ task ล้างรถเสร็จแล้ว
+ติดงานซัฟ้าว่าเศรษ,complete_task,models/whisper-th,ติ๊กงานซักผ้าว่าเสร็จ
+สิ้นทางการภาวอาจเกรส,complete_task,models/whisper-th,ติ๊กงานซักผ้าว่าเสร็จ
+งานส่งเอกสารเรียบร้อยแล้ว,complete_task,models/whisper-th,งานส่งเอกสารเรียบร้อยแล้ว
+การเซลาเยอร์สารวิทยาบรอยแล้ว,complete_task,models/whisper-th,งานส่งเอกสารเรียบร้อยแล้ว
+มาทำการบ้านคณีทว่าเศษ,complete_task,models/whisper-th,mark ทำการบ้านคณิตว่าเสร็จ
+มาตรงจารน์ว่าเกราะว่าเกลีย์ ทว่าเจ็บ,complete_task,models/whisper-th,mark ทำการบ้านคณิตว่าเสร็จ
+ไปปลายสนีมาแล้วปิดงานดันเลย,complete_task,models/whisper-th,ไปไปรษณีย์มาแล้ว ปิดงานนั้นเลย
+ไปพักษณีมาเว้าที่อยู่หลาย ๆ,complete_task,models/whisper-th,ไปไปรษณีย์มาแล้ว ปิดงานนั้นเลย
+คอมพลิสส์ภาสฟิกดเดิมบัก,complete_task,models/whisper-th,complete task fix the bug
+คอมพรีชาซีเกือวัก,complete_task,models/whisper-th,complete task fix the bug
+มากว่าวเตอร์ เดียว แพลน แอสดัน,complete_task,models/whisper-th,mark water the plants as done
+มาพัวเกิดอิจแอร์ แชชัน,complete_task,models/whisper-th,mark water the plants as done
+ไตล์ฟินิดเชต คลีนเนี่ยงไมล์รูม,complete_task,models/whisper-th,i finished cleaning my room
+ภายซิลิตเจ็ดซิลลิ่งไว้อยู่,complete_task,models/whisper-th,i finished cleaning my room
+ตั้งภาสคืนดังสือเป็นเศรษแล้ว,complete_task,models/whisper-th,ตั้ง task คืนหนังสือเป็นเสร็จแล้ว
+ความคาดซ์พื้นหลังสือเป็นเซ็ตแว้ลล์,complete_task,models/whisper-th,ตั้ง task คืนหนังสือเป็นเสร็จแล้ว
+เครียงงานตะเรียมพรีเซนออกทำเสร็จแล้ว,complete_task,models/whisper-th,เคลียร์งานเตรียมพรีเซนต์ออก ทำเสร็จแล้ว
+เครื่องยาญโจยเกมพรีเซนของคำเสียแล้ว,complete_task,models/whisper-th,เคลียร์งานเตรียมพรีเซนต์ออก ทำเสร็จแล้ว
+ซ้อมพัดลอมเศรษแล้วติกให้ที,complete_task,models/whisper-th,ซ่อมพัดลมเสร็จแล้ว ติ๊กให้ที
+ต้องพันธุองเศรษและเทศน์ที่เที่ยนตรี,complete_task,models/whisper-th,ซ่อมพัดลมเสร็จแล้ว ติ๊กให้ที
+งานรีพ่าเสร็จแล้วน้ำ,complete_task,models/whisper-th,งานรีดผ้าเสร็จแล้วนะ
+การฟิลภาพเสริยลลาวน้ำ,complete_task,models/whisper-th,งานรีดผ้าเสร็จแล้วนะ
+ดันทำความสาทห้องแล้ว,complete_task,models/whisper-th,done ทำความสะอาดห้องแล้ว
+ลังทั้งกลางสาท้องแรง,complete_task,models/whisper-th,done ทำความสะอาดห้องแล้ว
+เท่าท่าสตัดผมออกไปมาแล้ว,complete_task,models/whisper-th,เอา task ตัดผมออก ไปมาแล้ว
+เราท้าสาดโผลของไฟวัลแรลล์,complete_task,models/whisper-th,เอา task ตัดผมออก ไปมาแล้ว
+ทำงานเขียนรายงานบอดสองเศรษแล้ว,complete_task,models/whisper-th,ทำงานเขียนรายงานบทสองเสร็จแล้ว
+ทำงานเขียนใบงานบอดสองเศรษแว้ลล์,complete_task,models/whisper-th,ทำงานเขียนรายงานบทสองเสร็จแล้ว
+คนค่าขอแล้วติดก่อปได้เลย,complete_task,models/whisper-th,โอนค่าหอแล้ว ติ๊กออกได้เลย
+ควรค้าห่อ นักเรียกขอได้เยอร์,complete_task,models/whisper-th,โอนค่าหอแล้ว ติ๊กออกได้เลย
+ติดทุกงานจองตัวให้น่อย,complete_task,models/whisper-th,ติ๊กถูกงานจองตั๋วให้หน่อย
+ซิคธุงานร้องโดย ให้อ่อย,complete_task,models/whisper-th,ติ๊กถูกงานจองตั๋วให้หน่อย
+เช็บอล์ฟ บาย กรอลซีรี,complete_task,models/whisper-th,check off buy groceries
+เฉพาะฟลายเกอร์ฟี้,complete_task,models/whisper-th,check off buy groceries
+งานอัพเบธ เรซูเมดันแล้ว,complete_task,models/whisper-th,งานอัปเดตเรซูเม่ done แล้ว
+ยานอับเลตุเรสซ์ ๆ ดังแล้ว,complete_task,models/whisper-th,งานอัปเดตเรซูเม่ done แล้ว
+เซดแล้วงานทอบท่วนบดเรียน,complete_task,models/whisper-th,เสร็จแล้ว งานทบทวนบทเรียน
+แจลกงานทุกคนตัดเรียน,complete_task,models/whisper-th,เสร็จแล้ว งานทบทวนบทเรียน
+ปิดท่าสติดต่ออาจารณ์เพราะคุยแล้ว,complete_task,models/whisper-th,ปิด task ติดต่ออาจารย์ เพราะคุยแล้ว
+ปิดท่าชิตปล่ออาจารณ์เพราะพูดแม้ละ,complete_task,models/whisper-th,ปิด task ติดต่ออาจารย์ เพราะคุยแล้ว
+มากแอซ คอมพลีสส่งคอด,complete_task,models/whisper-th,mark as complete ส่งโค้ด
+มากก๊อต ความดูสำหรับโทร,complete_task,models/whisper-th,mark as complete ส่งโค้ด
+ต่อประการรถเรียบร้อยอาวออกจากลิสต์ได้,complete_task,models/whisper-th,ต่อประกันรถเรียบร้อย เอาออกจากลิสต์ได้
+ต่อประกันรถเรื่องเรายกว่าออกจากนี้ ๆ ได้,complete_task,models/whisper-th,ต่อประกันรถเรียบร้อย เอาออกจากลิสต์ได้
+งานทำสลาย สตร์แล้วมา ให้ด้วย,complete_task,models/whisper-th,งานทำสไลด์เสร็จแล้ว mark ให้ด้วย
+งานทำสลาย เส็นแล้วมาก ๆ ได้ย่วย,complete_task,models/whisper-th,งานทำสไลด์เสร็จแล้ว mark ให้ด้วย
+ซื้อแบรตเตร้านี้แล้วขีดข้าวออกได้เลย,complete_task,models/whisper-th,ซื้อแบตเตอรี่แล้ว ขีดฆ่าออกได้เลย
+ซื้อปัจเตอร์รี่ แล้วผิดภาคออก ได้เลย,complete_task,models/whisper-th,ซื้อแบตเตอรี่แล้ว ขีดฆ่าออกได้เลย
+พร้งนี้มีอะไรในปฏิทินบ้าง,check_calendar,models/whisper-th,พรุ่งนี้มีอะไรในปฏิทินบ้าง
+โฟรงนี้ยูรายในปาจิจริงว่า,check_calendar,models/whisper-th,พรุ่งนี้มีอะไรในปฏิทินบ้าง
+เช่กต่อราววันจันทร์น่อย,check_calendar,models/whisper-th,เช็คตารางวันจันทร์หน่อย
+เช่กต้ารามวันการน่าย,check_calendar,models/whisper-th,เช็คตารางวันจันทร์หน่อย
+ดูอีเว้น สัปดาห์นี้น่อย,check_calendar,models/whisper-th,ดู event สัปดาห์นี้หน่อย
+ดูอีเว้น สาดารี้หน้อย,check_calendar,models/whisper-th,ดู event สัปดาห์นี้หน่อย
+มีประชุมกีโมงบ้างวันนี้,check_calendar,models/whisper-th,มีประชุมกี่โมงบ้างวันนี้
+มีประชุมถีโมบ้างอันนี้,check_calendar,models/whisper-th,มีประชุมกี่โมงบ้างวันนี้
+วัตส์สไม้สเกตดู ฟอร์-ทูมอร์โร,check_calendar,models/whisper-th,what's my schedule for tomorrow
+ตัวสมาร์ ชีเกตรูปออจูมอร์โร,check_calendar,models/whisper-th,what's my schedule for tomorrow
+เว้นยิ่มไมล์เน็กมีตริง,check_calendar,models/whisper-th,when is my next meeting
+เว้นที่สไว้ในทีซิน,check_calendar,models/whisper-th,when is my next meeting
+ชอมไมล์คาเลนดาสฟอร์ดิสเวีย,check_calendar,models/whisper-th,show my calendar for this week
+โชมายคายัญญาคอร์ดิสี,check_calendar,models/whisper-th,show my calendar for this week
+เย็นนี้ว่างไม้,check_calendar,models/whisper-th,เย็นนี้ว่างไหม
+เยียนมีว่าไว้,check_calendar,models/whisper-th,เย็นนี้ว่างไหม
+วันเสาร์มีนาจริปกราว,check_calendar,models/whisper-th,วันเสาร์มีนัดหรือเปล่า
+บวนเซาซีนาทซื้อเพื่อราว,check_calendar,models/whisper-th,วันเสาร์มีนัดหรือเปล่า
+นัดเหมารถวันไหนน้ำ,check_calendar,models/whisper-th,นัดหมอวันไหนนะ
+นักษณ์ฝ่าวอวัยอย่างน้ำ,check_calendar,models/whisper-th,นัดหมอวันไหนนะ
+เปิดกูก็คาเลนดาห์ดูน่อย,check_calendar,models/whisper-th,เปิด google calendar ดูหน่อย
+เปิดอุกขันเรียนได้ ๆ,check_calendar,models/whisper-th,เปิด google calendar ดูหน่อย
+ตารางเรียนพร้งนี้มีอะไร,check_calendar,models/whisper-th,ตารางเรียนพรุ่งนี้มีอะไร
+ตายอยู่ในทุกยีอืม ๆ,check_calendar,models/whisper-th,ตารางเรียนพรุ่งนี้มีอะไร
+มีนาจถาดไปตอนไหน,check_calendar,models/whisper-th,มีนัดถัดไปตอนไหน
+ที่ง่าทหารไปพร้อนไหน,check_calendar,models/whisper-th,มีนัดถัดไปตอนไหน
+เนื้อนนี้มีอีเว้นอะไรบ้าง,check_calendar,models/whisper-th,เดือนนี้มี event อะไรบ้าง
+เยือนนี้นี่ยืน เสอรายว่า,check_calendar,models/whisper-th,เดือนนี้มี event อะไรบ้าง
+บ่ายพร้องนี้ตรีปอะไรไม้,check_calendar,models/whisper-th,บ่ายพรุ่งนี้ติดอะไรไหม
+หว่ายครั้งนี้ผิดตัวรายไมล์,check_calendar,models/whisper-th,บ่ายพรุ่งนี้ติดอะไรไหม
+ขอร์ดูนัดหมายทั้งหมดของวันสุข,check_calendar,models/whisper-th,ขอดูนัดหมายทั้งหมดของวันศุกร์
+ขอดูนัดหมายทั้งหมดของว่านสู้,check_calendar,models/whisper-th,ขอดูนัดหมายทั้งหมดของวันศุกร์
+ช่วงชาววันพฤตว่างรือเปล่า,check_calendar,models/whisper-th,ช่วงเช้าวันพุธว่างหรือเปล่า
+ช่วงชาวเมืองทุกว่า อุซา,check_calendar,models/whisper-th,ช่วงเช้าวันพุธว่างหรือเปล่า
+เช่คาเลนดาหวันนี้ให้น่อย,check_calendar,models/whisper-th,check calendar วันนี้ให้หน่อย
+เช็กคารยาววันยืน ได้น่อน,check_calendar,models/whisper-th,check calendar วันนี้ให้หน่อย
+ประชุมทีมวันไหนน่า,check_calendar,models/whisper-th,ประชุมทีมวันไหนนะ
+ประชุมที่วันไหลนา,check_calendar,models/whisper-th,ประชุมทีมวันไหนนะ
+แม้มาย ฟรี ออนเธอร์สเตอร์อัพต์เมล์,check_calendar,models/whisper-th,am i free on thursday afternoon
+แม้ ฟรี พร้อนเฮอร์ซิยง อาเฟอร์ลู,check_calendar,models/whisper-th,am i free on thursday afternoon
+อ่านปารานดัดวันนี้ให้ฟังนอย,check_calendar,models/whisper-th,อ่านตารางนัดวันนี้ให้ฟังหน่อย
+การบาราทมนี้ให้วางยอด,check_calendar,models/whisper-th,อ่านตารางนัดวันนี้ให้ฟังหน่อย
+มีกิจากกล้ำอาลัยในปฏิทินอาทิตย์หน้า,check_calendar,models/whisper-th,มีกิจกรรมอะไรในปฏิทินอาทิตย์หน้า
+นี่คิดตาตาอาลาไลน์ และการสิบสิบอาจลิสน้ำ,check_calendar,models/whisper-th,มีกิจกรรมอะไรในปฏิทินอาทิตย์หน้า
+เช่นไหวว่าคืนนี้มีนัดไมล์,check_calendar,models/whisper-th,เช็คหน่อยว่าคืนนี้มีนัดไหม
+เช่น ๆ ว่าคือมีที่ยานไม,check_calendar,models/whisper-th,เช็คหน่อยว่าคืนนี้มีนัดไหม
+สอบวันไหนบ้างเดือนนี้,check_calendar,models/whisper-th,สอบวันไหนบ้างเดือนนี้
+เราวัลไหลว่ามเยือนี้,check_calendar,models/whisper-th,สอบวันไหนบ้างเดือนนี้
+อีเว้นต่อไปคืออะไร,check_calendar,models/whisper-th,event ต่อไปคืออะไร
+ที่เว้นเหล่าไปเฮอราย,check_calendar,models/whisper-th,event ต่อไปคืออะไร
+นัดเพิ่นดูหลังวันสุขทุกเนิน,add_event,models/whisper-th,นัดเพื่อนดูหนังวันศุกร์ทุ่มนึง
+หลัดเครื่องดูหลังวันกฤษซ์ซึ่งซึ่ง,add_event,models/whisper-th,นัดเพื่อนดูหนังวันศุกร์ทุ่มนึง
+เพิ่มอีเว้นไปเที่ยวทะเลวันที่ห้า,add_event,models/whisper-th,เพิ่ม event ไปเที่ยวทะเลวันที่ห้า
+เครื่องผิวเนซาเยอร์เตอร์ ๆ ที่คาด,add_event,models/whisper-th,เพิ่ม event ไปเที่ยวทะเลวันที่ห้า
+ลองปฏิทธินรัฐต่าง ๆ วันพุธบ่ายสาม,add_event,models/whisper-th,ลงปฏิทินนัดทันตแพทย์วันพุธบ่ายสาม
+ลงประจิธีน้ำทั้งเท่าท่าท่าวท่าวท่าวลงทุกหลายสอง,add_event,models/whisper-th,ลงปฏิทินนัดทันตแพทย์วันพุธบ่ายสาม
+สเกตดู เดน ทีสต์ แอปพ่อยเมน ออนเวนซ์เด อัตร สามพีเอม,add_event,models/whisper-th,schedule dentist appointment on wednesday at 3pm
+สเกตรูเวนซ์ที่แซภาเย็น คอนเวินซ์เตรียสสามที่เบน,add_event,models/whisper-th,schedule dentist appointment on wednesday at 3pm
+ต๊าชอาจ ๆ วิน ทีมล้าน ทุมอร์รอลแอตนูน,add_event,models/whisper-th,add an event team lunch tomorrow at noon
+ทราจากเย็นสิวัลที่ทัวโยร์และยูน,add_event,models/whisper-th,add an event team lunch tomorrow at noon
+ครีเอช เอมิสติลินออนเทรส์เดอร์สอง,add_event,models/whisper-th,create a meeting on thursday at 2
+ครีเอดเจนิดสี่สวอนเจนเจนและซอร์,add_event,models/whisper-th,create a meeting on thursday at 2
+สร้างนัดคู่อีกงานกับอาจารณ์วันพฤฮหาดสิบโมง,add_event,models/whisper-th,สร้างนัดคุยงานกับอาจารย์วันพฤหัสสิบโมง
+ซ่าวท้วอยู่ราญ กล่าภาษา วันเพื่อหลังขัดสิทธิ์โมง,add_event,models/whisper-th,สร้างนัดคุยงานกับอาจารย์วันพฤหัสสิบโมง
+ไสค์คาเลนดาสว่ามีสอบมิดเทิมวันจันทร์ แปดมงเครื่อง,add_event,models/whisper-th,ใส่ calendar ว่ามีสอบมิดเทอมวันจันทร์แปดโมงครึ่ง
+ใกลายคายังหน้าว่าที่สองทิษเกือเมืองบันการจากเม็กที่,add_event,models/whisper-th,ใส่ calendar ว่ามีสอบมิดเทอมวันจันทร์แปดโมงครึ่ง
+จองเวลาพร้อมมีชาวกาศมองไว้ออกกำลังกาย,add_event,models/whisper-th,จองเวลาพรุ่งนี้เช้าเก้าโมงไว้ออกกำลังกาย
+ซองเวลาทั่วมีชาวข้าวโครงไว้ขอบเทรเมืองใจ,add_event,models/whisper-th,จองเวลาพรุ่งนี้เช้าเก้าโมงไว้ออกกำลังกาย
+นัดประชุม Pro-Jx1.2,add_event,models/whisper-th,นัดประชุม project วันศุกร์บ่ายสอง
+นัดสราชูมเพลิตเป้าหน้าสุดหว่า ๆ,add_event,models/whisper-th,นัดประชุม project วันศุกร์บ่ายสอง
+เพิ่มนาจต่อผมวันอาทิต ซิปเวตต์โมง,add_event,models/whisper-th,เพิ่มนัดตัดผมวันอาทิตย์สิบเอ็ดโมง
+เครื่องรับป่าโปร์มานานทีชิตเกตโม,add_event,models/whisper-th,เพิ่มนัดตัดผมวันอาทิตย์สิบเอ็ดโมง
+ลองเยอร์น นานวันเกิดน้องคืนวันเสาร์,add_event,models/whisper-th,ลง event งานวันเกิดน้องคืนวันเสาร์
+ตัวอยู่เว้น ยาวนเซอร์น ๆ ยาวนเซอร์น ๆ คือรัวเซอร์น เซอร์น,add_event,models/whisper-th,ลง event งานวันเกิดน้องคืนวันเสาร์
+ตั้งนัดวีดีโอคอลกับลูกค้าพร้วมนี้สีโม,add_event,models/whisper-th,ตั้งนัด video call กับลูกค้าพรุ่งนี้สี่โมง
+สร้างอาทวีเซียวต่อสับยุคาเพิ่มวีเซียว,add_event,models/whisper-th,ตั้งนัด video call กับลูกค้าพรุ่งนี้สี่โมง
+แท้ทูคาเลนดาห์โยคาคลาสมันเดห็อมพ์,add_event,models/whisper-th,add to calendar yoga class monday 6pm
+แคที่วิคาเลนดา โยภาค คล้าสมันเล 6 เหลม,add_event,models/whisper-th,add to calendar yoga class monday 6pm
+มีนัดเรียนพิเศษทุกว่านั้นคารลองปฏิทินให้น่อย,add_event,models/whisper-th,มีนัดเรียนพิเศษทุกวันอังคาร ลงปฏิทินให้หน่อย
+ที่ราดวิยตรีเซสทุกว่านอนคา โมงประดิษฐีที่รอย,add_event,models/whisper-th,มีนัดเรียนพิเศษทุกวันอังคาร ลงปฏิทินให้หน่อย
+บรรทึกนัดสัมพาทงานวันที่สิบสองตอนใบ,add_event,models/whisper-th,บันทึกนัดสัมภาษณ์งานวันที่สิบสองตอนบ่าย
+จัญญาตสารพ่าแทยงเวลล์ที่สุดสองวอร์ลาย,add_event,models/whisper-th,บันทึกนัดสัมภาษณ์งานวันที่สิบสองตอนบ่าย
+สายปฏิทธินว่าบินไปเชียงใหม่วันที่ 20,add_event,models/whisper-th,ใส่ปฏิทินว่าบินไปเชียงใหม่วันที่ยี่สิบ
+ไสต์ปัญชีวว่าวิตชาวิเช่งไงกันที่ 20,add_event,models/whisper-th,ใส่ปฏิทินว่าบินไปเชียงใหม่วันที่ยี่สิบ
+นัดซ้อมดอนตรีวันพูดพบมองเยน,add_event,models/whisper-th,นัดซ้อมดนตรีวันพุธหกโมงเย็น
+ลักซ่อเรื่องเกิร์ลีวันทุกของวงเย็น,add_event,models/whisper-th,นัดซ้อมดนตรีวันพุธหกโมงเย็น
+ซากอีเว้นติวหนังสือกับเพื่อนคืนนี้สองทุม,add_event,models/whisper-th,สร้าง event ติวหนังสือกับเพื่อนคืนนี้สองทุ่ม
+ซ่าอีเวน ๆ สิ่งหลังสิทธาพื้น คือมีสองคุม,add_event,models/whisper-th,สร้าง event ติวหนังสือกับเพื่อนคืนนี้สองทุ่ม
+จองห้องประชุมพร้วมนี้บ่ายมงเครื่อง,add_event,models/whisper-th,จองห้องประชุมพรุ่งนี้บ่ายโมงครึ่ง
+เซาะเข้าไปรายชุมเพิ่มนี้หลายวมเพื่อ,add_event,models/whisper-th,จองห้องประชุมพรุ่งนี้บ่ายโมงครึ่ง
+มกลังวิตซาราออนไฟเด,add_event,models/whisper-th,book lunch with sarah on friday
+มุ่งคว้างที่วิตตาวาทราห์อ้อนไกล์เย,add_event,models/whisper-th,book lunch with sarah on friday
+ลงตารามว่าวันจันทร์น้ามีพลีเซนต์งานสิบโมง,add_event,models/whisper-th,ลงตารางว่าวันจันทร์หน้ามีพรีเซนต์งานสิบโมง
+กลงการอาวว่าวล่านกันท่านที่พิเศษและทางจินโม,add_event,models/whisper-th,ลงตารางว่าวันจันทร์หน้ามีพรีเซนต์งานสิบโมง
+เพิ่มนัดเหมือฟันเดินหน้าวันที่สาม,add_event,models/whisper-th,เพิ่มนัดหมอฟันเดือนหน้าวันที่สาม
+เพิ่มรากหลอกวาลเรือนล่าวันที่สาม,add_event,models/whisper-th,เพิ่มนัดหมอฟันเดือนหน้าวันที่สาม
+อีเว้นใหม่งานแต่งพี่วันอาทิตย์,add_event,models/whisper-th,event ใหม่ งานแต่งพี่วันอาทิตย์
+ที่เว้นใหม่ น้ำและที่เวอราชิต,add_event,models/whisper-th,event ใหม่ งานแต่งพี่วันอาทิตย์
+คาเลนดาสเพิ่มประชุมผู้ปกครองวันสุขเช้า,add_event,models/whisper-th,calendar เพิ่มประชุมผู้ปกครองวันศุกร์เช้า
+พายัยย่าเพื่อเมืองเจนซึ่งของพวาอองเมืองจุดสาว,add_event,models/whisper-th,calendar เพิ่มประชุมผู้ปกครองวันศุกร์เช้า
+ตั้งนาฬิกาปลุกพบมงชาว,other,models/whisper-th,ตั้งนาฬิกาปลุกหกโมงเช้า
+ต้องยังที่กล่าวถูกโซโมมชาว,other,models/whisper-th,ตั้งนาฬิกาปลุกหกโมงเช้า
+ต้องเวลาดับถ่อยหลังห้าดาที่,other,models/whisper-th,ตั้งเวลานับถอยหลังห้านาที
+ข้างเวลาทางลาป่อยหลังห้าดาที,other,models/whisper-th,ตั้งเวลานับถอยหลังห้านาที
+เซตตามนิด ฟอร์เทเวนตี้หมีกนิด,other,models/whisper-th,set a timer for twenty minutes
+เซล็ตเซอร์มเมื่อ กอร์เมื่อที่สื่อหยิด,other,models/whisper-th,set a timer for twenty minutes
+จับเวลา 3 สิบวิ้นาที,other,models/whisper-th,จับเวลาสามสิบวินาที
+สัปวิลา สามสิทธินินาที,other,models/whisper-th,จับเวลาสามสิบวินาที
+ปลุกชั้นตอนเจ็ดโมง,other,models/whisper-th,ปลุกฉันตอนเจ็ดโมง
+โฟตชั้นกล้องเกมน,other,models/whisper-th,ปลุกฉันตอนเจ็ดโมง
+อากาศวันนี้ร้อนไม้,other,models/whisper-th,อากาศวันนี้ร้อนไหม
+หากการวันยือล้อมัย,other,models/whisper-th,อากาศวันนี้ร้อนไหม
+ตัวช์ ทุก ๆ,other,models/whisper-th,will it rain tomorrow
+ตราวิสเตอร์ย์ ซื้ออย่วม,other,models/whisper-th,will it rain tomorrow
+เปอร์ดเพลงของบอร์ดี้สแลม,other,models/whisper-th,เปิดเพลงของ bodyslam
+เปอร์ด เพลงของวอร์ดที่สำราญ,other,models/whisper-th,เปิดเพลงของ bodyslam
+เซลต์ซำเจ้าส!,other,models/whisper-th,play some jazz
+เซลตอนเจ้าซ์,other,models/whisper-th,play some jazz
+อยู่ทั้งแก้นกอน,other,models/whisper-th,หยุดเพลงก่อน
+อยู่ใสล่งกลอน,other,models/whisper-th,หยุดเพลงก่อน
+เพิ่มเสียงได้,other,models/whisper-th,เพิ่มเสียงหน่อย
+เพิ่มเสียงไหม,other,models/whisper-th,เพิ่มเสียงหน่อย
+เราเรื่องตลอดให้ฟังได้,other,models/whisper-th,เล่าเรื่องตลกให้ฟังหน่อย
+เราเยื้อเซาหลอกที่ได้ความยายด,other,models/whisper-th,เล่าเรื่องตลกให้ฟังหน่อย
+ตอนนี้กี่โมม,other,models/whisper-th,ตอนนี้กี่โมง
+ตอนนี้อยู่โมง,other,models/whisper-th,ตอนนี้กี่โมง
+วันนี้วันที่เท่าไร,other,models/whisper-th,วันนี้วันที่เท่าไหร่
+วันมีวันที่เท่าไร,other,models/whisper-th,วันนี้วันที่เท่าไหร่
+ข่าวันนี้มีอะไรบ้าง,other,models/whisper-th,ข่าววันนี้มีอะไรบ้าง
+เขาวันยีอารายว่า,other,models/whisper-th,ข่าววันนี้มีอะไรบ้าง
+เปิดไฟ้องน้อน,other,models/whisper-th,เปิดไฟห้องนอน
+เกิดใส่ข้อข้อข้อ,other,models/whisper-th,เปิดไฟห้องนอน
+แปลคำว่า เหลองเป็นภาษาไทย,other,models/whisper-th,แปลคำว่า hello เป็นภาษาไทย
+แสดงคำว่าเชื้อ เจนเผาสาทใคร,other,models/whisper-th,แปลคำว่า hello เป็นภาษาไทย
+หนึ่งร้อยห่านสี่ได้เท่าไร,other,models/whisper-th,หนึ่งร้อยหารสี่ได้เท่าไหร่
+หนึ่งร้อยห่านเสียได้โทรไลน์,other,models/whisper-th,หนึ่งร้อยหารสี่ได้เท่าไหร่
+ขอบคุณมาก,other,models/whisper-th,ขอบคุณมาก
+ขอบคุณล้าส!,other,models/whisper-th,ขอบคุณมาก
+เทลลอส คราวไออยู่,other,models/whisper-th,hello how are you
+เทลล์ว ภาวอายน,other,models/whisper-th,hello how are you
+สังพิษภาพให้น่อย,other,models/whisper-th,สั่งพิซซ่าให้หน่อย
+สามพิษภาพให้ง่อย,other,models/whisper-th,สั่งพิซซ่าให้หน่อย
+ร้านกาแฟตไล่ก็ได้อยู่ตรงใน,other,models/whisper-th,ร้านกาแฟใกล้ๆ อยู่ตรงไหน
+เกือนยือใจจื้อในอยู่ใน,other,models/whisper-th,ร้านกาแฟใกล้ๆ อยู่ตรงไหน
+ส่งข้อความหาเพื่อนว่าถึงแล้ว,other,models/whisper-th,ส่งข้อความหาเพื่อนว่าถึงแล้ว
+สงครอบพ่อหักซื้อว่าถึงแรวล์,other,models/whisper-th,ส่งข้อความหาเพื่อนว่าถึงแล้ว
+คุณเชื่ออะไร,other,models/whisper-th,คุณชื่ออะไร
+คุณชื่ออราย,other,models/whisper-th,คุณชื่ออะไร
+ราคาทองวันนี้เท่าไร,other,models/whisper-th,ราคาทองวันนี้เท่าไหร่
+เกี่ยาคาทอร์วันยืน ท่องราย,other,models/whisper-th,ราคาทองวันนี้เท่าไหร่
+เช็คท่าสในกูโก้ให้หน่อย,check_tasks,openai/whisper-small,เช็ค task ใน google ให้หน่อย
+เช็คทา ในฟูกโรย์ให้หน่อย,check_tasks,openai/whisper-small,เช็ค task ใน google ให้หน่อย
+วันนี้มีงานอะไรต้องทำบ้าง,check_tasks,openai/whisper-small,วันนี้มีงานอะไรต้องทำบ้าง
+วันนี้มีงานอะไรก็ทำบ้า,check_tasks,openai/whisper-small,วันนี้มีงานอะไรต้องทำบ้าง
+ดูทูดูลิส ให้หน่อย,check_tasks,openai/whisper-small,ดู to do list ให้หน่อย
+ลูกทุกลิฟ ให้น้อย,check_tasks,openai/whisper-small,ดู to do list ให้หน่อย
+WATCH ON MY TASTLEASE,check_tasks,openai/whisper-small,what's on my task list
+What are my passes?,check_tasks,openai/whisper-small,what's on my task list
+มีท่าสข้างอยู่กี่อาน,check_tasks,openai/whisper-small,มี task ค้างอยู่กี่อัน
+มีทาสทานตุดที่ทาน,check_tasks,openai/whisper-small,มี task ค้างอยู่กี่อัน
+เพิ่มท่าสืนม,add_task,openai/whisper-small,เพิ่ม task ซื้อนม
+พอผ่าสุนอม,add_task,openai/whisper-small,เพิ่ม task ซื้อนม
+จดไว้หน่อยว่าต้องส่งการบ้าน,add_task,openai/whisper-small,จดไว้หน่อยว่าต้องส่งการบ้าน
+จดไว้หน่อยว่าต้องส่งแขนบ้าน,add_task,openai/whisper-small,จดไว้หน่อยว่าต้องส่งการบ้าน
+Add a task to call mom.,add_task,openai/whisper-small,add a task to call mom
+แค่ค่ะ ที่ของอำ,add_task,openai/whisper-small,add a task to call mom
+ใส่สองรายงานลงในทุกดู,add_task,openai/whisper-small,ใส่ส่งรายงานลงใน to do
+ใส่สมร้ายน้ำลองในทุกดู,add_task,openai/whisper-small,ใส่ส่งรายงานลงใน to do
+สังทาสใหม่ ชื่ออานนังซือ,add_task,openai/whisper-small,สร้าง task ใหม่ชื่ออ่านหนังสือ
+สังท่าส์ไหล ชื่ออาหารังสิ,add_task,openai/whisper-small,สร้าง task ใหม่ชื่ออ่านหนังสือ
+TikTas ซื้อน้อมว่า เสร็จแล้ว,complete_task,openai/whisper-small,ติ๊ก task ซื้อนมว่าเสร็จแล้ว
+สิทธาส์ที่มองวาสเซ็ดเน้ว,complete_task,openai/whisper-small,ติ๊ก task ซื้อนมว่าเสร็จแล้ว
+ทำงานส่งอาจาร์เสร็จแล้ว,complete_task,openai/whisper-small,ทำงานส่งอาจารย์เสร็จแล้ว
+ท่ามงานส่งภาพทราบแล้ว,complete_task,openai/whisper-small,ทำงานส่งอาจารย์เสร็จแล้ว
+มากส่งการบ้านว่า ดัน,complete_task,openai/whisper-small,mark ส่งการบ้านว่า done
+มาส่งการบ้านว่า รัน,complete_task,openai/whisper-small,mark ส่งการบ้านว่า done
+Complete the task by mew.,complete_task,openai/whisper-small,complete the task buy milk
+คอมพีช ดัดภา ขวายหิว,complete_task,openai/whisper-small,complete the task buy milk
+ลบทาสอาณนังซือออก เพราะทำแล้ว,complete_task,openai/whisper-small,ลบ task อ่านหนังสือออกเพราะทำแล้ว
+ลบทาคอันหนังที่ออกก็ทำแล้ว,complete_task,openai/whisper-small,ลบ task อ่านหนังสือออกเพราะทำแล้ว
+พร้องนี้มีนัดอะไรบ้าง,check_calendar,openai/whisper-small,พรุ่งนี้มีนัดอะไรบ้าง
+พร้อมลิง น่าจะรายบ้าง,check_calendar,openai/whisper-small,พรุ่งนี้มีนัดอะไรบ้าง
+เช็คประติธินวันสุขให้นาย,check_calendar,openai/whisper-small,เช็คปฏิทินวันศุกร์ให้หน่อย
+เฉพาะได้กินวัน โทษเฮียงอ้าย,check_calendar,openai/whisper-small,เช็คปฏิทินวันศุกร์ให้หน่อย
+Watch on my calendar today.,check_calendar,openai/whisper-small,what's on my calendar today
+วัดอร่อยขัดอันนาทุกที,check_calendar,openai/whisper-small,what's on my calendar today
+อาทิทนี้มีอีวินอะไรบ้าง,check_calendar,openai/whisper-small,อาทิตย์นี้มี event อะไรบ้าง
+อาทิทมีอีเวนเท่าไรก่อน,check_calendar,openai/whisper-small,อาทิตย์นี้มี event อะไรบ้าง
+บายนี้หวังไหม?,check_calendar,openai/whisper-small,บ่ายนี้ว่างไหม
+บายหลีว้างไหว,check_calendar,openai/whisper-small,บ่ายนี้ว่างไหม
+นัดประชมพร้องนี้ บาย 2 โมง,add_event,openai/whisper-small,นัดประชุมพรุ่งนี้บ่ายสองโมง
+หลับประชมพรุ่งนี้ ไหลสองมอง,add_event,openai/whisper-small,นัดประชุมพรุ่งนี้บ่ายสองโมง
+เพิ่มอีเวนไปหาหมอวันจัน 10 โมง,add_event,openai/whisper-small,เพิ่ม event ไปหาหมอวันจันทร์สิบโมง
+พอมีเวลาไปหาเมาวันจาดจิตมอ่ะ,add_event,openai/whisper-small,เพิ่ม event ไปหาหมอวันจันทร์สิบโมง
+ลองปฏิธินว่าวันสาวไปงานแต่งเพื่อน,add_event,openai/whisper-small,ลงปฏิทินว่าวันเสาร์ไปงานแต่งเพื่อน
+ลงกาติชินว่าว่าสาวไปงานแบบเพื่อน,add_event,openai/whisper-small,ลงปฏิทินว่าวันเสาร์ไปงานแต่งเพื่อน
+Sketo Amis Team ดีกว่าที่ที่ที่สัมพีอม,add_event,openai/whisper-small,schedule a meeting with the team on friday at 3pm
+สุดยอดทุกคนที่คิดสุดยอดทรายด์ อัสมาทีอีก,add_event,openai/whisper-small,schedule a meeting with the team on friday at 3pm
+จองเวลาวันพูด 4 โมงเย็นไว้ติวสอบ,add_event,openai/whisper-small,จองเวลาวันพุธสี่โมงเย็นไว้ติวสอบ
+จ้องเวลาวันพูดสิ องเงียนไว้ติ้วสอบ,add_event,openai/whisper-small,จองเวลาวันพุธสี่โมงเย็นไว้ติวสอบ
+วันนี้อากาศเป็นยังไง,other,openai/whisper-small,วันนี้อากาศเป็นยังไง
+วันนี้ 5 ค่าเป็นอย่างไร,other,openai/whisper-small,วันนี้อากาศเป็นยังไง
+เปิดเพลงให้นาย,other,openai/whisper-small,เปิดเพลงให้หน่อย
+บินของข้างน้อย,other,openai/whisper-small,เปิดเพลงให้หน่อย
+ตอนนี้กี่มงแล้ว,other,openai/whisper-small,ตอนนี้กี่โมงแล้ว
+ตอนนี้ทีโลกแล้ว,other,openai/whisper-small,ตอนนี้กี่โมงแล้ว
+เท่าหมี่อีกจ๊อค,other,openai/whisper-small,tell me a joke
+เท่าหมีอีกจอ,other,openai/whisper-small,tell me a joke
+ตั้งปลกตี 5,other,openai/whisper-small,ตั้งปลุกตีห้า
+ร้องกลับสีหา,other,openai/whisper-small,ตั้งปลุกตีห้า
+มีทาสอะไรบ้าง,check_tasks,openai/whisper-small,มี task อะไรบ้าง
+มีท่าเกิดอะไรว้า,check_tasks,openai/whisper-small,มี task อะไรบ้าง
+เช็คงานในกูกองท่าคซ์นอย,check_tasks,openai/whisper-small,เช็คงานใน google tasks หน่อย
+เฉคงานไหนกูคุณท่าสนอย,check_tasks,openai/whisper-small,เช็คงานใน google tasks หน่อย
+ขอดูรายการงานหน่อย,check_tasks,openai/whisper-small,ขอดูรายการงานหน่อย
+ขอดูรายการแน่นอน,check_tasks,openai/whisper-small,ขอดูรายการงานหน่อย
+งานที่ยังไม่เสร็จมีอะไรบ้าง,check_tasks,openai/whisper-small,งานที่ยังไม่เสร็จมีอะไรบ้าง
+งานที่ยังไม่เสร็จมีอะไรบ้าง,check_tasks,openai/whisper-small,งานที่ยังไม่เสร็จมีอะไรบ้าง
+บอกทาสทั้งหมดให้ฟังหน่อย,check_tasks,openai/whisper-small,บอก task ทั้งหมดให้ฟังหน่อย
+บอกท่านพ่อท้ายฟังหน่อย,check_tasks,openai/whisper-small,บอก task ทั้งหมดให้ฟังหน่อย
+List my task,check_tasks,openai/whisper-small,list my tasks
+Please ไหมคะ,check_tasks,openai/whisper-small,list my tasks
+What do I need to do today?,check_tasks,openai/whisper-small,what do i need to do today
+วัวด้วยไงเนส์ทุกทุกเนส์,check_tasks,openai/whisper-small,what do i need to do today
+Check my to-do list,check_tasks,openai/whisper-small,check my to do list
+เฉพาะกูนุษย์,check_tasks,openai/whisper-small,check my to do list
+อานทาสให้ฟังหน่อยครับ,check_tasks,openai/whisper-small,อ่าน task ให้ฟังหน่อยครับ
+อันท่า ใส่วางหน่อยครับ,check_tasks,openai/whisper-small,อ่าน task ให้ฟังหน่อยครับ
+วันนี้ต้องทำอะไรบ้างคะ?,check_tasks,openai/whisper-small,วันนี้ต้องทำอะไรบ้างคะ
+วันนี้ต้องทำอะไรบ้างคะ,check_tasks,openai/whisper-small,วันนี้ต้องทำอะไรบ้างคะ
+มีงานต้องส่งอะไรบ้าง,check_tasks,openai/whisper-small,มีงานต้องส่งอะไรบ้าง
+ทุกคนขอบคุณมาก,check_tasks,openai/whisper-small,มีงานต้องส่งอะไรบ้าง
+นายลิส มีอะไรเหลืออยู่,check_tasks,openai/whisper-small,ในลิสต์มีอะไรเหลืออยู่
+นายเวส ไม่อาหาร ไม่,check_tasks,openai/whisper-small,ในลิสต์มีอะไรเหลืออยู่
+Bertrude List 9,check_tasks,openai/whisper-small,เปิด to do list หน่อย
+ประทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกทุกท,check_tasks,openai/whisper-small,เปิด to do list หน่อย
+ขอเฉพาสน้อย,check_tasks,openai/whisper-small,ขอเช็คทาสก์หน่อย
+ขอเช็กท่าสน่อย,check_tasks,openai/whisper-small,ขอเช็คทาสก์หน่อย
+งานข้างเหลือกี่อาน,check_tasks,openai/whisper-small,งานค้างเหลือกี่อัน
+งานท่าน,check_tasks,openai/whisper-small,งานค้างเหลือกี่อัน
+ดูงานที่ต้องทำสับดานี้,check_tasks,openai/whisper-small,ดูงานที่ต้องทำสัปดาห์นี้
+ลุงอาจที่บ้องทำสักราณี,check_tasks,openai/whisper-small,ดูงานที่ต้องทำสัปดาห์นี้
+Any Park Left,check_tasks,openai/whisper-small,any tasks left
+ได้นี้ท้าสเนี่ย,check_tasks,openai/whisper-small,any tasks left
+ช่วยไลทาสให้ฟังทีระอาณ,check_tasks,openai/whisper-small,ช่วยไล่ task ให้ฟังทีละอัน
+ช่วยไลค์ทะ ให้ฟังทีการคาร,check_tasks,openai/whisper-small,ช่วยไล่ task ให้ฟังทีละอัน
+เช็กลิสงานให้หน่อย,check_tasks,openai/whisper-small,เช็คลิสต์งานให้หน่อย
+เช็คมีสงานให้เรา,check_tasks,openai/whisper-small,เช็คลิสต์งานให้หน่อย
+มีอะไรในกูก้าวท่าสบ้าง,check_tasks,openai/whisper-small,มีอะไรใน google task บ้าง
+มีอะไรในกูก็ท่าสว่าง,check_tasks,openai/whisper-small,มีอะไรใน google task บ้าง
+งานอะไรยังไม่ได้ทำ,check_tasks,openai/whisper-small,งานอะไรยังไม่ได้ทำ
+โอเค โอเค โอเค โอเค โอเค โอเค โอเค โอเค โอเค โอเค โอเค โอเค โอเค โอเค โอเค โอเค โอเค โอเค โอเค โอเค โอเค โอเค โอเค โอเค โอเค โอเค โอเค โอเค โอเค โอเค โอเค โอเค โอเค โอเค โอเค โอเค โอเค โอเค โอเค โอเค โอเค โอเค โอเค โอเค โอเค โอเค โอเค โอเค โอเค โอเค โอเค โอเค โอเค โอเค โอเค โอเค โ,check_tasks,openai/whisper-small,งานอะไรยังไม่ได้ทำ
+ขอดูทุกดูหน่อยนะ,check_tasks,openai/whisper-small,ขอดู to do หน่อยนะ
+ขอดูทุกดูหน่อยนะ,check_tasks,openai/whisper-small,ขอดู to do หน่อยนะ
+PendingTax มีอะไรบ้าง,check_tasks,openai/whisper-small,pending tasks มีอะไรบ้าง
+เพลงนิ้งค่ะ มันอะไรว้า,check_tasks,openai/whisper-small,pending tasks มีอะไรบ้าง
+ท่าสของพร้องนี้มีอะไร,check_tasks,openai/whisper-small,task ของพรุ่งนี้มีอะไร
+ท่านของคุณมีมีอะไร,check_tasks,openai/whisper-small,task ของพรุ่งนี้มีอะไร
+สรุปงานที่ต้องทำให้หน่อย,check_tasks,openai/whisper-small,สรุปงานที่ต้องทำให้หน่อย
+สรุปงานที่พ้องทำให้หน่อย,check_tasks,openai/whisper-small,สรุปงานที่ต้องทำให้หน่อย
+เพิ่มท่าสหลังรถ,add_task,openai/whisper-small,เพิ่ม task ล้างรถ
+พร้อมพาพร้างโรธ,add_task,openai/whisper-small,เพิ่ม task ล้างรถ
+เพิ่มงานใหม่ ส่งอิกษาลฟ่ายบุคคล,add_task,openai/whisper-small,เพิ่มงานใหม่ ส่งเอกสารฝ่ายบุคคล
+เพิ่งงานใหม่ ส่งอิกษาลฟ่ายบุคคลน,add_task,openai/whisper-small,เพิ่มงานใหม่ ส่งเอกสารฝ่ายบุคคล
+แอสักภาลงในทุดดู,add_task,openai/whisper-small,add ซักผ้าลงใน to do
+แอลซ์ทัพท์ ความลงให้ดูดู,add_task,openai/whisper-small,add ซักผ้าลงใน to do
+ใส่ทาสว่าต้องไปปรายสันนี้,add_task,openai/whisper-small,ใส่ task ว่าต้องไปไปรษณีย์
+ใส่ทาดว้าว ข้าวใส่ใส่ทนี,add_task,openai/whisper-small,ใส่ task ว่าต้องไปไปรษณีย์
+ช่วยจดงานให้หน่อยคืน นังสือห้องสมุด,add_task,openai/whisper-small,ช่วยจดงานให้หน่อย คืนหนังสือห้องสมุด
+ช่วยต่อดงานให้หน่อยคือหน่อยความกลมด,add_task,openai/whisper-small,ช่วยจดงานให้หน่อย คืนหนังสือห้องสมุด
+สังท่าสตรีมพริเศษ,add_task,openai/whisper-small,สร้างทาสก์ เตรียมพรีเซนต์
+สวัสดีที่สุดท้าย,add_task,openai/whisper-small,สร้างทาสก์ เตรียมพรีเซนต์
+กลอดสิวิตให้ช่วย,add_task,openai/whisper-small,add buy groceries to my tasks
+กล้าสีรีสิ ส่งส้น,add_task,openai/whisper-small,add buy groceries to my tasks
+New Task Fit the Box,add_task,openai/whisper-small,new task fix the bug
+นิวทาสตรีดเจ้าบาท,add_task,openai/whisper-small,new task fix the bug
+ลืมมายมีทวนสักที่สักที่สักที่สักที่สักที่สักที่สักที่สักที่สักที่สักที่สักที่สักที่สักที่สักที่สักที่สักที่สักที่สักที่สักที่สักที่สักที่สักที่สักที่สักที่สักที่สักที่สักที่สักที่สักที่สักที่สักที่สักที่สักที่สักที่สักที่สักที่สักที่สักที่สักที่สักที่สักที่สักที่สักที่,add_task,openai/whisper-small,remind me to water the plants
+สุดท้าย สุดท้าย สวัสดี,add_task,openai/whisper-small,remind me to water the plants
+เตินให้ทำการบ้านคณิด,add_task,openai/whisper-small,เตือนให้ทำการบ้านคณิต
+ตื่นให้ทำการวานทนิด,add_task,openai/whisper-small,เตือนให้ทำการบ้านคณิต
+เพิ่มลองลิสว่าต้องซื้อแบตเตอร์รี่,add_task,openai/whisper-small,เพิ่มลงลิสต์ว่าต้องซื้อแบตเตอรี่
+เพิ่มลองวิสว่าต้องซื้อแบทเตอร์รี่,add_task,openai/whisper-small,เพิ่มลงลิสต์ว่าต้องซื้อแบตเตอรี่
+จดไว้ในท่าสว่า ต่อประกันรถ,add_task,openai/whisper-small,จดไว้ใน task ว่าต่อประกันรถ
+จดไว้ในท่าวาบออกในท่านโรธ,add_task,openai/whisper-small,จดไว้ใน task ว่าต่อประกันรถ
+เพิ่มทุดดูทำความสะอาดห้อง,add_task,openai/whisper-small,เพิ่ม to do ทำความสะอาดห้อง
+พาพูดู ท่านพาพติอาทร่าง,add_task,openai/whisper-small,เพิ่ม to do ทำความสะอาดห้อง
+ใส่งานขยันรายงานบดที่ 2 ลงไป,add_task,openai/whisper-small,ใส่งานเขียนรายงานบทที่สองลงไป
+ให้งานเชียงงาน โบริสอ่อ มนุ่มไป,add_task,openai/whisper-small,ใส่งานเขียนรายงานบทที่สองลงไป
+อย่าลืมจดว่าต้องเอาเงินข้าหอ,add_task,openai/whisper-small,อย่าลืมจดว่าต้องโอนเงินค่าหอ
+ย่าลืมจอดว่า ต้องก่อนแล้วท้าเกอร์,add_task,openai/whisper-small,อย่าลืมจดว่าต้องโอนเงินค่าหอ
+Add Pass Update Resume,add_task,openai/whisper-small,add task อัปเดตเรซูเม่
+แท้ท้า ทับเอง รสุมเอง,add_task,openai/whisper-small,add task อัปเดตเรซูเม่
+ขอเพิ่มงานใหม่หนึ่ง อันตัดผม,add_task,openai/whisper-small,ขอเพิ่มงานใหม่หนึ่งอัน ตัดผม
+ขอเพิ่มงานไหลหนึ่ง นั่นตัดผม,add_task,openai/whisper-small,ขอเพิ่มงานใหม่หนึ่งอัน ตัดผม
+ช่วยสร้างท่าสพบทวนบทเรียน,add_task,openai/whisper-small,ช่วยสร้าง task ทบทวนบทเรียน
+ช่วยสังทาสพบทวนบทเรียน,add_task,openai/whisper-small,ช่วยสร้าง task ทบทวนบทเรียน
+ลองในทุดดูให้ว่าส้มผัดลม,add_task,openai/whisper-small,ลงใน to do ให้ว่าซ่อมพัดลม
+ลองไลคุณลูกให้ว่าสองบัตรงอม,add_task,openai/whisper-small,ลงใน to do ให้ว่าซ่อมพัดลม
+เพิ่มงานรีบภาเข้าไปในลิส,add_task,openai/whisper-small,เพิ่มงานรีดผ้าเข้าไปในลิสต์
+ข้างแทนนี้ข้าช้าบอันนี้,add_task,openai/whisper-small,เพิ่มงานรีดผ้าเข้าไปในลิสต์
+Thas Mai ติดต่ออาจารย์ที่ปรึกษา,add_task,openai/whisper-small,task ใหม่ ติดต่ออาจารย์ที่ปรึกษา
+TASMITE พี่ต่อฮาจานที่เบิรสเท่า,add_task,openai/whisper-small,task ใหม่ ติดต่ออาจารย์ที่ปรึกษา
+จดงานไว้หน่อย ส่งโคตรคึงกิษภาพ,add_task,openai/whisper-small,จดงานไว้หน่อย ส่งโค้ดขึ้น github
+จัดงานไหวหน่อยส่งพอคืนดีครับ,add_task,openai/whisper-small,จดงานไว้หน่อย ส่งโค้ดขึ้น github
+Put Pay The Internet Bill On My To-Do List,add_task,openai/whisper-small,put pay the internet bill on my to do list
+โอ้ดเท่ ดับเยินเตอร์เนธ บิว หอน ไหล ทุกดูริ,add_task,openai/whisper-small,put pay the internet bill on my to do list
+เพิ่งงานจ้องตัวรถทั่ว,add_task,openai/whisper-small,เพิ่มงานจองตั๋วรถทัวร์
+พ้อมันต้องหลังกดดูอ่ะ,add_task,openai/whisper-small,เพิ่มงานจองตั๋วรถทัวร์
+ส่งงานใหม่ ชื่อทำสลาย นำสนเหนอ,add_task,openai/whisper-small,สร้างงานใหม่ชื่อทำสไลด์นำเสนอ
+สางแย่นไหม ชิ้นท่านก็มาก่อนเลย,add_task,openai/whisper-small,สร้างงานใหม่ชื่อทำสไลด์นำเสนอ
+ทำท่านล้างรถเสร็จแล้ว,complete_task,openai/whisper-small,ทำ task ล้างรถเสร็จแล้ว
+ท่านท่านร้องร้องเต็มแล้ว,complete_task,openai/whisper-small,ทำ task ล้างรถเสร็จแล้ว
+ติดงานสักภาวาเสร็จ,complete_task,openai/whisper-small,ติ๊กงานซักผ้าว่าเสร็จ
+สิ่งที่อันตาค่าวาดแท็ก,complete_task,openai/whisper-small,ติ๊กงานซักผ้าว่าเสร็จ
+งานสงอิกษาณเรียบร้อยแล้ว,complete_task,openai/whisper-small,งานส่งเอกสารเรียบร้อยแล้ว
+งานสมีภาษาณรีบร้อยแล้ว,complete_task,openai/whisper-small,งานส่งเอกสารเรียบร้อยแล้ว
+มาทำการบ้านคณิปว่าเสร็จ,complete_task,openai/whisper-small,mark ทำการบ้านคณิตว่าเสร็จ
+มาต้องการมากันที่ความเถอะ,complete_task,openai/whisper-small,mark ทำการบ้านคณิตว่าเสร็จ
+ไปปรายสันีมาแล้ว ปิดงานนั้นเลย,complete_task,openai/whisper-small,ไปไปรษณีย์มาแล้ว ปิดงานนั้นเลย
+ไปไป ขันนี้มาแล้ว พิษงานเลยเลย,complete_task,openai/whisper-small,ไปไปรษณีย์มาแล้ว ปิดงานนั้นเลย
+Complete Task Fit the Bug,complete_task,openai/whisper-small,complete task fix the bug
+คอมพิธราสิทธิ์วัส,complete_task,openai/whisper-small,complete task fix the bug
+Mark Water the Plan as Done,complete_task,openai/whisper-small,mark water the plants as done
+มาพวกอัลเกอร์ดแทบทั้ง,complete_task,openai/whisper-small,mark water the plants as done
+I've finished chat. cleaning my room.,complete_task,openai/whisper-small,i finished cleaning my room
+I've finished it. We need my room.,complete_task,openai/whisper-small,i finished cleaning my room
+ป้องทาสคืน นังสือเป็นเสร็จแล้ว,complete_task,openai/whisper-small,ตั้ง task คืนหนังสือเป็นเสร็จแล้ว
+ฟังทาสขึ้นหลังสือเป็นเสร็จแล้ว,complete_task,openai/whisper-small,ตั้ง task คืนหนังสือเป็นเสร็จแล้ว
+เคลียงงานเตรียมพริเศษ ออกทำเสร็จแล้ว,complete_task,openai/whisper-small,เคลียร์งานเตรียมพรีเซนต์ออก ทำเสร็จแล้ว
+คลิยงาน โทรย์มพิเศษ ขอคำแทบแล้ว,complete_task,openai/whisper-small,เคลียร์งานเตรียมพรีเซนต์ออก ทำเสร็จแล้ว
+สำพัตรลมเสร็จ น้าวติดให้ที,complete_task,openai/whisper-small,ซ่อมพัดลมเสร็จแล้ว ติ๊กให้ที
+สวามท่านหวังแสด หวาดกินเท้าจริง,complete_task,openai/whisper-small,ซ่อมพัดลมเสร็จแล้ว ติ๊กให้ที
+งานรีบพาเสร็จแล้วนะ,complete_task,openai/whisper-small,งานรีดผ้าเสร็จแล้วนะ
+งานรีบพาเสร็จแล้วนะ,complete_task,openai/whisper-small,งานรีดผ้าเสร็จแล้วนะ
+ดันทำความสะอาดท้องแล้ว,complete_task,openai/whisper-small,done ทำความสะอาดห้องแล้ว
+ลันทั้งความสาหาท้องแล้ว,complete_task,openai/whisper-small,done ทำความสะอาดห้องแล้ว
+เอาท่าสตัดผมออกไปมาแล้ว,complete_task,openai/whisper-small,เอา task ตัดผมออก ไปมาแล้ว
+เราท่าสแพดผมขอไปมาแล้ว,complete_task,openai/whisper-small,เอา task ตัดผมออก ไปมาแล้ว
+ทำงานขยันรายงานบท 2 เสร็จแล้ว,complete_task,openai/whisper-small,ทำงานเขียนรายงานบทสองเสร็จแล้ว
+ทำงานเชียมบรายงานบทตรง,complete_task,openai/whisper-small,ทำงานเขียนรายงานบทสองเสร็จแล้ว
+โอ้นข้าหอแล้วติดออกได้เลย,complete_task,openai/whisper-small,โอนค่าหอแล้ว ติ๊กออกได้เลย
+โลนค้าห่อ น้าไปขอไปเลย,complete_task,openai/whisper-small,โอนค่าหอแล้ว ติ๊กออกได้เลย
+ติดถูกงานจ้องตัวให้หน่อย,complete_task,openai/whisper-small,ติ๊กถูกงานจองตั๋วให้หน่อย
+ตรงนานจ้องตัวให้น้อย,complete_task,openai/whisper-small,ติ๊กถูกงานจองตั๋วให้หน่อย
+Shake Off by Cross-Series,complete_task,openai/whisper-small,check off buy groceries
+ชิคกี้พายของที่นี่,complete_task,openai/whisper-small,check off buy groceries
+งานอัปเดตรเซอมเมด ดันแล้ว,complete_task,openai/whisper-small,งานอัปเดตเรซูเม่ done แล้ว
+งานอับเนธรรมดันแล้ว,complete_task,openai/whisper-small,งานอัปเดตเรซูเม่ done แล้ว
+เสร็จแล้วงานทบทวนบดเรียน,complete_task,openai/whisper-small,เสร็จแล้ว งานทบทวนบทเรียน
+ฉันเหลืองานของทวนบ่อดเรียน,complete_task,openai/whisper-small,เสร็จแล้ว งานทบทวนบทเรียน
+ปิดท่าสติดต่ออาจารย์เพราะคุยแล้ว,complete_task,openai/whisper-small,ปิด task ติดต่ออาจารย์ เพราะคุยแล้ว
+ปิดท่าสติตต่ออาจารณ์พร้อมเวียว,complete_task,openai/whisper-small,ปิด task ติดต่ออาจารย์ เพราะคุยแล้ว
+Must ask complete ส่งคอต,complete_task,openai/whisper-small,mark as complete ส่งโค้ด
+มาแข็งความพลิฟต์สมบอส,complete_task,openai/whisper-small,mark as complete ส่งโค้ด
+ต่อประการรสเรียบร้อย เอาออกจากลิสได้,complete_task,openai/whisper-small,ต่อประกันรถเรียบร้อย เอาออกจากลิสต์ได้
+ต่อประการรถเรียบร้อย ออกสับมีส์กาย,complete_task,openai/whisper-small,ต่อประกันรถเรียบร้อย เอาออกจากลิสต์ได้
+งานทำสลายเสร็จแล้วมากให้ด้วย,complete_task,openai/whisper-small,งานทำสไลด์เสร็จแล้ว mark ให้ด้วย
+งานทำสลายเสร็จแล้วมา ให้ด้วย,complete_task,openai/whisper-small,งานทำสไลด์เสร็จแล้ว mark ให้ด้วย
+ซื้อแบตเตอร์รี่แล้วคิดข้าออกได้เลย,complete_task,openai/whisper-small,ซื้อแบตเตอรี่แล้ว ขีดฆ่าออกได้เลย
+ซื้อบาตเตอร์รี่แล้ว พิษท้าออกไปเลย,complete_task,openai/whisper-small,ซื้อแบตเตอรี่แล้ว ขีดฆ่าออกได้เลย
+พร้องนี้มีอะไรในปฏิธินบ้าง,check_calendar,openai/whisper-small,พรุ่งนี้มีอะไรในปฏิทินบ้าง
+ครองนี้มีอะไรในปัติกินบ้าน,check_calendar,openai/whisper-small,พรุ่งนี้มีอะไรในปฏิทินบ้าง
+เช็คตาลางวันจันหน่อย,check_calendar,openai/whisper-small,เช็คตารางวันจันทร์หน่อย
+ชิคกี้พายร้างวันจันไง,check_calendar,openai/whisper-small,เช็คตารางวันจันทร์หน่อย
+ดูอีเว้น สับดานีน้อย,check_calendar,openai/whisper-small,ดู event สัปดาห์นี้หน่อย
+ดูอีวินสักราณีหน้าอย,check_calendar,openai/whisper-small,ดู event สัปดาห์นี้หน่อย
+มีประชุมกี่มงบ้างวันนี้,check_calendar,openai/whisper-small,มีประชุมกี่โมงบ้างวันนี้
+มีประชุมที่มองบ้านมี,check_calendar,openai/whisper-small,มีประชุมกี่โมงบ้างวันนี้
+ว่าส์มายสเก็ดดูฟ้าทุมอร้อง,check_calendar,openai/whisper-small,what's my schedule for tomorrow
+กว่าสมายสิเก็บทุกคนทุกคน,check_calendar,openai/whisper-small,what's my schedule for tomorrow
+When is my next meeting?,check_calendar,openai/whisper-small,when is my next meeting
+When is my last evening?,check_calendar,openai/whisper-small,when is my next meeting
+โชว์ My Calendar for this week,check_calendar,openai/whisper-small,show my calendar for this week
+ช่องไห้คัลเลนดา ขอบิสดี,check_calendar,openai/whisper-small,show my calendar for this week
+ยันนี่ว้างมาย,check_calendar,openai/whisper-small,เย็นนี้ว่างไหม
+หญิงนี้หวังไหว,check_calendar,openai/whisper-small,เย็นนี้ว่างไหม
+วันสาวมีนาตรึเปล่า,check_calendar,openai/whisper-small,วันเสาร์มีนัดหรือเปล่า
+วันเศร้าวนี่นัดหรือเปล่า,check_calendar,openai/whisper-small,วันเสาร์มีนัดหรือเปล่า
+นัดหมอวันนัยนะ,check_calendar,openai/whisper-small,นัดหมอวันไหนนะ
+นักหัววันไห่นะ,check_calendar,openai/whisper-small,นัดหมอวันไหนนะ
+เปิดกูกโกลคารเลนดาดูหน่อย,check_calendar,openai/whisper-small,เปิด google calendar ดูหน่อย
+กุ้งก้องคาเลนดาดูหน่อย,check_calendar,openai/whisper-small,เปิด google calendar ดูหน่อย
+ตาลางเรียนพร้องนี้มีอะไร,check_calendar,openai/whisper-small,ตารางเรียนพรุ่งนี้มีอะไร
+ตาดำรียชมีนี่ บ๊าย,check_calendar,openai/whisper-small,ตารางเรียนพรุ่งนี้มีอะไร
+มีนัดทัดไปตอนไหน,check_calendar,openai/whisper-small,มีนัดถัดไปตอนไหน
+มีหาทะบายก่อนเน้,check_calendar,openai/whisper-small,มีนัดถัดไปตอนไหน
+เดือนนี้มีอีวินอะไรบ้าง,check_calendar,openai/whisper-small,เดือนนี้มี event อะไรบ้าง
+เดือนนี้มีอีวเวลาต่อไหร่ก่อน,check_calendar,openai/whisper-small,เดือนนี้มี event อะไรบ้าง
+บายพร้องนี้ติดอะไรไหม?,check_calendar,openai/whisper-small,บ่ายพรุ่งนี้ติดอะไรไหม
+ไหวครมมีติดอะไรไหม,check_calendar,openai/whisper-small,บ่ายพรุ่งนี้ติดอะไรไหม
+ขอดูนัดหมายทั้งหมดของวันสูง,check_calendar,openai/whisper-small,ขอดูนัดหมายทั้งหมดของวันศุกร์
+ขอดูนัดใหม่ทั้งหมดของรัสู,check_calendar,openai/whisper-small,ขอดูนัดหมายทั้งหมดของวันศุกร์
+ช่วงชาวันพุทธว้างหรือเปล่า,check_calendar,openai/whisper-small,ช่วงเช้าวันพุธว่างหรือเปล่า
+ช่วงชาวน์บุตรหวังด้าว,check_calendar,openai/whisper-small,ช่วงเช้าวันพุธว่างหรือเปล่า
+เช็กคาเลนดา วันนี้ให้หน่อย,check_calendar,openai/whisper-small,check calendar วันนี้ให้หน่อย
+เช็กภาเลนา วันนี้แท้งอ่อน,check_calendar,openai/whisper-small,check calendar วันนี้ให้หน่อย
+ประชุมทีมวันน่า,check_calendar,openai/whisper-small,ประชุมทีมวันไหนนะ
+ประชุมทีมวันไหนนะ,check_calendar,openai/whisper-small,ประชุมทีมวันไหนนะ
+Am I free on Thursday afternoon?,check_calendar,openai/whisper-small,am i free on thursday afternoon
+M.I. Free ของเธอสิ หาเท่านูน,check_calendar,openai/whisper-small,am i free on thursday afternoon
+อานปารางนัดวันนี้ให้ฟังหน่อย,check_calendar,openai/whisper-small,อ่านตารางนัดวันนี้ให้ฟังหน่อย
+อัน ปาร่างอาทุกวันนี้ให้ความน้อย,check_calendar,openai/whisper-small,อ่านตารางนัดวันนี้ให้ฟังหน่อย
+มีกิจจากกล้ามอะไรในปฏิธินอาทิธิธนา,check_calendar,openai/whisper-small,มีกิจกรรมอะไรในปฏิทินอาทิตย์หน้า
+มีคิดต้องทำอะไรเลยกับบิดกินอาจที่สินะ,check_calendar,openai/whisper-small,มีกิจกรรมอะไรในปฏิทินอาทิตย์หน้า
+เช็กหน่อยว่าคืนนี้มีนัดไหม,check_calendar,openai/whisper-small,เช็คหน่อยว่าคืนนี้มีนัดไหม
+เช็คหน่อยว่าคืนนี้ไม่รักไหม,check_calendar,openai/whisper-small,เช็คหน่อยว่าคืนนี้มีนัดไหม
+สอบวันนายบ้างเดือนนี้,check_calendar,openai/whisper-small,สอบวันไหนบ้างเดือนนี้
+ส่อบวันน่ายว้างเดือนนี้,check_calendar,openai/whisper-small,สอบวันไหนบ้างเดือนนี้
+Even ต่อไปคืออะไร,check_calendar,openai/whisper-small,event ต่อไปคืออะไร
+ออกไปก็อะไร,check_calendar,openai/whisper-small,event ต่อไปคืออะไร
+นัดเพื่อนดูหนังวันสุขทุงหนึ่ง,add_event,openai/whisper-small,นัดเพื่อนดูหนังวันศุกร์ทุ่มนึง
+นาเทลูน่าวันก็จุดเลย,add_event,openai/whisper-small,นัดเพื่อนดูหนังวันศุกร์ทุ่มนึง
+เพิ่มอีเวนไปเที่ยวทะเลวันที่ 5,add_event,openai/whisper-small,เพิ่ม event ไปเที่ยวทะเลวันที่ห้า
+ค่อมอีกเว้น อาจจะอาจจะอาจจะอาจจะอาจจะอาจจะอาจจะอาจจะอาจจะอาจจะอาจจะอาจจะอาจจะอาจจะอาจจะอาจจะอาจจะอาจจะอาจจะอาจจะอาจจะอาจจะอาจจะอาจจะอาจจะอาจจะอาจจะอาจจะอาจจะอาจจะอาจจะอาจจะอาจจะอาจจะอาจจะอาจจะอาจจะอาจจะอาจจะอาจจะอาจจะอาจจะอาจจะอาจจะอาจจะอาจจะอาจจะอาจจะอาจจะอาจจะอาจจะอาจจะอาจจะอ,add_event,openai/whisper-small,เพิ่ม event ไปเที่ยวทะเลวันที่ห้า
+ลองปฏิธิน นัทธัพแพ้ วันพุทภาย 3,add_event,openai/whisper-small,ลงปฏิทินนัดทันตแพทย์วันพุธบ่ายสาม
+ลงปฏิธีนะท่านบาทแพ้ วันทุกท่าน 3,add_event,openai/whisper-small,ลงปฏิทินนัดทันตแพทย์วันพุธบ่ายสาม
+Schedule Dented Appointment on Wednesday at 3PM,add_event,openai/whisper-small,schedule dentist appointment on wednesday at 3pm
+สักกัดลูกเป็นที่ แฮบคอร์ยังคอร์นวินส์ดีแอบสามที่แมน,add_event,openai/whisper-small,schedule dentist appointment on wednesday at 3pm
+Ask an event. TeamLand tomorrow at noon.,add_event,openai/whisper-small,add an event team lunch tomorrow at noon
+ตาแทบยืน ชิมหาตัวเมริวันที่มันต่อไป,add_event,openai/whisper-small,add an event team lunch tomorrow at noon
+CREATE A MISTING ออนเธอส์ดิแอดสอง,add_event,openai/whisper-small,create a meeting on thursday at 2
+คลิดส์ อินิสลิง คอนเตอร์ส์ ส์ แห่ง คอร์,add_event,openai/whisper-small,create a meeting on thursday at 2
+สร้างนัดคุยงานกับอาจารย์วันพริษาท์ 10 โมง,add_event,openai/whisper-small,สร้างนัดคุยงานกับอาจารย์วันพฤหัสสิบโมง
+ชาวมากขึ้นกัน ดาคาจานวันภาษิลขาติบอก,add_event,openai/whisper-small,สร้างนัดคุยงานกับอาจารย์วันพฤหัสสิบโมง
+ใส่คารณดาว่ามีสอบมิตรเท่มวันจัน 8 โมงครึ่ง,add_event,openai/whisper-small,ใส่ calendar ว่ามีสอบมิดเทอมวันจันทร์แปดโมงครึ่ง
+ใส่คาเล่นด้าว่ามีของมีเท่าวันกันแต่แม่งคือ,add_event,openai/whisper-small,ใส่ calendar ว่ามีสอบมิดเทอมวันจันทร์แปดโมงครึ่ง
+จองเวลาพร้องนี้ ชาว 9 โมงไว้ออกกำลังกาย,add_event,openai/whisper-small,จองเวลาพรุ่งนี้เช้าเก้าโมงไว้ออกกำลังกาย
+จอบเวลาพรุ่งนี้ ชาว 9 โมง ไหวขอบคำรับกาย,add_event,openai/whisper-small,จองเวลาพรุ่งนี้เช้าเก้าโมงไว้ออกกำลังกาย
+นักประชมโปรเจค วันสุขบาย 2,add_event,openai/whisper-small,นัดประชุม project วันศุกร์บ่ายสอง
+นัดประชมประเทศ ข้าวชมป่ายของ,add_event,openai/whisper-small,นัดประชุม project วันศุกร์บ่ายสอง
+เพิ่มนัดตัดผมวันอาทิษ ๑๐๐๐๐,add_event,openai/whisper-small,เพิ่มนัดตัดผมวันอาทิตย์สิบเอ็ดโมง
+เท่ามันรับตาตรงวันอาจิสดิตมอม,add_event,openai/whisper-small,เพิ่มนัดตัดผมวันอาทิตย์สิบเอ็ดโมง
+ลองอีเวน งานวันเกิดน้องคืนวันสาว,add_event,openai/whisper-small,ลง event งานวันเกิดน้องคืนวันเสาร์
+ลงอีวเวล งานวันเกิดน้องคือวันเศร้า,add_event,openai/whisper-small,ลง event งานวันเกิดน้องคืนวันเสาร์
+ตั้งนัดวีดีโอคอร์ กับลูกค่าพร้องนี้ 4 โมง,add_event,openai/whisper-small,ตั้งนัด video call กับลูกค้าพรุ่งนี้สี่โมง
+ขวังลักวีดีโอคอร์กับรูคาพรุ่งมี 4 โอ,add_event,openai/whisper-small,ตั้งนัด video call กับลูกค้าพรุ่งนี้สี่โมง
+Add to calendar your class Monday 6PM,add_event,openai/whisper-small,add to calendar yoga class monday 6pm
+Add to calendar your class Monday 6am,add_event,openai/whisper-small,add to calendar yoga class monday 6pm
+มีนัดเรียนพิเศษทุกวันอังคาลองปฏิธินให้หน่อย,add_event,openai/whisper-small,มีนัดเรียนพิเศษทุกวันอังคาร ลงปฏิทินให้หน่อย
+มีนาตรีย์อันพิเศษทุกคนอันค่าลงปาดิภินพริงออย,add_event,openai/whisper-small,มีนัดเรียนพิเศษทุกวันอังคาร ลงปฏิทินให้หน่อย
+บันทึกนัดสัมพาดงานวันที่ 12 ตอนบาย,add_event,openai/whisper-small,บันทึกนัดสัมภาษณ์งานวันที่สิบสองตอนบ่าย
+มันจิ้นแบบสัมพา แกล่งว่า ดีสตร์ ว่า บาย,add_event,openai/whisper-small,บันทึกนัดสัมภาษณ์งานวันที่สิบสองตอนบ่าย
+ใส่ปฏิธินว่า บินไปเชียงใหม่ วันที่ 20,add_event,openai/whisper-small,ใส่ปฏิทินว่าบินไปเชียงใหม่วันที่ยี่สิบ
+สาย!,add_event,openai/whisper-small,ใส่ปฏิทินว่าบินไปเชียงใหม่วันที่ยี่สิบ
+นัดซ้อมโดนตรีวันพูดหกโมงเย็น,add_event,openai/whisper-small,นัดซ้อมดนตรีวันพุธหกโมงเย็น
+แปลกซ้ำลงดุริวันทุกของเงิน,add_event,openai/whisper-small,นัดซ้อมดนตรีวันพุธหกโมงเย็น
+สร้าง event ติวนังสือกับเพื่อนคืนนี้ 2 ทุม,add_event,openai/whisper-small,สร้าง event ติวหนังสือกับเพื่อนคืนนี้สองทุ่ม
+สักอีเวน ดิวแรงสือกับเพื่อนคืนนี้ 2 ทุม,add_event,openai/whisper-small,สร้าง event ติวหนังสือกับเพื่อนคืนนี้สองทุ่ม
+จอมห้องประชุมพร้องนี้ บ่ายมงครึ่ง,add_event,openai/whisper-small,จองห้องประชุมพรุ่งนี้บ่ายโมงครึ่ง
+จอบพอแปลชุมพรุ่งที บายมงครึ่ง,add_event,openai/whisper-small,จองห้องประชุมพรุ่งนี้บ่ายโมงครึ่ง
+บุกรรณ์วิทยารา ออนฟรายดิ,add_event,openai/whisper-small,book lunch with sarah on friday
+มุกฝานวิศาราออนไฟเย,add_event,openai/whisper-small,book lunch with sarah on friday
+ลงตาหล่างว่าวันจันน่ามีพริเศษงาน 10 โมง,add_event,openai/whisper-small,ลงตารางว่าวันจันทร์หน้ามีพรีเซนต์งานสิบโมง
+ลงอาหารว่าวันตันหน้าที่ปริเซนอาจที่โมง,add_event,openai/whisper-small,ลงตารางว่าวันจันทร์หน้ามีพรีเซนต์งานสิบโมง
+เพิ่มนัดหมอฟันเดือนหน้าวันที่ 3,add_event,openai/whisper-small,เพิ่มนัดหมอฟันเดือนหน้าวันที่สาม
+เพิ่มรักห์ห์ห์ฟัน เมือนหน้าวันที่ 3,add_event,openai/whisper-small,เพิ่มนัดหมอฟันเดือนหน้าวันที่สาม
+Ewen ใหม่งานแป่งพี่วันอาทิฟ,add_event,openai/whisper-small,event ใหม่ งานแต่งพี่วันอาทิตย์
+กี่เวนมาอีกนานแรกกี่วันอาจิ,add_event,openai/whisper-small,event ใหม่ งานแต่งพี่วันอาทิตย์
+คารเงนดา พอพระชมผู้ปกรรงวันสุขชาว,add_event,openai/whisper-small,calendar เพิ่มประชุมผู้ปกครองวันศุกร์เช้า
+ทาเล่นก่อน อาภาพราชุมทุกออกล่องกันจุดข้าว,add_event,openai/whisper-small,calendar เพิ่มประชุมผู้ปกครองวันศุกร์เช้า
+ตั้งนาลิกาปลูก 6 มงชาว,other,openai/whisper-small,ตั้งนาฬิกาปลุกหกโมงเช้า
+ป่างจานิกาโดร โปรมเศร้า,other,openai/whisper-small,ตั้งนาฬิกาปลุกหกโมงเช้า
+ตั้งเวลานับถอยหลัง 5 นาที,other,openai/whisper-small,ตั้งเวลานับถอยหลังห้านาที
+ต้องเวลานะ พอยหลัง 5 นาที,other,openai/whisper-small,ตั้งเวลานับถอยหลังห้านาที
+Set A ถามเมอร์ For 20 นิด,other,openai/whisper-small,set a timer for twenty minutes
+เซ็กเองทำแล้ว ออกไปเวนดีๆ,other,openai/whisper-small,set a timer for twenty minutes
+จับเวลา 30 วินาที,other,openai/whisper-small,จับเวลาสามสิบวินาที
+จับเวลา 30 วินาจี,other,openai/whisper-small,จับเวลาสามสิบวินาที
+ปลูกฉันตอน 7 มอง,other,openai/whisper-small,ปลุกฉันตอนเจ็ดโมง
+โปรดชั้นกว่าเจ็บมอง,other,openai/whisper-small,ปลุกฉันตอนเจ็ดโมง
+อากาศวันนี้ร้อนไหม,other,openai/whisper-small,อากาศวันนี้ร้อนไหม
+อากากอันนี้ว่าไหม,other,openai/whisper-small,อากาศวันนี้ร้อนไหม
+We'll eat rain tomorrow.,other,openai/whisper-small,will it rain tomorrow
+มันจะเกิดเกิดเกิดเกิดเกิดเกิดเกิดเกิดเกิดเกิดเกิดเกิดเกิดเกิดเกิดเกิดเกิดเกิดเกิดเกิดเกิดเกิดเกิดเกิดเกิดเกิดเกิดเกิดเกิดเกิดเกิดเกิดเกิดเกิดเกิดเกิดเกิดเกิดเกิดเกิดเกิดเกิดเกิดเกิดเกิดเกิดเกิดเกิดเกิดเกิดเกิดเกิดเกิดเกิดเกิดเ�,other,openai/whisper-small,will it rain tomorrow
+เปิดเพลงของ Body Salam,other,openai/whisper-small,เปิดเพลงของ bodyslam
+เปิดเพลงของพอพี่เซอร์แรม,other,openai/whisper-small,เปิดเพลงของ bodyslam
+Play some jazz,other,openai/whisper-small,play some jazz
+พลิกษามแจร์,other,openai/whisper-small,play some jazz
+หยุดเพลงก่อน,other,openai/whisper-small,หยุดเพลงก่อน
+มีวดเทลงก่อน,other,openai/whisper-small,หยุดเพลงก่อน
+เพิ่มเสียงหน้าอีก,other,openai/whisper-small,เพิ่มเสียงหน่อย
+พร้อมเสียงร้าย,other,openai/whisper-small,เพิ่มเสียงหน่อย
+ล่าวเรียงตลกให้ฟังหน่อย,other,openai/whisper-small,เล่าเรื่องตลกให้ฟังหน่อย
+ลาวราฟ ลาวราฟ ในความ 9,other,openai/whisper-small,เล่าเรื่องตลกให้ฟังหน่อย
+ตอนนี้กี่มอง,other,openai/whisper-small,ตอนนี้กี่โมง
+ตอนนี้ อยู่ห้อง,other,openai/whisper-small,ตอนนี้กี่โมง
+วันนี้ วันที่เท่าไร?,other,openai/whisper-small,วันนี้วันที่เท่าไหร่
+วันนี้ วันที่เท่าไร,other,openai/whisper-small,วันนี้วันที่เท่าไหร่
+ขาวันนี้มีอะไรบ้าง,other,openai/whisper-small,ข่าววันนี้มีอะไรบ้าง
+ค่าวันนี้มีอะไรบ้าง,other,openai/whisper-small,ข่าววันนี้มีอะไรบ้าง
+เปิดไฟห้องนอน,other,openai/whisper-small,เปิดไฟห้องนอน
+อิสัยข้างนอน,other,openai/whisper-small,เปิดไฟห้องนอน
+แปลคำว่า Hello เป็นพาศาท้าย,other,openai/whisper-small,แปลคำว่า hello เป็นภาษาไทย
+กลับคำว่าเทลอ เป็นภาษาไทย,other,openai/whisper-small,แปลคำว่า hello เป็นภาษาไทย
+100 หาร 4 ได้เท่าไร,other,openai/whisper-small,หนึ่งร้อยหารสี่ได้เท่าไหร่
+100 หาด 4 แบบเท่าไหร่,other,openai/whisper-small,หนึ่งร้อยหารสี่ได้เท่าไหร่
+ขอบคุณมาก,other,openai/whisper-small,ขอบคุณมาก
+ขอบคุณมาก,other,openai/whisper-small,ขอบคุณมาก
+Hello. How are you?,other,openai/whisper-small,hello how are you
+Hello ข้าวค่ะ นี่มี,other,openai/whisper-small,hello how are you
+สั่งพิษาให้หน่อย,other,openai/whisper-small,สั่งพิซซ่าให้หน่อย
+สันพิสลาให้หน้าว,other,openai/whisper-small,สั่งพิซซ่าให้หน่อย
+ร้านกาแฟ ลาย ๆ อยู่ตรงไหน,other,openai/whisper-small,ร้านกาแฟใกล้ๆ อยู่ตรงไหน
+กล้านแจ่ใจ ลายๆ อยู่โกงเน่,other,openai/whisper-small,ร้านกาแฟใกล้ๆ อยู่ตรงไหน
+ส่งข้อความหาเพื่อนว่า ถึงแล้ว,other,openai/whisper-small,ส่งข้อความหาเพื่อนว่าถึงแล้ว
+ส่งข้าวข้าวหาเชื่อว่า จริงแล้ว,other,openai/whisper-small,ส่งข้อความหาเพื่อนว่าถึงแล้ว
+คุณชื่ออะไร,other,openai/whisper-small,คุณชื่ออะไร
+คุณชื่ออะไร,other,openai/whisper-small,คุณชื่ออะไร
+ราคาทองวันนี้เท่าไร,other,openai/whisper-small,ราคาทองวันนี้เท่าไหร่
+ราธาท่อมานิดเข้าไหร่,other,openai/whisper-small,ราคาทองวันนี้เท่าไหร่

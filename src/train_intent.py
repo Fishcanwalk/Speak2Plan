@@ -22,8 +22,9 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix, f1_score
 from sklearn.naive_bayes import MultinomialNB
+from sklearn.pipeline import FeatureUnion
 
-from .data import LABELS, ROOT, load_intent_data, tokenize, unigrams_bigrams
+from .data import LABELS, ROOT, load_intent_data, tokenize, unigrams_bigrams, word_analyzer
 from .models import MODELS, Vocab, pad_batch
 
 matplotlib.use("Agg")
@@ -33,6 +34,7 @@ import seaborn as sns  # noqa: E402
 MODEL_DIR = ROOT / "models"
 REPORT_DIR = ROOT / "reports" / "intent"
 MAX_LEN = 40
+BASELINES = ["nb", "logreg", "logreg_char"]
 
 
 def set_seed(seed):
@@ -74,15 +76,28 @@ def evaluate(name, y_true, y_pred, test_rows):
 
 # ---------- Baselines: TF-IDF + Naive Bayes / Logistic Regression ----------
 
-def train_baseline(name, splits, tokens, y):
+def make_baseline(name):
+    """Returns (vectorizer, classifier, joined). `joined`: vectorizer takes space-joined tokens."""
+    if name == "logreg_char":
+        # word uni/bigrams + character 2–4-grams: robust to ASR misspellings ("task" vs "ทัก")
+        vec = FeatureUnion([("word", TfidfVectorizer(analyzer=word_analyzer, sublinear_tf=True)),
+                            ("char", TfidfVectorizer(analyzer="char_wb", ngram_range=(2, 4),
+                                                     sublinear_tf=True))])
+        return vec, LogisticRegression(max_iter=3000, C=10), True
     vec = TfidfVectorizer(analyzer=unigrams_bigrams)
     clf = MultinomialNB(alpha=0.1) if name == "nb" else LogisticRegression(max_iter=2000, C=10)
-    X_train = vec.fit_transform(tokens["train"])
-    X_test = vec.transform(tokens["test"])
+    return vec, clf, False
+
+
+def train_baseline(name, splits, tokens, y):
+    vec, clf, joined = make_baseline(name)
+    X = {s: [" ".join(t) for t in tokens[s]] if joined else tokens[s] for s in ("train", "test")}
+    X_train = vec.fit_transform(X["train"])
+    X_test = vec.transform(X["test"])
     t0 = time.time()
     clf.fit(X_train, y["train"])
     print(f"[{name}] trained in {time.time() - t0:.1f}s")
-    joblib.dump({"vectorizer": vec, "clf": clf, "labels": LABELS},
+    joblib.dump({"vectorizer": vec, "clf": clf, "labels": LABELS, "joined": joined},
                 MODEL_DIR / f"intent_{name}.joblib")
     return evaluate(name, y["test"], clf.predict(X_test).tolist(), splits["test"])
 
@@ -152,10 +167,13 @@ def train_neural(name, splits, tokens, y, args, device):
 
 def main():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    p.add_argument("--models", nargs="+", default=["nb", "logreg", "cnn", "lstm"],
-                   choices=["nb", "logreg", "cnn", "lstm"])
+    p.add_argument("--models", nargs="+", default=BASELINES + ["cnn", "lstm"],
+                   choices=BASELINES + ["cnn", "lstm"])
     p.add_argument("--other-ratio", type=float, default=0.12,
                    help="fraction of MASSIVE 'other' utterances to keep (it is ~90%% of the data)")
+    p.add_argument("--custom-repeat", type=int, default=3,
+                   help="oversample in-domain sentences (custom/generated/augmented) this many times")
+    p.add_argument("--no-augmented", action="store_true", help="ignore data/augmented_intents.csv")
     p.add_argument("--epochs", type=int, default=30)
     p.add_argument("--patience", type=int, default=5)
     p.add_argument("--batch-size", type=int, default=64)
@@ -171,7 +189,8 @@ def main():
     REPORT_DIR.mkdir(parents=True, exist_ok=True)
     device = "cuda" if torch.cuda.is_available() else "cpu"
 
-    splits = load_intent_data(other_ratio=args.other_ratio, seed=args.seed)
+    splits = load_intent_data(other_ratio=args.other_ratio, seed=args.seed,
+                              custom_repeat=args.custom_repeat, augmented=not args.no_augmented)
     for s, rows in splits.items():
         counts = {lab: sum(r["intent"] == lab for r in rows) for lab in LABELS}
         print(f"{s:5s} n={len(rows):5d} {counts}")
@@ -181,7 +200,7 @@ def main():
     results = {}
     for name in args.models:
         set_seed(args.seed)
-        if name in ("nb", "logreg"):
+        if name in BASELINES:
             results[name] = train_baseline(name, splits, tokens, y)
         else:
             results[name] = train_neural(name, splits, tokens, y, args, device)

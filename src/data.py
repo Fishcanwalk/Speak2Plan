@@ -19,7 +19,11 @@ DATA_DIR = ROOT / "data"
 RAW_DIR = DATA_DIR / "raw"
 MASSIVE_URL = "https://amazon-massive-nlu-dataset.s3.amazonaws.com/amazon-massive-dataset-1.1.tar.gz"
 MASSIVE_TAR = RAW_DIR / "massive-1.1.tar.gz"
-CUSTOM_CSV = DATA_DIR / "custom_intents.csv"
+CUSTOM_CSV = DATA_DIR / "custom_intents.csv"          # written by the user
+GENERATED_CSV = DATA_DIR / "generated_intents.csv"    # written by Claude (keep separate for the report)
+CUSTOM_CSVS = [CUSTOM_CSV, GENERATED_CSV]
+AUGMENTED_CSV = DATA_DIR / "augmented_intents.csv"    # Whisper transcripts of TTS audio (src.augment_asr)
+OWN_TRAIN_CSV = DATA_DIR / "audio_train" / "transcripts.csv"  # user's own training recordings (src.record)
 
 LABELS = ["check_tasks", "add_task", "complete_task", "check_calendar", "add_event", "other"]
 
@@ -62,20 +66,33 @@ def load_massive(locales=("th-TH", "en-US")):
     return rows
 
 
-def load_custom():
-    """Self-written sentences (data/custom_intents.csv: text,intent). Train only."""
-    if not CUSTOM_CSV.exists():
+def read_intent_csv(path):
+    """Rows of a text,intent[,...] CSV; missing file -> []."""
+    if not path.exists():
         return []
     rows = []
-    with open(CUSTOM_CSV, encoding="utf-8") as f:
+    with open(path, encoding="utf-8") as f:
         for r in csv.DictReader(f):
             text, intent = r["text"].strip(), r["intent"].strip()
             if not text:
                 continue
             if intent not in LABELS:
-                raise ValueError(f"Unknown intent {intent!r} in {CUSTOM_CSV}: {text}")
-            rows.append({"text": text, "intent": intent, "source_intent": "custom",
-                         "locale": "custom", "split": "train"})
+                raise ValueError(f"Unknown intent {intent!r} in {path}: {text}")
+            rows.append({"text": text, "intent": intent})
+    return rows
+
+
+def load_custom(repeat=1, augmented=True):
+    """In-domain sentences (custom, generated, ASR-augmented). Train split only.
+
+    `repeat` oversamples them so ~200 domain sentences are not drowned by ~6k MASSIVE rows.
+    """
+    paths = CUSTOM_CSVS + [OWN_TRAIN_CSV] + ([AUGMENTED_CSV] if augmented else [])
+    rows = []
+    for path in paths:
+        for r in read_intent_csv(path):
+            src = "own_voice" if path == OWN_TRAIN_CSV else path.stem
+            rows += [{**r, "source_intent": src, "locale": src, "split": "train"}] * repeat
     return rows
 
 
@@ -85,9 +102,11 @@ def downsample_other(rows, ratio, seed=42):
     return [r for r in rows if r["intent"] != "other" or rng.random() < ratio]
 
 
-def load_intent_data(other_ratio=0.12, locales=("th-TH", "en-US"), seed=42):
+def load_intent_data(other_ratio=0.12, locales=("th-TH", "en-US"), seed=42, custom_repeat=1,
+                     augmented=True):
     """Return {"train": [...], "dev": [...], "test": [...]} of row dicts."""
-    rows = downsample_other(load_massive(locales), other_ratio, seed) + load_custom()
+    rows = (downsample_other(load_massive(locales), other_ratio, seed)
+            + load_custom(custom_repeat, augmented))
     out = {s: [] for s in SPLITS.values()}
     for r in rows:
         out[r["split"]].append(r)
@@ -111,6 +130,11 @@ def normalize(text):
 
 def tokenize(text):
     return [t for t in word_tokenize(normalize(text), engine="newmm", keep_whitespace=False) if t.strip()]
+
+
+def word_analyzer(text):
+    """For TF-IDF on space-joined tokens (module-level so joblib can pickle it)."""
+    return unigrams_bigrams(text.split(" "))
 
 
 def unigrams_bigrams(tokens):

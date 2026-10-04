@@ -17,9 +17,11 @@ class IntentClassifier:
     def __init__(self, name="cnn", device=None):
         self.name = name
         self.device = device or ("cuda" if torch.cuda.is_available() else "cpu")
-        if name in ("nb", "logreg"):
+        self.sklearn = (MODEL_DIR / f"intent_{name}.joblib").exists()
+        if self.sklearn:
             bundle = joblib.load(MODEL_DIR / f"intent_{name}.joblib")
             self.vec, self.clf, self.labels = bundle["vectorizer"], bundle["clf"], bundle["labels"]
+            self.joined = bundle.get("joined", False)
         else:
             ckpt = torch.load(MODEL_DIR / f"intent_{name}.pt", map_location="cpu")
             self.labels, self.max_len = ckpt["labels"], ckpt["max_len"]
@@ -33,8 +35,9 @@ class IntentClassifier:
     def predict_proba(self, texts):
         """Return list of {label: prob} dicts."""
         tokens = [tokenize(t) for t in texts]
-        if self.name in ("nb", "logreg"):
-            probs = self.clf.predict_proba(self.vec.transform(tokens))
+        if self.sklearn:
+            X = [" ".join(t) for t in tokens] if self.joined else tokens
+            probs = self.clf.predict_proba(self.vec.transform(X))
         else:
             ids, lengths = pad_batch([self.vocab.encode(t, self.max_len) for t in tokens], self.min_len)
             probs = torch.softmax(self.model(ids.to(self.device), lengths), dim=1).cpu().numpy()
@@ -46,7 +49,7 @@ class IntentClassifier:
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument("--model", default="cnn", choices=["nb", "logreg", "cnn", "lstm"])
+    p.add_argument("--model", default="cnn", choices=["nb", "logreg", "logreg_char", "cnn", "lstm"])
     p.add_argument("texts", nargs="+")
     args = p.parse_args()
     clf = IntentClassifier(args.model)

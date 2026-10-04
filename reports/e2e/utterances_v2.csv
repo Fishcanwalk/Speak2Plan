@@ -1,0 +1,121 @@
+file,gold_intent,source,text,pred_nb,pred_logreg,pred_logreg_char,pred_cnn,pred_lstm
+cmd01.wav,check_tasks,reference,เปิดแล้วเช็ค task ใน google ให้หน่อย,check_tasks,check_tasks,check_tasks,check_tasks,complete_task
+cmd01.wav,check_tasks,whisper-tiny,เป็นแล้วชิคทาก มันกูกันให้ไหน,other,complete_task,complete_task,other,complete_task
+cmd01.wav,check_tasks,whisper-th,เปิดเลือกเฉพาะเป็นกูเกรนให้หน่อย,check_tasks,other,other,other,other
+cmd01.wav,check_tasks,whisper-small,เปิดแล้วเช็คทัก และกูกันให้หน่อย,other,check_tasks,check_tasks,other,check_tasks
+cmd01.wav,check_tasks,whisper-small-th,เปิดแล้วเช็ค task ใน google ให้หน่อย,check_tasks,check_tasks,check_tasks,check_tasks,complete_task
+cmd02.wav,check_tasks,reference,ตอนนี้มีงานค้างอะไรบ้าง,check_tasks,other,other,other,other
+cmd02.wav,check_tasks,whisper-tiny,ตอนนี้มีงานข้างเลยบาง,check_tasks,check_tasks,other,other,other
+cmd02.wav,check_tasks,whisper-th,ตอนนี้มีงานข้างไร้ว่าง,check_tasks,check_tasks,other,other,other
+cmd02.wav,check_tasks,whisper-small,ตอนนี้มีงานข้างอะไรบ้าง,check_tasks,check_tasks,check_tasks,check_tasks,other
+cmd02.wav,check_tasks,whisper-small-th,ตอนนี้มีงานครั้งอะไรบ้าง,check_calendar,check_tasks,other,other,other
+cmd03.wav,check_tasks,reference,อ่านรายการ to do ของวันนี้ให้ฟังหน่อย,check_tasks,check_tasks,check_tasks,check_tasks,check_tasks
+cmd03.wav,check_tasks,whisper-tiny,อาล ลายการทุกของวันนี้ฟังไหม,other,check_calendar,check_tasks,other,complete_task
+cmd03.wav,check_tasks,whisper-th,อาณ และการธุดูขอวันนี้ฝั่งเหนือ,check_tasks,check_calendar,other,add_event,add_event
+cmd03.wav,check_tasks,whisper-small,อาหาร และการทุดวิธีของวันนี้ ฟังใหม่,other,other,other,other,other
+cmd03.wav,check_tasks,whisper-small-th,อ่านรายการ to do ของวันนี้ให้ฟังหน่อย,check_tasks,check_tasks,check_tasks,check_tasks,check_tasks
+cmd04.wav,check_tasks,reference,show me my tasks,check_tasks,check_calendar,check_calendar,check_tasks,check_tasks
+cmd04.wav,check_tasks,whisper-tiny,ช่วงมีมายทักษ,check_calendar,check_calendar,check_calendar,check_calendar,check_calendar
+cmd04.wav,check_tasks,whisper-th,โชมีไมล์คัก,check_calendar,check_calendar,check_calendar,other,check_calendar
+cmd04.wav,check_tasks,whisper-small,โดยของฉัน,other,other,other,other,other
+cmd04.wav,check_tasks,whisper-small-th,show me my tasks,check_tasks,check_calendar,check_calendar,check_tasks,check_tasks
+cmd05.wav,add_task,reference,เพิ่มงานซื้อของเข้าบ้านลงใน task,add_task,add_task,add_task,add_task,add_task
+cmd05.wav,add_task,whisper-tiny,พวกนาศิร์หรอ ข้าบาศิร์ ลงนี้ ทาธ,add_task,add_task,other,add_event,add_event
+cmd05.wav,add_task,whisper-th,เพิ่มงานซื้อของเข้าบ้าหรือล่งในทัศ,add_task,add_task,add_task,add_task,add_task
+cmd05.wav,add_task,whisper-small,เพิ่มงานสิของเข้าบ้านลงในทัก,add_task,add_task,add_task,add_task,add_task
+cmd05.wav,add_task,whisper-small-th,เพิ่มงานซื้อของเข้าบ้านลงใน task,add_task,add_task,add_task,add_task,add_task
+cmd06.wav,add_task,reference,จดไว้ว่าต้องจ่ายค่าไฟ,add_task,add_task,add_task,add_task,add_task
+cmd06.wav,add_task,whisper-tiny,จัดว่าต้องจากค่อย,add_task,add_task,add_task,add_task,add_task
+cmd06.wav,add_task,whisper-th,จนไว้ว่าต้องจ่ายภาฟัย,add_task,add_task,add_task,add_event,add_task
+cmd06.wav,add_task,whisper-small,จดไว้ว่าต้องจ่ายข้าไฟ,add_task,add_task,add_task,add_event,add_task
+cmd06.wav,add_task,whisper-small-th,จดไว้ว่าต้องจ่ายค่าไฟ,add_task,add_task,add_task,add_task,add_task
+cmd07.wav,add_task,reference,add task อ่านสไลด์ก่อนสอบ,add_task,add_task,add_task,add_task,add_task
+cmd07.wav,add_task,whisper-tiny,อดทาง สรายกันสอด,other,check_tasks,check_tasks,add_event,add_task
+cmd07.wav,add_task,whisper-th,เอด ทัก อัน สไลน์ กอน สอบ,add_task,add_event,add_task,add_task,add_task
+cmd07.wav,add_task,whisper-small,AddTag & สลายก่อนสอบ,add_event,add_event,add_event,add_event,add_event
+cmd07.wav,add_task,whisper-small-th,add tasks อ่านสไลด์ก่อนสอบ,add_task,add_event,add_event,add_task,add_task
+cmd08.wav,add_task,reference,ช่วยสร้าง to do ใหม่ว่าโทรหาแม่,add_event,add_task,add_task,add_task,add_task
+cmd08.wav,add_task,whisper-tiny,ช่วยสังทุกไม่ว่าทุกคน หามี,add_task,check_tasks,check_tasks,add_event,add_task
+cmd08.wav,add_task,whisper-th,ช่วยสร้างทรูไมีว่าโทรหาแม่,add_event,add_event,add_task,add_event,add_task
+cmd08.wav,add_task,whisper-small,ส่วนสังทุกที่ไม่ว่าโทษหาแม่,other,other,other,other,other
+cmd08.wav,add_task,whisper-small-th,ช่วยสร้างทุรูหมายว่าโทรหาแม่,add_event,add_event,add_event,add_task,add_event
+cmd09.wav,complete_task,reference,จ่ายค่าไฟแล้ว ติ๊กว่าเสร็จให้หน่อย,complete_task,complete_task,complete_task,complete_task,complete_task
+cmd09.wav,complete_task,whisper-tiny,แต่ค่ะ ภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภาภา,add_task,add_task,add_task,add_task,add_task
+cmd09.wav,complete_task,whisper-th,แต่ภาฝรแล้วตีกว่าเสียให้หน่อย,other,complete_task,other,complete_task,complete_task
+cmd09.wav,complete_task,whisper-small,จ่ายข้าไฟแล้ว ติดว่าเสร็จให้หน่อย,complete_task,complete_task,complete_task,complete_task,complete_task
+cmd09.wav,complete_task,whisper-small-th,จ่ายค่าไฟแล้ว ติ๊กว่าเสร็จให้หน่อย,complete_task,complete_task,complete_task,complete_task,complete_task
+cmd10.wav,complete_task,reference,task อ่านสไลด์ทำเสร็จแล้ว,complete_task,complete_task,complete_task,complete_task,complete_task
+cmd10.wav,complete_task,whisper-tiny,ถ้าอันสาลาวท้องสิดแล้ว,complete_task,complete_task,complete_task,complete_task,complete_task
+cmd10.wav,complete_task,whisper-th,ทากอ่าน สร้ายทอมเสียดแล้ว,check_tasks,complete_task,complete_task,complete_task,complete_task
+cmd10.wav,complete_task,whisper-small,ทักอาณสลายทำเสร็จแล้ว,complete_task,complete_task,complete_task,complete_task,complete_task
+cmd10.wav,complete_task,whisper-small-th,task อ่านสไลด์ทำเสร็จแล้ว,complete_task,complete_task,complete_task,complete_task,complete_task
+cmd11.wav,complete_task,reference,mark ซื้อของเข้าบ้านเป็น done,complete_task,complete_task,complete_task,complete_task,complete_task
+cmd11.wav,complete_task,whisper-tiny,มาคือของเขาบ้านเป็นตอน,other,other,other,other,other
+cmd11.wav,complete_task,whisper-th,มากคือของเขาบ้านเป็นตอน,other,other,other,other,other
+cmd11.wav,complete_task,whisper-small,มากซื้อของเข้าบ้านเป็นตอน,other,other,other,other,complete_task
+cmd11.wav,complete_task,whisper-small-th,mark ซื้อของเข้าบ้านเป็นตอน,other,other,other,other,complete_task
+cmd12.wav,complete_task,reference,เอางานโทรหาแม่ออกจากลิสต์ทำแล้ว,complete_task,complete_task,complete_task,complete_task,complete_task
+cmd12.wav,complete_task,whisper-tiny,เอ้งนานทุกหาไม่ออกจากลิปทำแล้ว,complete_task,complete_task,complete_task,complete_task,complete_task
+cmd12.wav,complete_task,whisper-th,องนานทัวหาแม่ออกจากลิตทำแล้ว,complete_task,complete_task,complete_task,complete_task,complete_task
+cmd12.wav,complete_task,whisper-small,เอางานโทษหาแม่ออกจากลิตทำแล้ว,complete_task,complete_task,complete_task,complete_task,complete_task
+cmd12.wav,complete_task,whisper-small-th,เอางานโทรหาแม่ออกจากริสก์ทำแล้ว,complete_task,complete_task,complete_task,complete_task,complete_task
+cmd13.wav,check_calendar,reference,วันนี้มีนัดอะไรบ้าง,check_calendar,check_tasks,check_tasks,check_calendar,check_calendar
+cmd13.wav,check_calendar,whisper-tiny,วันนี้มีนักอะไรบ้าง,check_calendar,other,other,check_calendar,other
+cmd13.wav,check_calendar,whisper-th,วัดนี้มีนับอะไรบ้าง,check_calendar,check_calendar,check_calendar,check_tasks,check_calendar
+cmd13.wav,check_calendar,whisper-small,วันนี้มีนัดอะไรบ้าง,check_calendar,check_tasks,check_tasks,check_calendar,check_calendar
+cmd13.wav,check_calendar,whisper-small-th,วันนี้มีนับอะไรบ้าง,other,other,other,check_tasks,other
+cmd14.wav,check_calendar,reference,เช็ค calendar อาทิตย์หน้าให้หน่อย,check_calendar,check_calendar,check_calendar,check_calendar,check_calendar
+cmd14.wav,check_calendar,whisper-tiny,ชิคกี้พาย อาจิดหน้าให้หน่อย,complete_task,complete_task,check_calendar,complete_task,complete_task
+cmd14.wav,check_calendar,whisper-th,ชิก ขารณ์ด้า อศิสต์ นาให้หน่วย,other,other,other,add_event,other
+cmd14.wav,check_calendar,whisper-small,Check Calendar อาทิตหน้าให้หน่อย,check_calendar,check_calendar,check_calendar,check_calendar,check_calendar
+cmd14.wav,check_calendar,whisper-small-th,เช็ค calendar อาทิตย์หน้าให้หน่อย,check_calendar,check_calendar,check_calendar,check_calendar,check_calendar
+cmd15.wav,check_calendar,reference,พรุ่งนี้เช้าว่างหรือเปล่า,check_calendar,check_calendar,check_calendar,check_calendar,check_calendar
+cmd15.wav,check_calendar,whisper-tiny,พวกมีชอบว่างไว้ บอกว่า,other,other,other,other,check_calendar
+cmd15.wav,check_calendar,whisper-th,พวกมีเช้าว่าง ๆ ไปเป้า,add_event,check_calendar,check_calendar,other,other
+cmd15.wav,check_calendar,whisper-small,พูมมีชาววางไว้บ่าว,add_event,check_calendar,check_calendar,add_task,add_task
+cmd15.wav,check_calendar,whisper-small-th,พรุ่งนี้เช้าว่างหรือเป่า,check_calendar,check_calendar,check_calendar,other,other
+cmd16.wav,add_event,reference,นัดกินข้าวกับเพื่อนวันเสาร์หกโมงเย็น,add_event,add_event,add_event,add_event,add_event
+cmd16.wav,add_event,whisper-tiny,นักกินเข้ากับเป็นล่านสาวหูกมันยัง,add_event,other,other,add_event,add_event
+cmd16.wav,add_event,whisper-th,นัดกินเข้ากับเพื่อนรันเสาร์โฮกเมลเย็น,add_event,add_event,add_event,add_event,add_event
+cmd16.wav,add_event,whisper-small,นักกินข้าวกับเพื่อนวันสาว 6 โมงเย็น,add_event,add_event,add_event,add_event,add_event
+cmd16.wav,add_event,whisper-small-th,นัดกินข้าวกับเพื่อนวันเสาร์หกโมงเย็น,add_event,add_event,add_event,add_event,add_event
+cmd17.wav,add_event,reference,เพิ่มนัดประชุมกลุ่มวันอังคารบ่ายโมง,add_event,add_event,add_event,add_event,add_event
+cmd17.wav,add_event,whisper-tiny,เพื่อมน้ำประจุมกุมวันอาคารบายหมด,check_calendar,check_calendar,check_calendar,add_event,add_event
+cmd17.wav,add_event,whisper-th,เพื่อมนักประชุมกลุ่มวันอาคารบ่ายเหมาะ,add_event,add_event,add_event,add_event,add_event
+cmd17.wav,add_event,whisper-small,เพิ่มนัดประชุมกลุ่มวันคารบายมูม,add_event,add_event,add_event,add_event,add_event
+cmd17.wav,add_event,whisper-small-th,เพิ่มนัดประชุมกลุ่มวันอาคารบ่ายหมด,add_event,add_event,add_event,add_event,add_event
+cmd18.wav,add_event,reference,ลง calendar ว่าวันศุกร์สอบ final เก้าโมง,add_event,add_event,add_event,add_event,add_event
+cmd18.wav,add_event,whisper-tiny,ลงข้าลันได้ว่าวันสุกสาภายน้องกำลัง,complete_task,add_event,add_event,other,add_event
+cmd18.wav,add_event,whisper-th,ลงคะแลนดาวว่าวันสุขสาวไปแล้วกำลัง,add_event,add_event,add_event,add_event,add_event
+cmd18.wav,add_event,whisper-small,ลงคลัลแรนดาว่าวันสุขสอบ ไฟนาว 9 ม.,add_event,add_event,add_event,add_event,add_event
+cmd18.wav,add_event,whisper-small-th,ลง calendar ว่าวันศุกร์สอบไฟนอกรรม,add_event,add_event,add_event,add_event,add_event
+cmd19.wav,add_event,reference,book a meeting next monday at ten,add_event,add_event,add_event,add_event,add_event
+cmd19.wav,add_event,whisper-tiny,บุกอมิดิงนึก มันได้อัติน,add_task,other,add_event,add_event,add_event
+cmd19.wav,add_event,whisper-th,บุคอมิติงเล็ก ๆ มารเดอร์อัตเทน,add_event,other,other,add_event,add_event
+cmd19.wav,add_event,whisper-small,บูกอาวิธีง นีกส์ มันดี อัดเทน,add_event,other,add_event,add_event,add_event
+cmd19.wav,add_event,whisper-small-th,book a meeting next monday at 10,add_event,add_event,add_event,add_event,add_event
+cmd20.wav,other,reference,พรุ่งนี้ฝนจะตกไหม,other,other,other,other,other
+cmd20.wav,other,whisper-tiny,พูกนี้ฟันตกไม่,other,other,other,other,other
+cmd20.wav,other,whisper-th,ผู้นี้ฝนตกไม้,other,other,other,other,check_calendar
+cmd20.wav,other,whisper-small,พวกนี้หวนตกไหม,other,other,other,other,other
+cmd20.wav,other,whisper-small-th,พรุ่งนี้ฝนตกไหม,other,other,other,check_calendar,other
+cmd21.wav,other,reference,เล่นเพลงสบายๆ ให้หน่อย,other,other,other,other,other
+cmd21.wav,other,whisper-tiny,ลิ่นปลิ่งสบายสบายให้ฟังไหม,other,other,other,other,other
+cmd21.wav,other,whisper-th,ลินด์ ปรียง สภาษณ์ แภษให้ฝั่งไหม,add_task,add_task,other,add_event,add_event
+cmd21.wav,other,whisper-small,เล่นเพลงสบายๆให้ฟังหน่อย,other,other,other,other,other
+cmd21.wav,other,whisper-small-th,เล่นเพลียงสบาย ๆ ให้ฟังหน่อย,check_tasks,check_tasks,other,other,other
+cmd22.wav,other,reference,ตั้งเวลาสิบนาที,add_event,other,other,add_event,other
+cmd22.wav,other,whisper-tiny,บางเย็นอาศิกนาที่,add_event,add_event,other,add_event,other
+cmd22.wav,other,whisper-th,บางเวลา 10 นาที,add_event,add_event,add_event,other,other
+cmd22.wav,other,whisper-small,ตั้งเวลา 10 นาที,other,other,other,other,other
+cmd22.wav,other,whisper-small-th,ตั้งเวลาสิบนาที,add_event,other,other,add_event,other
+cmd23.wav,other,reference,สวัสดี วันนี้เป็นยังไงบ้าง,other,other,other,other,other
+cmd23.wav,other,whisper-tiny,สวัสดีวันนี้เป็นอะไรบาง,other,other,other,other,other
+cmd23.wav,other,whisper-th,สวดี วันนี้เป็นอะไรบ้าง,other,other,other,other,other
+cmd23.wav,other,whisper-small,สวัสดี วันนี้เป็นอย่างไรบ้าง,other,other,other,other,other
+cmd23.wav,other,whisper-small-th,สวัสดี วันนี้เป็นยังไงบ้าง,other,other,other,other,other
+cmd24.wav,check_calendar,reference,do i have any meetings tomorrow,check_calendar,check_calendar,check_calendar,check_calendar,check_calendar
+cmd24.wav,check_calendar,whisper-tiny,นี่ ที่นี่ ที่นี่ ที่นี่,other,other,other,other,other
+cmd24.wav,check_calendar,whisper-th,ด้วย หากลังก์ อันมีตริงก์ ทุมรุก,add_event,other,other,add_event,add_event
+cmd24.wav,check_calendar,whisper-small,มีทีที่จะมีเจ้าหรือเปล่า,other,check_calendar,check_calendar,check_tasks,check_calendar
+cmd24.wav,check_calendar,whisper-small-th,โดยรับมีมีรับมีบิดดิงเตรียม,check_calendar,check_calendar,check_calendar,add_event,check_calendar

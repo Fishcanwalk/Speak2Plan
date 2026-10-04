@@ -16,3 +16,4 @@ data/audio/
 *.pt
 *.bin
 *.safetensors
+data/audio_train/

@@ -125,15 +125,22 @@ class Transcriber:
         self.language = language
 
     @torch.no_grad()
-    def transcribe(self, audios, batch_size=8):
-        """`audios`: list of float32 16 kHz arrays or file paths. Returns list of strings."""
+    def transcribe(self, audios, batch_size=8, prompt=None):
+        """`audios`: list of float32 16 kHz arrays or file paths. Returns list of strings.
+
+        `prompt`: text Whisper treats as preceding context, biasing it toward those spellings
+        (e.g. the wake name "เคทู"). It is not included in the output.
+        """
+        kw = {}
+        if prompt:
+            kw["prompt_ids"] = torch.tensor(self.processor.get_prompt_ids(prompt), device=self.device)
         out = []
         for i in range(0, len(audios), batch_size):
             batch = [a if isinstance(a, np.ndarray) else decode_audio(a) for a in audios[i: i + batch_size]]
             feats = self.processor.feature_extractor(batch, sampling_rate=SR, return_tensors="pt")
             feats = feats.input_features.to(self.device, dtype=self.model.dtype)
             ids = self.model.generate(feats, language=self.language, task="transcribe",
-                                      max_new_tokens=225)
+                                      max_new_tokens=225, **kw)
             out += self.processor.batch_decode(ids, skip_special_tokens=True)
         return [t.strip() for t in out]
 

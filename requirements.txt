@@ -14,6 +14,7 @@ torch
 # ASR: fine-tune Whisper (Hugging Face) + evaluation
 transformers
 accelerate
+peft
 evaluate
 jiwer
 librosa
@@ -29,3 +30,6 @@ google-auth-httplib2
 
 # Text-to-speech
 gTTS
+
+# Wake word "K2" (pipeline --wake): voice activity detection
+silero-vad

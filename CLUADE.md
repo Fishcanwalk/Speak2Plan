@@ -57,6 +57,11 @@
 - `other` มี ~90% ของ data → สุ่มเก็บไว้ 12% (`--other-ratio`) กัน class imbalance
 - MASSIVE ภาษาไทยเว้นวรรคระหว่างคำ แต่ข้อความจริง/Whisper ไม่เว้น → `normalize()` ลบช่องว่างระหว่างอักษรไทยก่อนตัดคำใหม่ด้วย PyThaiNLP
 - **เขียนเองเพิ่ม** ~20–30 ประโยคต่อ intent ใน `data/custom_intents.csv` (text,intent) — ตอนนี้มีตัวอย่างตั้งต้น 5 ประโยค/intent ที่ Claude เขียน ผู้ใช้ต้องเขียนเพิ่ม
+  (ประโยค "เช็ค task ใน google ให้หน่อย" คล้าย test cmd01 88% — ระบุในรายงาน)
+- `data/generated_intents.csv` — Claude เขียน 25 ประโยค/intent (ไทย/อังกฤษ/ปน) **แยกไฟล์เพื่อให้เครดิตในรายงาน**; เช็คแล้วไม่ซ้ำ test set
+- `data/augmented_intents.csv` — สร้างด้วย `python -m src.augment_asr`: ประโยคในโดเมน → gTTS → ปรับ speed/noise → Whisper (whisper-th + small)
+  ได้ข้อความที่มี ASR error จริง 720 แถว ใช้เทรน intent ให้ทนต่อการถอดเสียงผิด
+- in-domain ทั้ง 3 ไฟล์ oversample ×3 (`--custom-repeat`) เพราะ MASSIVE ใหญ่กว่ามาก
 - **อัดเสียงตัวเอง** ~20–30 ประโยคเป็นชุดทดสอบ ส่งผ่าน Whisper เพื่อวัดความทนต่อ ASR error
 - ในรายงานต้องแยกว่า data ส่วนไหน public / เขียนเอง และให้เครดิต MASSIVE
 
@@ -115,7 +120,10 @@ Speak2Plan/
 │   ├── train_intent.py  # ส่วนที่ 2: เทรน NB / LogReg / CNN / LSTM + ประเมิน
 │   ├── intent.py        # โหลดโมเดล intent แล้วทำนาย
 │   ├── asr.py           # โหลด FLEURS, Transcriber, CER/WER, CLI eval/transcribe
-│   ├── train_asr.py     # ส่วนที่ 1: fine-tune Whisper
+│   ├── train_asr.py     # ส่วนที่ 1: fine-tune Whisper (full หรือ --lora, --tts-repeat)
+│   ├── augment_asr.py   # gTTS → Whisper เพื่อทำข้อมูลเทรน intent ที่มี ASR error
+│   ├── record.py        # อัดเสียง (arecord) → data/audio/ (test) หรือ --set train → data/audio_train/
+│   ├── eval_e2e.py      # ทดสอบ เสียงจริง → ASR → intent
 │   ├── google_api.py, pipeline.py  # (ยังว่าง)
 ├── credentials.json   # ห้าม commit
 ├── .gitignore  (.venv/, credentials.json, token.json, __pycache__/, models/)
@@ -134,6 +142,34 @@ google-api-python-client, google-auth-oauthlib, gTTS, jupyter
 - ASR (FLEURS test 1,021 ประโยค): whisper-tiny ก่อน fine-tune **CER 0.638 / WER 1.417** → หลัง fine-tune (`models/whisper-th`) **CER 0.231 / WER 0.659**
   (1,500 steps, ~9 epoch, best dev CER 0.211) — WER > 1 ก่อน fine-tune เพราะ tiny หลอน/พูดวนซ้ำ (ข้อความยาวเกิน 2 เท่า 52 ประโยค → เหลือ 10)
   ผลอยู่ใน `reports/asr/` ; ยังผิดคำศัพท์เฉพาะ/คำทับศัพท์บ่อย
+- **ทดสอบเสียงจริง 24 ประโยค** (`data/audio/`, `python -m src.eval_e2e`, ผลใน `reports/e2e/`; v1 = ก่อนปรับ):
+  ASR CER — tiny 0.763 / whisper-th (fine-tuned tiny) 0.479 / whisper-small สำเร็จรูป 0.370
+  v1 สาเหตุแย่: FLEURS ไม่มีคำสั่ง/คำอังกฤษ, คำอังกฤษถูกถอดเป็นไทย, MASSIVE "lists" = shopping list, custom data น้อย
+  | Intent acc | reference | via whisper-th | via whisper-small |
+  |---|---|---|---|
+  | v1 (MASSIVE + custom 5/intent) | 0.50–0.63 | 0.21–0.38 | 0.33–0.50 |
+  | v2 (+ generated + ASR-augmented ×3, + logreg_char) | 0.88–0.92 | 0.50–0.58 | 0.63–0.75 (LSTM/logreg_char) |
+  MASSIVE test ไม่ตก (logreg 0.858, lstm 0.836)
+- ลอง language=None vs "thai" บนเสียง TTS (ไม่ใช่ test set): CER ต่างกันน้อย (0.309 vs 0.310) → คง "thai"
+- **whisper-small + LoRA** (`models/whisper-small-th`, **ตัวที่ใช้จริง**): r=32 q/k/v/out, fp16 base, grad ckpt,
+  peak GPU 1.6GB, 800 steps (~4 epoch) ~75 นาที ; train = FLEURS + เสียง TTS ประโยคคำสั่ง ×4 (perturb)
+  FLEURS dev CER 0.227 → 0.123 ; FLEURS test CER 0.238 → 0.126 (WER 0.765 → 0.395) ; **เสียงจริง 24 ประโยค CER 0.370 → 0.111, WER 0.600 → 0.250, ถูกทั้งประโยค 46%**
+  intent ผ่าน whisper-small-th: 0.71–0.79 (LSTM ดีสุด 0.792) vs ข้อความถูก 0.88–0.92
+  error ที่เหลือ = คำสำคัญเพี้ยน ("นัด"→"นับ", "ค้าง"→"ครั้ง", "to do"→"ทุรู", "done"→"ตอน") → intent พลิก
+- ตาราง ASR (CER) สำหรับรายงาน: FLEURS test / เสียงจริง 24 ประโยค
+  tiny 0.638/0.763 · tiny-ft 0.231/0.479 · small 0.238/0.370 · **small-LoRA 0.126/0.111**
+  ข้อสังเกต: tiny-ft ≈ small บน FLEURS แต่แพ้ชัดบนเสียงคำสั่งจริง → benchmark ไม่สะท้อนงานจริงเสมอ
+- **v3: เสียงผู้ใช้เป็น train set** — `data/audio_train/` 72 ประโยค (12/intent, 3.3 นาที, max similarity กับ test 0.67)
+  อัดด้วย `python -m src.record --set train` ; intent เทรนจากข้อความชุดนี้ด้วย ; ASR: `--own-repeat 6`
+  → `models/whisper-small-th-v2` (**ตัวที่ใช้จริงตอนนี้**) ; v2 ของผล e2e/intent เก็บใน `*_v2.*`, `models/intent_v2/`
+  | ASR | FLEURS test CER | เสียงจริง CER / WER / ถูกทั้งประโยค |
+  |---|---|---|
+  | whisper-small-th | 0.126 | 0.111 / 0.250 / 46% |
+  | whisper-small-th-v2 (+เสียงผู้ใช้) | 0.134 | **0.047 / 0.129 / 58%** |
+  intent ผ่าน v2: CNN/LSTM **0.958 (23/24)** = เท่ากับบนข้อความถูก ; NB 0.917, logreg 0.875
+  ที่ผิดเหลือ: "done"→"ตอน" (cmd11) ; logreg ผิด "show me my tasks", "วันนี้มีนัดอะไรบ้าง" แม้ข้อความถูก
+  trade-off: speaker adaptation → เสียงผู้ใช้ดีขึ้นมาก แต่ FLEURS (คนอื่น) แย่ลงเล็กน้อย 0.126→0.134
+  → ควรให้เพื่อนอัด test เพิ่มเพื่อวัด generalization กับคนอื่น
 - ระวัง: เครื่อง suspend ระหว่างเทรน → GPU ค้าง ; รันด้วย `systemd-inhibit --what=sleep:idle ...` และใช้ `--resume` ต่อจาก checkpoint ได้
 - ยังไม่ได้: Google OAuth, pipeline, TTS, อัดเสียงตัวเอง, เขียน custom data เพิ่ม
 
