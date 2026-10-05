@@ -34,7 +34,7 @@
 `check_tasks`, `add_task`, `complete_task`, `check_calendar`, `add_event`, `other`
 
 - เดโมเต็มๆ เฉพาะ read-only: `check_tasks`, `check_calendar` (ปลอดภัย)
-- `add_event` / `add_task` ทำถ้ามีเวลา และต้องถามยืนยันก่อนเขียนข้อมูลเสมอ
+- ทำครบทุก intent แล้ว: `add_task` / `complete_task` / `add_event` ถามยืนยัน "ใช่ไหม" ก่อนเขียนเสมอ (ตอบไม่ชัด = ยกเลิก)
 - วัน/เวลาใน `add_event` ใช้ rule-based (`dateparser` / PyThaiNLP) ไม่ต้อง train เพิ่ม
 - ระวังโมเดลสับสน add_task vs add_event (ใช้วิเคราะห์ใน confusion matrix ได้)
 
@@ -122,9 +122,12 @@ Speak2Plan/
 │   ├── asr.py           # โหลด FLEURS, Transcriber, CER/WER, CLI eval/transcribe
 │   ├── train_asr.py     # ส่วนที่ 1: fine-tune Whisper (full หรือ --lora, --tts-repeat)
 │   ├── augment_asr.py   # gTTS → Whisper เพื่อทำข้อมูลเทรน intent ที่มี ASR error
-│   ├── record.py        # อัดเสียง (arecord) → data/audio/ (test) หรือ --set train → data/audio_train/
+│   ├── record.py        # อัดเสียง (arecord) → data/audio/ (test), --set train → data/audio_train/, --set friend → data/audio_friend/
 │   ├── eval_e2e.py      # ทดสอบ เสียงจริง → ASR → intent
-│   ├── google_api.py, pipeline.py  # (ยังว่าง)
+│   ├── eval_slots.py    # ความถูกต้องของชื่อ/วัน/เวลา ที่จะบันทึกลง Google (เทียบ data/slots_gold.csv)
+│   ├── google_api.py    # OAuth (token.json) + list/add/complete task, list/add event
+│   ├── slots.py         # rule-based: วันที่ (พรุ่งนี้, วันศุกร์หน้า, วันที่สิบห้า, เดือนหน้า), เวลา (บ่ายสอง, หกโมงเย็น, ทุ่มนึง, 3pm), ชื่องาน/นัด
+│   ├── pipeline.py      # เสียง → ASR → intent → slots → Google → TTS ; --text / --audio / interactive / --wake (เคทู)
 ├── credentials.json   # ห้าม commit
 ├── .gitignore  (.venv/, credentials.json, token.json, __pycache__/, models/)
 ├── requirements.txt
@@ -170,8 +173,28 @@ google-api-python-client, google-auth-oauthlib, gTTS, jupyter
   ที่ผิดเหลือ: "done"→"ตอน" (cmd11) ; logreg ผิด "show me my tasks", "วันนี้มีนัดอะไรบ้าง" แม้ข้อความถูก
   trade-off: speaker adaptation → เสียงผู้ใช้ดีขึ้นมาก แต่ FLEURS (คนอื่น) แย่ลงเล็กน้อย 0.126→0.134
   → ควรให้เพื่อนอัด test เพิ่มเพื่อวัด generalization กับคนอื่น
+- **test set ขยายเป็น 60 ประโยค** (เดิม 24 + ใหม่ 36, 10/intent, max similarity กับ train 0.73) ; ผลเดิม 24 ประโยคเก็บใน `*_v3_24.*`
+  | via whisper-small-th-v2 | CER | NB | LogReg | CNN | LSTM |
+  |---|---|---|---|---|---|
+  | 24 เดิม | 0.047 | 0.917 | 0.875 | 0.958 | 0.958 |
+  | 36 ใหม่ (สะอาดกว่า: เขียนหลังเทรนเสร็จ, ศัพท์ใหม่) | 0.129 | **0.944** | 0.861 | 0.694 | 0.833 |
+  | รวม 60 | 0.097 | **0.933** | 0.867 | 0.800 | 0.883 |
+  → บนประโยคใหม่ NB ดีสุด, CNN/LSTM ตก (overfit สำนวนที่เคยเห็น) — ตัวเลข 0.958 ของ 24 เดิมสูงเกินจริง
+  whisper-small สำเร็จรูปหลอนพูดวนซ้ำ (CER 1.09 บน 36 ใหม่) — fine-tune แก้ได้
+  ระวัง: เลือกโมเดลจาก test set = test-set selection ; ควรเลือกจาก dev แล้วรายงาน test
+- **เสียงเพื่อน: ยังไม่ได้อัด** — `python -m src.record --set friend` → `data/audio_friend/` แล้ว `python -m src.eval_e2e --data data/audio_friend/transcripts.csv`
 - ระวัง: เครื่อง suspend ระหว่างเทรน → GPU ค้าง ; รันด้วย `systemd-inhibit --what=sleep:idle ...` และใช้ `--resume` ต่อจาก checkpoint ได้
-- ยังไม่ได้: Google OAuth, pipeline, TTS, อัดเสียงตัวเอง, เขียน custom data เพิ่ม
+- **Pipeline + OAuth ใช้งานได้แล้ว** (`python -m src.pipeline`): default ASR `models/whisper-small-th-v2`, intent `nb`
+  check_calendar จำกัดช่วงตามคำถาม (พรุ่งนี้ / วันศุกร์ / สัปดาห์นี้ / อาทิตย์หน้า = สัปดาห์หน้า, วันอาทิตย์หน้า = วันอาทิตย์)
+  add_event: ไม่มีเวลา = นัดทั้งวัน, ไม่มีวัน = วันนี้ (พรุ่งนี้ถ้าเวลาผ่านไปแล้ว), ยาว 1 ชม. ; ยังไม่รองรับนัดซ้ำ ("ทุกวันอังคาร")
+  "N โมง" 1–6 ไม่มี "เช้า" = บ่าย ; "at seven"/"night at eight" อาจได้เวลาเช้า — ขั้นยืนยันช่วยจับ
+  ทดสอบแล้ว: read-only จริง + add_event ตอบ "ไม่" (ยกเลิก) ; **ยังไม่ได้ทดสอบเขียนลง Calendar จริง**
+- **Slot accuracy** (`python -m src.eval_slots`, เฉลย `data/slots_gold.csv` 30 ประโยค write, today=2026-10-06):
+  แก้ bug ที่เจอจาก test set: "จันทร์หน้า/next monday" ข้ามไป 2 สัปดาห์, "ใน google tasks ว่า" ไม่ถูกตัด,
+  complete_task พูดชื่องานบางส่วนไม่ match (threshold 0.6 → 0.45 + ≥4 ตัวอักษร) → ข้อความถูก: 87% → 100% (**จูนบน test — ระบุในรายงาน**)
+  ผ่าน whisper-small-th-v2 + nb: add_task 9/10, complete_task 7/10, add_event 5/10 (ASR เพี้ยนเวลา/ชื่อ: "เก้าโมง"→"กาโมง", "at nine"→"at night")
+  **ทั้งระบบ 60 ประโยค (intent + slot ถูกทั้งหมด): 48/60 = 80%** ; check_calendar 10/10, other 9/10, check_tasks 8/10
+- ยังไม่ได้: เสียงเพื่อน (test generalization)
 
 ## สิ่งที่อยากให้ Claude ช่วยต่อ (ลำดับแนะนำ)
 1. สร้างโครงโปรเจกต์ + environment + requirements

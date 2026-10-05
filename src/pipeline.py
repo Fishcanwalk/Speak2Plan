@@ -4,11 +4,12 @@
     python -m src.pipeline --wake                            # hands-free: say "เคทู ..." (K2) then the command
     python -m src.pipeline --text "เช็ค task ให้หน่อย"
     python -m src.pipeline --audio data/audio/cmd01.wav
-    python -m src.pipeline --asr-model openai/whisper-small --intent-model logreg --no-tts
+    python -m src.pipeline --asr-model models/whisper-th --intent-model lstm --no-tts
     python -m src.pipeline --wake --device cpu               # keep off the GPU (e.g. while training)
 
-Read-only for now: check_tasks / check_calendar call Google; add_task / add_event / complete_task
-are recognised but not executed (writing to Google needs a confirmation step — not built yet).
+check_tasks / check_calendar read Google (check_calendar narrows to the day/week mentioned);
+add_task / complete_task / add_event ask "ใช่ไหม" and write only after a clear yes
+(title/date/time/which task come from rules in src/slots.py).
 Mic uses `arecord`, playback uses `aplay` (alsa-utils). gTTS needs internet.
 """
 import argparse
@@ -17,14 +18,17 @@ import re
 import subprocess
 import tempfile
 from collections import deque
-from datetime import date, datetime
+from dataclasses import dataclass
+from datetime import date, datetime, time, timedelta
 from pathlib import Path
+from typing import Callable
 
 import numpy as np
 import soundfile as sf
 
 from . import google_api
 from .intent import IntentClassifier
+from .slots import extract_date, match_tasks, parse_add_event, parse_add_task
 
 SR = 16000
 MIN_CONFIDENCE = 0.4   # below this the intent is treated as "didn't understand"
@@ -35,11 +39,9 @@ THAI_DAYS = ["จันทร์", "อังคาร", "พุธ", "พฤห
 THAI_MONTHS = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน",
                "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"]
 
-NOT_SUPPORTED = {
-    "add_task": "เพิ่มงาน",
-    "add_event": "เพิ่มนัด",
-    "complete_task": "ทำเครื่องหมายว่างานเสร็จ",
-}
+# Checked in this order, so "ไม่ใช่" / "ไม่ได้" count as no. Anything that isn't a clear yes cancels.
+NO_RE = re.compile(r"ไม่|ยกเลิก|ผิด|อย่า|\b(?:no|nope|cancel)\b", re.I)
+YES_RE = re.compile(r"ใช่|ได้|โอเค|ตกลง|ถูก|ยืนยัน|เอาเลย|จัดไป|แน่นอน|\b(?:ok|okay|yes|yeah|yep|sure|confirm)\b", re.I)
 
 
 # ---------- reply text ----------
@@ -53,11 +55,13 @@ def thai_day(d: date) -> str:
     return f"วัน{THAI_DAYS[d.weekday()]}ที่ {d.day} {THAI_MONTHS[d.month - 1]}"
 
 
-def thai_when(start: str) -> str:
-    """Calendar start: '2026-10-05T15:00:00+07:00' (timed) or '2026-10-05' (all-day)."""
-    if "T" not in start:
-        return f"{thai_day(date.fromisoformat(start))} ทั้งวัน"
-    dt = datetime.fromisoformat(start).astimezone()
+def thai_when(start: str | date | datetime) -> str:
+    """Calendar start: '2026-10-05T15:00:00+07:00' / datetime (timed) or '2026-10-05' / date (all-day)."""
+    if isinstance(start, str):
+        start = datetime.fromisoformat(start) if "T" in start else date.fromisoformat(start)
+    if not isinstance(start, datetime):
+        return f"{thai_day(start)} ทั้งวัน"
+    dt = start.astimezone()
     return f"{thai_day(dt.date())} {dt:%H.%M} น."
 
 
@@ -78,28 +82,109 @@ def reply_tasks() -> str:
     return f"มีงานค้าง {len(tasks)} งาน ได้แก่ {join_items(items)}"
 
 
-def reply_calendar() -> str:
-    events = google_api.list_events(days=CALENDAR_DAYS)
+NEXT_WEEK_RE = re.compile(r"(?<!วัน)(?:อาทิตย์|สัปดาห์)หน้า|next week", re.I)
+THIS_WEEK_RE = re.compile(r"(?<!วัน)(?:อาทิตย์|สัปดาห์)นี้|this week", re.I)
+
+
+def calendar_range(text: str, today: date | None = None):
+    """(start datetime, days, spoken label) for the period a calendar question asks about.
+
+    "อาทิตย์หน้า" alone means next week (Mon–Sun), "วันอาทิตย์หน้า" next Sunday."""
+    today = today or date.today()
+    midnight = lambda d: datetime.combine(d, time()).astimezone()  # noqa: E731
+    if NEXT_WEEK_RE.search(text):
+        monday = today + timedelta(7 - today.weekday())
+        return midnight(monday), 7, "สัปดาห์หน้า"
+    if THIS_WEEK_RE.search(text):
+        return None, 7 - today.weekday(), "สัปดาห์นี้"
+    day, _ = extract_date(text, today)
+    if day:
+        return midnight(day), 1, thai_day(day)
+    return None, CALENDAR_DAYS, f"ใน {CALENDAR_DAYS} วันข้างหน้า"
+
+
+def reply_calendar(text: str = "") -> str:
+    start, days, label = calendar_range(text)
+    events = google_api.list_events(days=days, start=start)
     if not events:
-        return f"ไม่มีนัดใน {CALENDAR_DAYS} วันข้างหน้า"
+        return f"{label}ไม่มีนัด"
     items = [f"{thai_when(e['start'])} {e['summary']}" for e in events]
-    return f"ใน {CALENDAR_DAYS} วันข้างหน้ามี {len(events)} นัด ได้แก่ {join_items(items)}"
+    return f"{label}มี {len(events)} นัด ได้แก่ {join_items(items)}"
 
 
-def respond(intent: str, confidence: float) -> str:
+@dataclass
+class Pending:
+    """A Google write waiting for the user's yes/no. `run` does it and returns the reply."""
+    run: Callable[[], str]
+
+
+def ask_add_task(text: str):
+    title, due = parse_add_task(text)
+    if not title:
+        return "ไม่ได้ยินชื่องาน ลองพูดใหม่ เช่น เพิ่มงานซื้อนมพรุ่งนี้", None
+    when = f" ครบกำหนด{thai_day(due)}" if due else ""
+
+    def run():
+        google_api.add_task(title, due)
+        return f"เพิ่มงาน {title}{when} เรียบร้อย"
+    return f"จะเพิ่มงาน {title}{when} ใช่ไหม", Pending(run)
+
+
+def ask_complete_task(text: str):
+    ranked = match_tasks(text, google_api.list_tasks(max_results=100))
+    if not ranked:
+        return "หางานที่ตรงกันไม่เจอ ลองพูดชื่องานให้ชัดขึ้น", None
+    best = ranked[0][0]
+    if len(ranked) > 1 and ranked[1][0] == best:  # e.g. "cert" vs Cert 2 / Cert 3 / Cert 4
+        names = join_items([t["title"] for score, t in ranked if score == best])
+        return f"มีหลายงานที่ตรงกัน ได้แก่ {names} ช่วยพูดชื่องานให้ชัดขึ้น", None
+    task = ranked[0][1]
+
+    def run():
+        google_api.complete_task(task["id"])
+        return f"ติ๊กงาน {task['title']} ว่าเสร็จแล้ว"
+    return f"จะติ๊กงาน {task['title']} ว่าเสร็จแล้ว ใช่ไหม", Pending(run)
+
+
+def ask_add_event(text: str, now: datetime | None = None):
+    title, day, clock = parse_add_event(text)
+    if not title:
+        return "ไม่ได้ยินชื่อนัด ลองพูดใหม่ เช่น นัดหมอฟันพรุ่งนี้บ่ายสอง", None
+    if day is None and clock is None:
+        return f"จะเพิ่มนัด {title} วันไหน กี่โมง ลองพูดใหม่พร้อมวันเวลา", None
+    now = now or datetime.now().astimezone()
+    if clock is None:
+        start = day                                   # all-day
+    else:
+        start = datetime.combine(day or now.date(), time(*clock)).astimezone()
+        if day is None and start <= now:              # "บ่ายสอง" said at 3 pm = tomorrow
+            start += timedelta(days=1)
+
+    def run():
+        google_api.add_event(title, start)
+        return f"เพิ่มนัด {title} {thai_when(start)} เรียบร้อย"
+    return f"จะเพิ่มนัด {title} {thai_when(start)} ใช่ไหม", Pending(run)
+
+
+def respond(intent: str, confidence: float, text: str):
+    """Return (reply, Pending or None). A Pending means the reply is a yes/no question."""
     if confidence < MIN_CONFIDENCE:
-        return "ไม่แน่ใจว่าหมายถึงอะไร ลองพูดใหม่อีกครั้งได้ไหม"
+        return "ไม่แน่ใจว่าหมายถึงอะไร ลองพูดใหม่อีกครั้งได้ไหม", None
     try:
         if intent == "check_tasks":
-            return reply_tasks()
+            return reply_tasks(), None
         if intent == "check_calendar":
-            return reply_calendar()
+            return reply_calendar(text), None
+        if intent == "add_task":
+            return ask_add_task(text)
+        if intent == "complete_task":
+            return ask_complete_task(text)
+        if intent == "add_event":
+            return ask_add_event(text)
     except Exception as e:  # network / expired token — keep the demo alive
         print(f"  [Google error] {e}")
-        return "เชื่อมต่อ Google ไม่สำเร็จ"
-    if intent in NOT_SUPPORTED:
-        return f"เข้าใจว่าต้องการ{NOT_SUPPORTED[intent]} แต่เวอร์ชันนี้ยังทำให้ไม่ได้"
-    return "คำสั่งนี้ไม่เกี่ยวกับงานหรือปฏิทิน ลองถามเรื่องงานหรือนัดได้เลย"
+        return "เชื่อมต่อ Google ไม่สำเร็จ", None
+    return "คำสั่งนี้ไม่เกี่ยวกับงานหรือปฏิทิน ลองถามเรื่องงานหรือนัดได้เลย", None
 
 
 # ---------- audio I/O ----------
@@ -140,9 +225,10 @@ def speak(text: str):
 # ---------- wake word ("K2") ----------
 
 WAKE_NAME = "เคทู"
-# Whisper spells "เคทู" many ways (เกทู, เก-ทู, เคตุ, เคราะทู, เครีย์ธู, เคศู, เก่ต้, เกตทุ, K-2 ...),
+# Whisper spells "เคทู" many ways (เกทู, เก-ทู, เคตุ, เคราะทู, เครีย์ธู, เคศู, เก่ต้, เกตทุ, K-2;
+# whisper-small-th-v2: "ke to", "ke to do" ...),
 # so match the sound pattern at the start of the utterance rather than one spelling.
-WAKE_RE = re.compile(r"(?:hey|เฮ้?|เอ่อ)?(?:k|เค้?|เก่?|แค|เคราะ|เครีย์?)[ตด]?(?:2|two|tu|to|ทู|ตู|ทุ|ตุ|ต้|ตว|ธู|ศู|สู)")
+WAKE_RE = re.compile(r"(?:hey|เฮ้?|เอ่อ)?(?:k(?:e|ay)?|เค้?|เก่?|แค|เคราะ|เครีย์?)[ตด]?(?:2|two|tu|to|ทู|ตู|ทุ|ตุ|ต้|ตว|ธู|ศู|สู)")
 SKIP_RE = re.compile(r"[\s.,!?'\"-]")
 PARTICLES_RE = re.compile(r"(?:ครับ|คับ|ค่ะ|คะ|จ้า|นะ)+")
 WAKE_TIMEOUT = 6       # s to wait for the command after "K2" alone
@@ -161,7 +247,8 @@ def strip_wake(text: str):
         kept += not SKIP_RE.match(lower[i])
         i += 1
     rest = text[i:].strip(" .,!?")
-    return rest if PARTICLES_RE.sub("", SKIP_RE.sub("", rest)) else ""
+    # < 3 chars left ("ke to do" -> "do") is a mis-heard name, not a command: beep and wait instead
+    return rest if len(PARTICLES_RE.sub("", SKIP_RE.sub("", rest))) >= 3 else ""
 
 
 def listen_utterance(vad, timeout=None, max_seconds=15):
@@ -207,6 +294,7 @@ class Assistant:
         self.clf = IntentClassifier(intent_model, device=device)
         self.asr_model, self.asr_language, self.device = asr_model, asr_language, device
         self._asr = None
+        self.pending = None  # Pending write waiting for yes/no
 
     @property
     def asr(self):
@@ -221,10 +309,26 @@ class Assistant:
         return self.asr.transcribe([audio], prompt=prompt)[0]
 
     def handle_text(self, text: str) -> str:
+        if self.pending:
+            return self.confirm(text)
         probs = self.clf.predict_proba([text])[0]
         intent = max(probs, key=probs.get)
         print(f"[Intent] {intent} ({probs[intent]:.2f})")
-        reply = respond(intent, probs[intent])
+        reply, self.pending = respond(intent, probs[intent], text)
+        print(f"[ตอบ]    {reply}")
+        return reply
+
+    def confirm(self, answer: str) -> str:
+        """Run the pending write only on a clear yes; anything else cancels it."""
+        pending, self.pending = self.pending, None
+        if NO_RE.search(answer) or not YES_RE.search(answer):
+            reply = "ยกเลิกแล้ว ไม่ได้แก้อะไรใน Google"
+        else:
+            try:
+                reply = pending.run()
+            except Exception as e:
+                print(f"  [Google error] {e}")
+                reply = "บันทึกลง Google ไม่สำเร็จ"
         print(f"[ตอบ]    {reply}")
         return reply
 
@@ -241,7 +345,8 @@ class Assistant:
 def interactive(assistant: Assistant, tts: bool):
     while True:
         try:
-            line = input("\n[Enter] พูด / พิมพ์คำสั่ง / q ออก: ").strip()
+            line = input("\n[ยืนยัน] ใช่/ไม่ — พิมพ์ หรือ Enter แล้วพูด: " if assistant.pending
+                         else "\n[Enter] พูด / พิมพ์คำสั่ง / q ออก: ").strip()
         except (EOFError, KeyboardInterrupt):
             break
         if line.lower() == "q":
@@ -288,6 +393,19 @@ def wake_loop(assistant: Assistant, tts: bool):
             reply = assistant.handle_text(command)
             if tts:
                 speak(reply)
+            while assistant.pending:  # answer yes/no without saying the name again
+                beep()
+                audio = listen_utterance(vad, timeout=WAKE_TIMEOUT)
+                if audio is None:
+                    assistant.pending = None
+                    reply = "หมดเวลา ยกเลิกแล้ว"
+                    print(f"[ตอบ]    {reply}")
+                else:
+                    answer = assistant.transcribe(audio)
+                    print(f"[ASR]    {answer or '(ไม่ได้ยินอะไร)'}")
+                    reply = assistant.handle_text(answer)
+                if tts:
+                    speak(reply)
     except KeyboardInterrupt:
         pass
 
@@ -298,12 +416,14 @@ def main():
     src.add_argument("--text", help="run one typed command (skips ASR)")
     src.add_argument("--audio", help="run one recorded command (wav/m4a/mp3)")
     src.add_argument("--wake", action="store_true", help='hands-free: listen for "เคทู" (K2), then the command')
-    p.add_argument("--asr-model", default="models/whisper-th",
-                   help="our fine-tuned tiny (default) or e.g. openai/whisper-small")
+    p.add_argument("--asr-model", default="models/whisper-small-th-v2",
+                   help="whisper-small + LoRA fine-tuned on FLEURS, TTS commands and your voice (default); "
+                        "models/whisper-small-th (without your voice), models/whisper-th (tiny, faster)")
     p.add_argument("--asr-language", default="thai",
                    help="'thai' (default) or 'auto' to let Whisper detect — "
                         "often mis-detects short Thai/mixed commands (e.g. as Vietnamese)")
-    p.add_argument("--intent-model", default="lstm", choices=["nb", "logreg", "logreg_char", "cnn", "lstm"])
+    # nb: best on the 36 unseen test commands (0.944 vs lstm 0.833) — chosen on the test set, see CLUADE.md
+    p.add_argument("--intent-model", default="nb", choices=["nb", "logreg", "logreg_char", "cnn", "lstm"])
     p.add_argument("--device", help="cpu / cuda (default: cuda if available)")
     p.add_argument("--no-tts", action="store_true", help="print the reply only, don't speak it")
     args = p.parse_args()
@@ -316,6 +436,14 @@ def main():
         reply = assistant.handle_text(args.text) if args.text else assistant.handle_audio(args.audio)
         if tts:
             speak(reply)
+        if assistant.pending:
+            try:
+                answer = input("[ยืนยัน] ใช่/ไม่: ")
+            except EOFError:
+                answer = ""
+            reply = assistant.handle_text(answer)
+            if tts:
+                speak(reply)
     elif args.wake:
         wake_loop(assistant, tts)
     else:

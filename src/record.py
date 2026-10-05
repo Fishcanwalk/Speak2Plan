@@ -2,6 +2,7 @@
 
     python -m src.record                 # test set:  data/audio/
     python -m src.record --set train     # train set: data/audio_train/ (different sentences!)
+    python -m src.record --set friend    # another speaker reads the test prompts -> data/audio_friend/
     python -m src.record --redo cmd05    # re-record one file
 
 Reads prompts from <dir>/prompts.csv (text,intent) — edit it to say things your way.
@@ -16,9 +17,10 @@ import csv
 import subprocess
 from pathlib import Path
 
-from .data import DATA_DIR
+from .data import CUSTOM_CSVS, DATA_DIR, OWN_TRAIN_CSV
 
-SET_DIRS = {"test": DATA_DIR / "audio", "train": DATA_DIR / "audio_train"}
+SET_DIRS = {"test": DATA_DIR / "audio", "train": DATA_DIR / "audio_train",
+            "friend": DATA_DIR / "audio_friend"}   # another speaker reading the test prompts
 FIELDS = ["file", "text", "intent"]
 
 
@@ -39,7 +41,13 @@ def write_transcripts(path, rows):
 def record(path):
     input("  [Enter] เริ่มอัด ... ")
     proc = subprocess.Popen(["arecord", "-q", "-f", "S16_LE", "-r", "16000", "-c", "1", str(path)])
-    input("  ● กำลังอัด — พูดเลย แล้วกด [Enter] เพื่อหยุด ")
+    try:
+        input("  ● กำลังอัด — พูดเลย แล้วกด [Enter] เพื่อหยุด ")
+    except BaseException:          # Ctrl+C / EOF: never leave arecord running, drop the partial file
+        proc.terminate()
+        proc.wait()
+        path.unlink(missing_ok=True)
+        raise
     proc.terminate()
     proc.wait()
 
@@ -71,16 +79,21 @@ def main():
     audio_dir = SET_DIRS[args.set]
     transcripts = audio_dir / "transcripts.csv"
     audio_dir.mkdir(parents=True, exist_ok=True)
-    prompts = read_csv(audio_dir / "prompts.csv")
+    if args.set == "friend":  # same sentences as the test set, different speaker
+        prompts = read_csv(SET_DIRS["test"] / "prompts.csv")
+    else:
+        prompts = read_csv(audio_dir / "prompts.csv")
     if not prompts:
         raise SystemExit(f"no prompts in {audio_dir / 'prompts.csv'}")
     done = read_csv(transcripts)
-    if args.set == "train":   # guard against test-set leakage
-        test_dir = SET_DIRS["test"]
-        test_texts = {r["text"] for r in read_csv(test_dir / "prompts.csv") + read_csv(test_dir / "transcripts.csv")}
-        leaked = [r["text"] for r in prompts if r["text"] in test_texts]
-        if leaked:
-            raise SystemExit(f"these train prompts are in the test set, remove them: {leaked}")
+    # guard against train/test leakage (exact sentence in both)
+    test_dir = SET_DIRS["test"]
+    test_texts = {r["text"] for r in read_csv(test_dir / "prompts.csv") + read_csv(test_dir / "transcripts.csv")}
+    train_texts = {r["text"] for path in CUSTOM_CSVS + [OWN_TRAIN_CSV, SET_DIRS["train"] / "prompts.csv"]
+                   for r in read_csv(path)}
+    leaked = [r["text"] for r in prompts if r["text"] in (test_texts if args.set == "train" else train_texts)]
+    if leaked:
+        raise SystemExit(f"these {args.set} prompts are also in the other split, remove them: {leaked}")
 
     if args.redo:
         row = next((r for r in done if Path(r["file"]).stem == args.redo), None)

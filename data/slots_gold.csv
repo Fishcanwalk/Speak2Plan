@@ -1,0 +1,31 @@
+text,intent,title,day,time
+เพิ่มงานซื้อของเข้าบ้านลงใน task,add_task,ซื้อของเข้าบ้าน,,
+จดไว้ว่าต้องจ่ายค่าไฟ,add_task,จ่ายค่าไฟ,,
+add task อ่านสไลด์ก่อนสอบ,add_task,อ่านสไลด์ก่อนสอบ,,
+ช่วยสร้าง to do ใหม่ว่าโทรหาแม่,add_task,โทรหาแม่,,
+เพิ่ม task จองโรงแรมที่ภูเก็ต,add_task,จองโรงแรมที่ภูเก็ต,,
+อย่าลืมใส่งานเปลี่ยนหลอดไฟลงไป,add_task,เปลี่ยนหลอดไฟ,,
+add a to do to renew my passport,add_task,renew my passport,,
+ช่วยเพิ่มงานล้างแอร์เข้าไปใน to do,add_task,ล้างแอร์,,
+สร้าง task ซื้อตั๋วคอนเสิร์ต,add_task,ซื้อตั๋วคอนเสิร์ต,,
+จดไว้ใน google tasks ว่าต้องนัดช่างมาซ่อมท่อ,add_task,นัดช่างมาซ่อมท่อ,,
+จ่ายค่าไฟแล้ว ติ๊กว่าเสร็จให้หน่อย,complete_task,จ่ายค่าไฟ,,
+task อ่านสไลด์ทำเสร็จแล้ว,complete_task,อ่านสไลด์ก่อนสอบ,,
+mark ซื้อของเข้าบ้านเป็น done,complete_task,ซื้อของเข้าบ้าน,,
+เอางานโทรหาแม่ออกจากลิสต์ทำแล้ว,complete_task,โทรหาแม่,,
+จองโรงแรมแล้ว mark task นั้นว่าเสร็จ,complete_task,จองโรงแรมที่ภูเก็ต,,
+เปลี่ยนหลอดไฟเรียบร้อย ติ๊กออกให้หน่อย,complete_task,เปลี่ยนหลอดไฟ,,
+mark renew passport as complete,complete_task,renew my passport,,
+งานล้างแอร์ทำแล้ว ขีดออกได้,complete_task,ล้างแอร์,,
+ซื้อตั๋วคอนเสิร์ตได้แล้ว done เลย,complete_task,ซื้อตั๋วคอนเสิร์ต,,
+ช่างมาซ่อมท่อแล้ว ปิด task ได้,complete_task,นัดช่างมาซ่อมท่อ,,
+นัดกินข้าวกับเพื่อนวันเสาร์หกโมงเย็น,add_event,กินข้าวกับเพื่อน,sat,18:00
+เพิ่มนัดประชุมกลุ่มวันอังคารบ่ายโมง,add_event,ประชุมกลุ่ม,tue,13:00
+ลง calendar ว่าวันศุกร์สอบ final เก้าโมง,add_event,สอบ final,fri,09:00
+book a meeting next monday at ten,add_event,meeting,next:mon,10:00
+นัดคุยงานกับหัวหน้าพรุ่งนี้สิบเอ็ดโมง,add_event,คุยงานกับหัวหน้า,+1,11:00
+ลงปฏิทินงานสัมมนาวันพฤหัสบ่ายสอง,add_event,งานสัมมนา,thu,14:00
+add a meeting with professor on friday at nine,add_event,meeting with professor,fri,09:00
+วันจันทร์ตีสี่ต้องไปสนามบิน ใส่ calendar ไว้,add_event,ไปสนามบิน,mon,04:00
+นัดเล่นแบดกับเพื่อนวันพุธทุ่มนึง,add_event,เล่นแบดกับเพื่อน,wed,19:00
+schedule team sync every monday at eleven,add_event,team sync,mon,11:00

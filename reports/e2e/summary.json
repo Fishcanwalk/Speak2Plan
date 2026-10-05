@@ -1,52 +1,52 @@
 {
-  "n": 24,
+  "n": 60,
   "asr": {
     "openai/whisper-small": {
-      "cer": 0.370253164556962,
-      "wer": 0.6,
-      "exact_match": 0.041666666666666664
+      "cer": 0.8115055079559363,
+      "wer": 1.2666666666666666,
+      "exact_match": 0.03333333333333333
     },
     "models/whisper-small-th": {
-      "cer": 0.11075949367088607,
-      "wer": 0.25,
-      "exact_match": 0.4583333333333333
+      "cer": 0.1701346389228886,
+      "wer": 0.37971014492753624,
+      "exact_match": 0.3
     },
     "models/whisper-small-th-v2": {
-      "cer": 0.04746835443037975,
-      "wer": 0.12857142857142856,
-      "exact_match": 0.5833333333333334
+      "cer": 0.09730722154222766,
+      "wer": 0.23768115942028986,
+      "exact_match": 0.36666666666666664
     }
   },
   "intent_accuracy": {
     "nb": {
-      "reference": 0.9583333333333334,
+      "reference": 0.95,
       "openai/whisper-small": 0.75,
-      "models/whisper-small-th": 0.75,
-      "models/whisper-small-th-v2": 0.9166666666666666
+      "models/whisper-small-th": 0.8333333333333334,
+      "models/whisper-small-th-v2": 0.9333333333333333
     },
     "logreg": {
-      "reference": 0.9166666666666666,
-      "openai/whisper-small": 0.7083333333333334,
-      "models/whisper-small-th": 0.7916666666666666,
-      "models/whisper-small-th-v2": 0.875
+      "reference": 0.8833333333333333,
+      "openai/whisper-small": 0.7333333333333333,
+      "models/whisper-small-th": 0.85,
+      "models/whisper-small-th-v2": 0.8666666666666667
     },
     "logreg_char": {
-      "reference": 0.9166666666666666,
-      "openai/whisper-small": 0.75,
-      "models/whisper-small-th": 0.7916666666666666,
-      "models/whisper-small-th-v2": 0.875
+      "reference": 0.8833333333333333,
+      "openai/whisper-small": 0.7333333333333333,
+      "models/whisper-small-th": 0.8333333333333334,
+      "models/whisper-small-th-v2": 0.8666666666666667
     },
     "cnn": {
-      "reference": 0.9583333333333334,
-      "openai/whisper-small": 0.7083333333333334,
-      "models/whisper-small-th": 0.7916666666666666,
-      "models/whisper-small-th-v2": 0.9583333333333334
+      "reference": 0.8166666666666667,
+      "openai/whisper-small": 0.65,
+      "models/whisper-small-th": 0.7166666666666667,
+      "models/whisper-small-th-v2": 0.8
     },
     "lstm": {
-      "reference": 0.9583333333333334,
-      "openai/whisper-small": 0.625,
-      "models/whisper-small-th": 0.8333333333333334,
-      "models/whisper-small-th-v2": 0.9583333333333334
+      "reference": 0.9166666666666666,
+      "openai/whisper-small": 0.6666666666666666,
+      "models/whisper-small-th": 0.8166666666666667,
+      "models/whisper-small-th-v2": 0.8833333333333333
     }
   }
 }

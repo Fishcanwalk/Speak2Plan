@@ -2,10 +2,11 @@
 
     python -m src.eval_e2e
     python -m src.eval_e2e --asr-models openai/whisper-tiny models/whisper-th openai/whisper-small
+    python -m src.eval_e2e --data data/audio_friend/transcripts.csv   # -> summary_friend.json
 
 For each ASR model: CER/WER vs. the reference text, then intent accuracy of every intent model
 on (a) the reference text and (b) the ASR output — the gap is the cost of ASR errors.
-Outputs reports/e2e/{summary.json, utterances.csv}.
+Outputs reports/e2e/{summary.json, utterances.csv} (suffixed _<tag> for other sets, e.g. _friend).
 """
 import argparse
 import csv
@@ -26,6 +27,7 @@ def main():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("--data", default=str(DATA_DIR / "audio" / "transcripts.csv"))
     p.add_argument("--asr-models", nargs="+", default=["openai/whisper-tiny", "models/whisper-th"])
+    p.add_argument("--tag", help="output suffix (default: from the data folder, e.g. audio_friend -> friend)")
     p.add_argument("--intent-models", nargs="+", default=["nb", "logreg", "logreg_char", "cnn", "lstm"])
     args = p.parse_args()
 
@@ -59,9 +61,12 @@ def main():
     for im in args.intent_models:
         summary["intent_accuracy"][im] = {src: acc(pr) for src, pr in preds[im].items()}
 
+    folder = Path(args.data).parent.name
+    tag = args.tag if args.tag is not None else ("" if folder == "audio" else folder.removeprefix("audio_"))
+    suffix = f"_{tag}" if tag else ""
     REPORT_DIR.mkdir(parents=True, exist_ok=True)
-    (REPORT_DIR / "summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2))
-    with open(REPORT_DIR / "utterances.csv", "w", encoding="utf-8", newline="") as f:
+    (REPORT_DIR / f"summary{suffix}.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2))
+    with open(REPORT_DIR / f"utterances{suffix}.csv", "w", encoding="utf-8", newline="") as f:
         w = csv.writer(f)
         w.writerow(["file", "gold_intent", "source", "text"] + [f"pred_{im}" for im in args.intent_models])
         for i, file in enumerate(files):
@@ -75,7 +80,7 @@ def main():
     print("  " + " " * 8 + "".join(f"{Path(s).name:>22s}" for s in texts))
     for im, row in summary["intent_accuracy"].items():
         print(f"  {im:8s}" + "".join(f"{row[s]:22.3f}" for s in texts))
-    print(f"\nsaved {REPORT_DIR.relative_to(ROOT)}/summary.json, utterances.csv")
+    print(f"\nsaved {REPORT_DIR.relative_to(ROOT)}/summary{suffix}.json, utterances{suffix}.csv")
 
 
 if __name__ == "__main__":
