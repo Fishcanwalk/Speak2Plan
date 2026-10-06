@@ -416,8 +416,10 @@ def main():
     src.add_argument("--text", help="run one typed command (skips ASR)")
     src.add_argument("--audio", help="run one recorded command (wav/m4a/mp3)")
     src.add_argument("--wake", action="store_true", help='hands-free: listen for "เคทู" (K2), then the command')
-    p.add_argument("--asr-model", default="models/whisper-small-th-v2",
+    # v3: 50/60 end-to-end vs v2 48/60 — chosen on the 60 test commands, see CLUADE.md
+    p.add_argument("--asr-model", default="models/whisper-small-th-v3",
                    help="whisper-small + LoRA fine-tuned on FLEURS, TTS commands and your voice (default); "
+                        "models/whisper-small-th-v2 (fewer own recordings, better on English), "
                         "models/whisper-small-th (without your voice), models/whisper-th (tiny, faster)")
     p.add_argument("--asr-language", default="thai",
                    help="'thai' (default) or 'auto' to let Whisper detect — "

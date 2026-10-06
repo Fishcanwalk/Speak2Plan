@@ -206,6 +206,7 @@ google-api-python-client, google-auth-oauthlib, gTTS, jupyter
   dev CER (200) 0.1164 ดีสุด (v2 0.1191, v3 0.1226) แต่เสียงตัวเอง 60 ประโยค (`summary_asrv4_60.json`) **แย่ลง**: CER 0.121, ทั้งระบบ **45/60** (v2 48, v3 50)
   ได้: "เก้าโมง" ถูกแล้ว (cmd18 เวลา 09:00), "บ่ายสอง" ถูก ; เสีย: ชื่องาน add_task 6/10 (ภูเก็ต, ล้างแอร์, passport), intent nb ผิดเพิ่ม 3 (cmd41/59/60)
   → dev CER ไม่สะท้อนเสียงจริง; **ใช้ v2 หรือ v3 ต่อ** (เลือกจาก 60 ประโยคนี้ = จูนบน test — ระบุในรายงาน)
+- **default ASR ของ pipeline เปลี่ยนเป็น `models/whisper-small-th-v3`** (เดิม v2) — v2 ยังใช้ได้ด้วย `--asr-model models/whisper-small-th-v2` (ภาษาอังกฤษดีกว่า: v3 ถอด "how far is the moon" เป็นไทย) ; wake word "เคทู" กับ v3 ยังไม่ได้ทดสอบ
 - ยังไม่ได้: เสียงเพื่อน (test generalization)
 
 ## สิ่งที่อยากให้ Claude ช่วยต่อ (ลำดับแนะนำ)
