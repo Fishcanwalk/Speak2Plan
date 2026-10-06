@@ -1,0 +1,52 @@
+{
+  "n": 60,
+  "asr": {
+    "models/whisper-small-th-v2": {
+      "cer": 0.09730722154222766,
+      "wer": 0.23768115942028986,
+      "exact_match": 0.36666666666666664
+    },
+    "models/whisper-small-th-v3": {
+      "cer": 0.11689106487148103,
+      "wer": 0.23768115942028986,
+      "exact_match": 0.38333333333333336
+    },
+    "models/whisper-small-th-v4": {
+      "cer": 0.12056303549571604,
+      "wer": 0.23768115942028986,
+      "exact_match": 0.38333333333333336
+    }
+  },
+  "intent_accuracy": {
+    "nb": {
+      "reference": 0.95,
+      "models/whisper-small-th-v2": 0.9333333333333333,
+      "models/whisper-small-th-v3": 0.95,
+      "models/whisper-small-th-v4": 0.9
+    },
+    "logreg": {
+      "reference": 0.8833333333333333,
+      "models/whisper-small-th-v2": 0.8666666666666667,
+      "models/whisper-small-th-v3": 0.8666666666666667,
+      "models/whisper-small-th-v4": 0.85
+    },
+    "logreg_char": {
+      "reference": 0.8833333333333333,
+      "models/whisper-small-th-v2": 0.85,
+      "models/whisper-small-th-v3": 0.8666666666666667,
+      "models/whisper-small-th-v4": 0.85
+    },
+    "cnn": {
+      "reference": 0.8166666666666667,
+      "models/whisper-small-th-v2": 0.7833333333333333,
+      "models/whisper-small-th-v3": 0.8,
+      "models/whisper-small-th-v4": 0.7333333333333333
+    },
+    "lstm": {
+      "reference": 0.9,
+      "models/whisper-small-th-v2": 0.8833333333333333,
+      "models/whisper-small-th-v3": 0.8333333333333334,
+      "models/whisper-small-th-v4": 0.8333333333333334
+    }
+  }
+}

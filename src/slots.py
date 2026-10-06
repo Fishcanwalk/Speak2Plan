@@ -139,10 +139,20 @@ def _half(m):
 
 _HALF = r"\s*(?P<half>ครึ่ง)?"
 # Thai clock: บ่าย = afternoon, โมงเย็น = evening, ทุ่ม = 7–11 pm, ตี = 1–5 am. First match wins.
+_EN_MIN = {"fifteen": 15, "thirty": 30, "forty five": 45, "forty-five": 45, "o'clock": 0, "oclock": 0}
+_EN_MIN_RE = r"(?:\s+(" + "|".join(_EN_MIN) + r"))?"
+
+
+def _en_hour(h):
+    """English "at four" / "at 4:30" without am/pm: 1–6 are afternoon (nobody books 4 am)."""
+    return h + 12 if 1 <= h <= 6 else h
+
+
 _TIME_RULES = [
-    (r"(\d{1,2})[:.](\d{2})\s*(?:น\.?|นาฬิกา)?", lambda m: (int(m[1]), int(m[2]))),
-    (r"(\d{1,2})(?::(\d{2}))?\s*(am|pm|a\.m\.|p\.m\.)",
+    (r"(\d{1,2})(?:[:.](\d{2}))?\s*(am|pm|a\.m\.|p\.m\.)",
      lambda m: (int(m[1]) % 12 + (12 if m[3].startswith("p") else 0), int(m[2] or 0))),
+    (r"\bat\s+(\d{1,2})[:.](\d{2})\b", lambda m: (_en_hour(int(m[1])), int(m[2]))),
+    (r"(\d{1,2})[:.](\d{2})\s*(?:น\.?|นาฬิกา)?", lambda m: (int(m[1]), int(m[2]))),
     (r"เที่ยงคืน", lambda m: (0, 0)),
     (r"เที่ยง(?:วัน|ตรง)?" + _HALF, lambda m: (12, _half(m))),
     (r"บ่าย\s*(?:" + _N + r")?\s*(?:โมง)?" + _HALF, lambda m: (12 + (_num(m[1]) if m[1] else 1), _half(m))),
@@ -155,8 +165,8 @@ _TIME_RULES = [
      lambda m: (_num(m[1]) + (12 if _num(m[1]) <= 6 and not m[2] else 0), _half(m))),
     (r"\bnoon\b", lambda m: (12, 0)),
     (r"\bmidnight\b", lambda m: (0, 0)),
-    (r"\bat\s+" + _EN + r"(?:\s*o'?clock)?\b",
-     lambda m: (_num(m[1]) + (12 if 1 <= _num(m[1]) <= 6 else 0), 0)),
+    (r"\bat\s+" + _EN + _EN_MIN_RE + r"\b",
+     lambda m: (_en_hour(_num(m[1])), _EN_MIN[m[2].lower()] if m[2] else 0)),
 ]
 _TIME_RULES = [(re.compile(p, re.I), fn) for p, fn in _TIME_RULES]
 

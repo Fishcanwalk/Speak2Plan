@@ -194,6 +194,18 @@ google-api-python-client, google-auth-oauthlib, gTTS, jupyter
   complete_task พูดชื่องานบางส่วนไม่ match (threshold 0.6 → 0.45 + ≥4 ตัวอักษร) → ข้อความถูก: 87% → 100% (**จูนบน test — ระบุในรายงาน**)
   ผ่าน whisper-small-th-v2 + nb: add_task 9/10, complete_task 7/10, add_event 5/10 (ASR เพี้ยนเวลา/ชื่อ: "เก้าโมง"→"กาโมง", "at nine"→"at night")
   **ทั้งระบบ 60 ประโยค (intent + slot ถูกทั้งหมด): 48/60 = 80%** ; check_calendar 10/10, other 9/10, check_tasks 8/10
+- **เพิ่ม train prompts เน้นตัวเลขเวลา 40 ประโยค** (`data/audio_train/prompts.csv` รวม 112; 30 add_event, 5 check_calendar, 5 add_task; max similarity กับ test 0.68)
+  แก้ slots จากชุดนี้ (train, ไม่ใช่ test): "6:30pm" ได้ 06:30, "at seven thirty" ไม่มีนาที, "at 4:30" → 16:30
+  ต่อไป: อัด `--set train` → เทรน intent + whisper-small LoRA v3 (`--own-repeat 6`) → eval_e2e + eval_slots
+- **whisper-small-th-v3** (prompts 112, own-repeat 6; intent เทรนใหม่ด้วย — `models/intent_v3/` + `metrics_v3.json` = snapshot **ก่อน** เทรนใหม่):
+  60 ประโยค (`summary_asrv3_60.json`): CER v2 0.097 → v3 0.117, WER 0.238 → 0.238, exact 0.37 → 0.38
+  CER แย่ลงส่วนใหญ่เพราะ cmd57 "how far is the moon" → ถอดเป็นภาษาไทยมั่ว; ชื่อเฉพาะดีขึ้น (renew passport, คอนเสิร์ต, สัมมนา, ซ่อมท่อ)
+  slot (nb, `slots_asrv3.json`): success 21/30 → 22/30 ; **ทั้งระบบ 48/60 → 50/60 = 83%** (ต่าง 2 ประโยค ยังอยู่ในระดับ noise)
+  ยังไม่หาย: "เก้าโมง"→"ก้าโมง" (cmd18), "at nine"→"at night" (cmd51), "team sync"→"team sing", thursday→tuesday (cmd44)
+- **whisper-small-th-v4** = v3 แต่ `--max-steps 1200` (4.8 epoch, 106 นาที; ต้องใส่ `--batch-size 4 --grad-accum 4 --warmup-steps 50 --eval-steps 200 --gradient-checkpointing` เอง ไม่งั้น OOM บน RTX 2050):
+  dev CER (200) 0.1164 ดีสุด (v2 0.1191, v3 0.1226) แต่เสียงตัวเอง 60 ประโยค (`summary_asrv4_60.json`) **แย่ลง**: CER 0.121, ทั้งระบบ **45/60** (v2 48, v3 50)
+  ได้: "เก้าโมง" ถูกแล้ว (cmd18 เวลา 09:00), "บ่ายสอง" ถูก ; เสีย: ชื่องาน add_task 6/10 (ภูเก็ต, ล้างแอร์, passport), intent nb ผิดเพิ่ม 3 (cmd41/59/60)
+  → dev CER ไม่สะท้อนเสียงจริง; **ใช้ v2 หรือ v3 ต่อ** (เลือกจาก 60 ประโยคนี้ = จูนบน test — ระบุในรายงาน)
 - ยังไม่ได้: เสียงเพื่อน (test generalization)
 
 ## สิ่งที่อยากให้ Claude ช่วยต่อ (ลำดับแนะนำ)

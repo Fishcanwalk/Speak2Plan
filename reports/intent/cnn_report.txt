@@ -1,12 +1,12 @@
                 precision    recall  f1-score   support
 
-   check_tasks      0.774     0.804     0.788       102
-      add_task      0.870     0.859     0.865        78
- complete_task      0.854     0.788     0.820       104
-check_calendar      0.732     0.683     0.706       252
-     add_event      0.783     0.854     0.817       418
-         other      0.866     0.842     0.854       584
+   check_tasks      0.748     0.814     0.779       102
+      add_task      0.924     0.782     0.847        78
+ complete_task      0.827     0.779     0.802       104
+check_calendar      0.776     0.702     0.738       252
+     add_event      0.882     0.837     0.859       418
+         other      0.850     0.928     0.887       584
 
-      accuracy                          0.814      1538
-     macro avg      0.813     0.805     0.808      1538
-  weighted avg      0.815     0.814     0.814      1538
+      accuracy                          0.841      1538
+     macro avg      0.834     0.807     0.819      1538
+  weighted avg      0.842     0.841     0.840      1538
