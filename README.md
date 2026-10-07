@@ -54,3 +54,14 @@ python -m src.eval_e2e --asr-models models/whisper-th models/whisper-small-th
 ## Data credits
 - MASSIVE (Amazon, https://github.com/alexa/massive), CC-BY-4.0
 - FLEURS (Google, `google/fleurs`), CC-BY-4.0
+
+## Datasets used
+
+- **MASSIVE:** Thai and English text commands used to train and test the command classifier.
+- **FLEURS:** Thai speech with transcripts used to adapt and test Whisper.
+- **Developer-written command text** (`data/custom_intents.csv`): 30 text-only commands used to train the command classifier.
+- **Claude-generated command text** (`data/generated_intents.csv`): 150 text-only commands used to increase language variety.
+- **Simulated Whisper-error text** (`data/augmented_intents.csv`): 720 text examples created through gTTS and Whisper to make the classifier more tolerant of transcription errors.
+- **Developer-recorded training audio** (`data/audio_train/`): 112 recordings with transcripts used to adapt Whisper and train the command classifier.
+- **Separately recorded test audio** (`data/audio/`): 60 recordings used only to test the complete system.
+- **Expected extracted details** (`data/slots_gold.csv`): answers for 30 commands used to test extraction of task names, dates, and times.
