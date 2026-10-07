@@ -1,0 +1,4 @@
+﻿"asr_id","intent_model","training_set","n","intent_correct","intent_accuracy","slot_n","all_slots_correct","all_slots_accuracy","write_success_correct","write_success_accuracy","read_correct","read_n","system_correct","system_accuracy","source_file","prediction_file"
+"A4","Naive Bayes","I4","60","56","0.9333333333333333","30","22","0.733333333333333","21","0.7","27","30","48","0.8","reports/e2e/slots_asrv2.json","reports/e2e/utterances_asrv4_60.csv"
+"A5","Naive Bayes","I4","60","57","0.95","30","23","0.766666666666667","22","0.733333333333333","28","30","50","0.833333333333333","reports/e2e/slots_asrv3.json","reports/e2e/utterances_asrv4_60.csv"
+"A6","Naive Bayes","I4","60","54","0.9","30","21","0.7","19","0.633333333333333","26","30","45","0.75","reports/e2e/slots_asrv4.json","reports/e2e/utterances_asrv4_60.csv"

@@ -1,6 +1,8 @@
 # Speak2Plan
 Thai/English voice commands for Google Tasks &amp; Calendar, with a fine-tuned Whisper ASR and a self-trained CNN/LSTM intent classifier.
 
+Experiment results: [report](reports/report.md), [per-model summary and CSV data](reports/summary/README.md), and [Word report](reports/report.docx).
+
 ## Setup
 ```bash
 uv venv --python 3.12 .venv        # or: python3.12 -m venv .venv
